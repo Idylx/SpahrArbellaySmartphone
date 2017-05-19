@@ -15,15 +15,13 @@ public class RepertoireContact {
 
 	ArrayList<Contact> listeContact = new ArrayList<Contact>();
 
-	public RepertoireContact() {
-		
-		
-		this.listeContact.add(new PersonnalContact("firstName", "lastName", "adress", "email", "phone", "birth"));
-		this.listeContact.add(new BusinessContact("firstName", "lastName", "adress", "email", "phone", "jobTitle","organization" ));
+
+	public void add(Contact c1){
+		this.listeContact.add(c1);
 		
 	}
-
-
+	
+	
 	public void serialize() {
 		ObjectOutputStream oos = null;
 
@@ -45,31 +43,41 @@ public class RepertoireContact {
 			}
 		}
 	}
-	
-	public void deserialize(){
+
+	public void deserialize() {
 		ObjectInputStream ois = null;
-		
+
 		try {
 			FileInputStream repContact = new FileInputStream("listeContact.ser");
 			ois = new ObjectInputStream(repContact);
 			listeContact = (ArrayList) ois.readObject();
-			
-			
-		}catch (final java.io.IOException e) {
+
+		} catch (final java.io.IOException e) {
 			e.printStackTrace();
-		}catch(final ClassNotFoundException e ){
+		} catch (final ClassNotFoundException e) {
 			e.printStackTrace();
-		}finally{
-			try{
-				if (ois != null){
+		} finally {
+			try {
+				if (ois != null) {
 					ois.close();
 				}
-			}catch(final IOException ex){
+			} catch (final IOException ex) {
 				ex.printStackTrace();
 			}
 		}
-		
-		
+
+	}
+
+	public void repContactToString() {
+		for (int i = 0; i < listeContact.size(); i++)
+			System.out.println(this.listeContact.get(i).getFirstName() + " " + this.listeContact.get(i).getLastName());
+	}
+
+	public String contactToString() {
+
+		System.out.println(this.listeContact.get(0).getFirstName() + " " + this.listeContact.get(0).getLastName());
+		return null;
+
 	}
 }
 
