@@ -10,23 +10,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 
-public class RepertoireContact implements Comparable{
-	
+public class RepertoireContact {
 
 	ArrayList<Contact> listeContact = new ArrayList<Contact>();
-	
-	Collections.
-	
-//	listeContact1 = Arrays.asList(
-//            Contact.getLastName().stream().sorted(
-//                (s1, s2) -> s1.compareToIgnoreCase(s2)
-//            ).toArray(String[]::new)
-//        );
 
 
 	public void add(Contact c1){
@@ -35,18 +22,7 @@ public class RepertoireContact implements Comparable{
 	}
 	
 	
-	
-//	public void remove(){
-//		
-//	}
-// il faut mettre en ordre alphabetique le nom et prenom
-	
-//	public void modify(){
-//	
-//	}
-	
-	
-	public void serialize() {// serialize le repertoire
+	public void serialize() {
 		ObjectOutputStream oos = null;
 
 		try {
@@ -68,7 +44,7 @@ public class RepertoireContact implements Comparable{
 		}
 	}
 
-	public void deserialize() { // deserialize le repertoire
+	public void deserialize() {
 		ObjectInputStream ois = null;
 
 		try {
@@ -103,22 +79,6 @@ public class RepertoireContact implements Comparable{
 		return null;
 
 	}
-
-	public int compareToFirstName(Contact c) {
-		// TODO Auto-generated method stub
-		
-		int cptFirstName = this.listeContact.get(0).getFirstName().compareTo(c.getFirstName());
-		return cptFirstName;
-	}
-	
-	public int compareToLastName(Contact c) {
-		int cptLastName = this.listeContact.get(0).getLastName().compareTo(c.getLastName());
-		return cptLastName;
-		
-	}
-
-
-	
 }
 
 // public void listContact(){
