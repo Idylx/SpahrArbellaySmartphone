@@ -23,6 +23,7 @@ import Buttons.HomeButton;
 import Gallerie.Photo;
 import Panel.ApplicationsPanel;
 import Panel.CalculatorPanel;
+import Panel.GalleryPanel;
 import Panel.TopPanel;
 
 
@@ -46,7 +47,7 @@ public class HomeFrame extends JFrame {
 	private HomeButton bHome = new HomeButton();
 
 	private CalculatorPanel calculatrice = new CalculatorPanel();
-	//private GalleryPanel gallery = new GalleryPanel(appsPanel);
+	private GalleryPanel gallery = new GalleryPanel(appsPanel);
 	
 
 	public HomeFrame() {
@@ -60,7 +61,7 @@ public class HomeFrame extends JFrame {
 
 		bCalculatrice.addActionListener(new BoutonCalculatrice());
 		bHome.addActionListener(new BoutonHome());
-	//	bGallery.addActionListener(new BoutonGallery());
+		bGallery.addActionListener(new BoutonGallery());
 
 		appsPanel.add(bCalculatrice);
 		appsPanel.add(bGallery);
@@ -112,18 +113,18 @@ public class HomeFrame extends JFrame {
 		}
 	}
 	
-//	class BoutonGallery implements ActionListener {
-//
-//		@Override
-//		public void actionPerformed(ActionEvent e) {
-//			
-//			mainPanel.add(gallery, "gallery");
-//			c1.show(mainPanel, "gallery");
-//			
-//		}
-//		
-//		
-//	}
+	class BoutonGallery implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			mainPanel.add(gallery, "gallery");
+			c1.show(mainPanel, "gallery");
+			
+		}
+		
+		
+	}
 	
 
 	public static void main(String[] args) {
