@@ -15,37 +15,55 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class RepertoireContact implements Comparable{
-	
+public class RepertoireContact {
 
 	ArrayList<Contact> listeContact = new ArrayList<Contact>();
-	
-	Collections.
-	
-//	listeContact1 = Arrays.asList(
-//            Contact.getLastName().stream().sorted(
-//                (s1, s2) -> s1.compareToIgnoreCase(s2)
-//            ).toArray(String[]::new)
-//        );
 
 
-	public void add(Contact c1){
-		this.listeContact.add(c1);
-		
+	public void sortByLastName() {
+		Collections.sort(listeContact, compareLastName());
 	}
-	
-	
-	
-//	public void remove(){
-//		
-//	}
-// il faut mettre en ordre alphabetique le nom et prenom
-	
-//	public void modify(){
-//	
-//	}
-	
-	
+
+
+	public void sortByFirstName() {
+		Collections.sort(listeContact, compareFirstName());
+	}
+
+
+	public static Comparator<Contact> compareLastName() {//compare les nom
+		Comparator comp = new Comparator<Contact>() {
+			@Override
+			public int compare(Contact c1, Contact c2) {
+				return c1.getLastName().compareTo(c2.getLastName());
+			}
+		};
+		return comp;
+	}
+
+
+	public static Comparator<Contact> compareFirstName() {// compare les prénoms
+		Comparator comp = new Comparator<Contact>() {
+			@Override
+			public int compare(Contact c1, Contact c2) {
+				return c1.getFirstName().compareTo(c2.getFirstName());y
+			}
+		};
+		return comp;
+	}
+
+	public void add(Contact c1) {
+		this.listeContact.add(c1);
+
+	}
+
+	// public void remove(){
+	//
+	// }
+
+	// public void modify(){
+	//
+	// }
+
 	public void serialize() {// serialize le repertoire
 		ObjectOutputStream oos = null;
 
@@ -104,21 +122,6 @@ public class RepertoireContact implements Comparable{
 
 	}
 
-	public int compareToFirstName(Contact c) {
-		// TODO Auto-generated method stub
-		
-		int cptFirstName = this.listeContact.get(0).getFirstName().compareTo(c.getFirstName());
-		return cptFirstName;
-	}
-	
-	public int compareToLastName(Contact c) {
-		int cptLastName = this.listeContact.get(0).getLastName().compareTo(c.getLastName());
-		return cptLastName;
-		
-	}
-
-
-	
 }
 
 // public void listContact(){
