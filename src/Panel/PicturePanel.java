@@ -1,40 +1,52 @@
 package Panel;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
-import javax.swing.JButton;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import Gallerie.Photo;
 
-public class ApplicationsPanel extends JPanel {
 
-	private FlowLayout fl = new FlowLayout(FlowLayout.LEFT, 10, 10);
-
+public class PicturePanel extends JPanel {
+	
 	private Photo photo;
 	
 
+	// for the paintComponenent
+		private BufferedImage buffImage;
 
-	public ApplicationsPanel() {
-		setLayout(fl);
-		setBackground(Color.pink);
-		setPhoto();
+		
+
+	
+	public PicturePanel(Photo photo)
+	{
+		this.photo = photo;
 		
 		
+		setLayout(new BorderLayout());
+		setBackground(Color.black);
+	
 	}
-
-	void setPhoto() {
-		photo = new Photo("./src/Pictures/wallpaper.jpg");
-	}
-
+	
 	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		/**
+		 * m�thode qui va peindre la photo sur tout le panel en la
+		 * redimensionant � la taille du panel
+		 **/
 		super.paintComponent(g);
-		Image img = photo.getImage();
+
+		Photo newPhoto = new Photo(photo.getPath());
+		Image img = newPhoto.getImage();
+
 		int frameWidth = this.getWidth();
 		int frameHeight = this.getHeight();
 
@@ -58,5 +70,7 @@ public class ApplicationsPanel extends JPanel {
 					(int) imageHeight, this);
 
 		}
+
 	}
+
 }

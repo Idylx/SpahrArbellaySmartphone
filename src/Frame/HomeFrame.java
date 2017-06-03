@@ -39,15 +39,15 @@ public class HomeFrame extends JFrame {
 
 	private ApplicationsPanel appsPanel = new ApplicationsPanel();
 
-	private ButtonApp bCalculatrice = new ButtonApp(new Photo("./src/Pictures/home.png"));
-	private JButton bGallery = new JButton("Gallery");
+	private ButtonApp bCalculatrice = new ButtonApp(new Photo("./src/Pictures/calculator.png"));
+	private JButton bGallery = new ButtonApp(new Photo("./src/Pictures/gallery.png"));
 	private JButton app3 = new JButton("Appli 3");
 	private JButton app4 = new JButton("Appli 4");
 
 	private HomeButton bHome = new HomeButton();
 
 	private CalculatorPanel calculatrice = new CalculatorPanel();
-	private GalleryPanel gallery = new GalleryPanel(appsPanel);
+	private GalleryPanel gallery = new GalleryPanel();
 	
 
 	public HomeFrame() {
