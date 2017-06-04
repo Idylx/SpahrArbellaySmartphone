@@ -7,10 +7,12 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Gallerie.Photo;
+import javax.swing.border.EmptyBorder;
 
 public class ApplicationsPanel extends JPanel {
 
@@ -22,14 +24,15 @@ public class ApplicationsPanel extends JPanel {
 
 	public ApplicationsPanel() {
 		setLayout(fl);
-		setBackground(Color.pink);
+		setBackground(Color.black);
 		setPhoto();
+		setBorder(new EmptyBorder(20, 30, 0, 20));
 		
 		
 	}
 
 	void setPhoto() {
-		photo = new Photo("./src/Pictures/wallpaper.jpg");
+		photo = new Photo("./src/Pictures/wallpaperr.jpg");
 	}
 
 	protected void paintComponent(Graphics g) {

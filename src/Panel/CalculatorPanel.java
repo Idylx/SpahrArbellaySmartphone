@@ -5,7 +5,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,20 +18,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Gallerie.Photo;
+
 public class CalculatorPanel extends JPanel implements ActionListener {
 
-	JPanel container = new JPanel(new FlowLayout());
+	private Photo photo;
 	
-
 	JTextField result;
 	JPanel mainPane = new JPanel();
 
 
-
-	
-	Dimension MainPane = new Dimension(450,480);
-
-	
 	JButton b[] = new JButton[16];
 	String s[] = {"0","1","2","3","4","5","6","7","8","9","+","-","/","*","=","C"};
 	JPanel buttons = new JPanel();
@@ -43,66 +41,86 @@ public class CalculatorPanel extends JPanel implements ActionListener {
 	boolean CommandEmpty=true,switcher=true;
 	double R=Integer.MIN_VALUE,L=Integer.MIN_VALUE;
 	
-//	Dimension dimensionTop = new Dimension(450, 90);
 	
 	Dimension dimensionTextField = new Dimension(450, 90);
+	Dimension dimensionMainPane = new Dimension(450,0);
+	Dimension buttonDimension = new Dimension(100,100);
 	Font fontTextField = new Font("Arial", Font.BOLD, 47);
 	
-	Dimension dimensionMainPane = new Dimension(450,450);
+	Font buttonFont = new Font("Arial", Font.BOLD, 30);
 	
 	
 	public CalculatorPanel() {
 		
-		super();
-		setBounds(100, 100, 480, 800);
-		setOpaque(false);
-	
-		
-//		
-//		top.setPreferredSize(dimensionTop);
-//	
-		
+		setPhoto();
+
 		result = new JTextField();
 		result.setEditable(false);
 		result.setBackground(Color.PINK);
 		result.setPreferredSize(dimensionTextField);
 		result.setFont(fontTextField);
-		
-		mainPane.setPreferredSize(dimensionMainPane);
-		buttons.setPreferredSize(dimensionMainPane);
+	
 		
 		buttons.setLayout(new GridLayout(4,4,15,15));
 		for (int i=0;i<16;i++)
 		{
 			b[i] = new JButton(s[i]);
+			b[i].setPreferredSize(buttonDimension);
+			b[i].setFont(buttonFont);
 			b[i].addActionListener(this);
 			buttons.add(b[i]);
 		}
-		
-//		getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-	
 
-		mainPane.setPreferredSize(MainPane);
 		
 		mainPane.add(buttons);
 		
 		buttons.setOpaque(false);
-		container.setOpaque(false);
+
 	
 		mainPane.setOpaque(false);
 	
-	
-		container.add(result);
-		container.add(mainPane);
+		
 
 	
-		add(container);
+		add(result);
+		add(mainPane);
 		
-	
-		
+		setBackground(Color.BLACK);
 		setVisible(true);
 		
 		}
+	
+	void setPhoto() {
+		photo = new Photo("./src/Pictures/wallpaperr.jpg");
+	}
+
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Image img = photo.getImage();
+		int frameWidth = this.getWidth();
+		int frameHeight = this.getHeight();
+
+		double imageWidth = img.getWidth(this);
+		double imageHeight = img.getHeight(this);
+
+		double newW = (imageWidth / imageHeight) * frameHeight;
+		double newH = (imageHeight / imageWidth) * frameWidth;
+
+		if (imageWidth > imageHeight) {
+			double ratioWidth = imageWidth / frameWidth;
+			imageWidth = frameWidth;
+			imageHeight = (int) (imageHeight / ratioWidth);
+			g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2,
+					(int) imageWidth, (int) newH, this);
+		} else if (imageHeight > imageWidth) {
+			double ratioHeight = imageHeight / frameHeight;
+			imageHeight = frameHeight;
+			imageWidth = (int) (imageWidth / ratioHeight);
+			g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2, (int) newW,
+					(int) imageHeight, this);
+
+		}
+	}
 	
 	@Override
 	public void actionPerformed(ActionEvent event) {
@@ -193,11 +211,7 @@ public class CalculatorPanel extends JPanel implements ActionListener {
 			}
 			return 0;
 		}
-		
-		public static void main ( String [] args)
-		{
-			CalculatorPanel c = new CalculatorPanel();
-		}
+
 		
 
 }
