@@ -15,37 +15,45 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class RepertoireContact implements Comparable{
-	
+public class RepertoireContact {
 
 	ArrayList<Contact> listeContact = new ArrayList<Contact>();
-	
-	Collections.
-	
-//	listeContact1 = Arrays.asList(
-//            Contact.getLastName().stream().sorted(
-//                (s1, s2) -> s1.compareToIgnoreCase(s2)
-//            ).toArray(String[]::new)
-//        );
 
+	public String[][] toArray() {
+		String[][] array = new String[listeContact.size()][5];
+		for (int i = 0; i < array.length; i++) {
 
-	public void add(Contact c1){
+			array[i] = listeContact.get(i).getArray();
+
+		}
+		return array;
+	}
+
+	public void add(Contact c1) {
 		this.listeContact.add(c1);
-		
+		sortByFirstName();
+		sortByLastName();
+		serialize();
+
+	}
+
+	public void remove(int pos) {
+		this.listeContact.remove(pos);
+		sortByFirstName();
+		sortByLastName();
+		serialize();
+	}
+
+	public void modify(int pos, Contact setContact) {
+		this.listeContact.remove(pos);
+		this.listeContact.add(setContact);
+		sortByFirstName();
+		sortByLastName();
+		serialize();
+
 	}
 	
-	
-	
-//	public void remove(){
-//		
-//	}
-// il faut mettre en ordre alphabetique le nom et prenom
-	
-//	public void modify(){
-//	
-//	}
-	
-	
+
 	public void serialize() {// serialize le repertoire
 		ObjectOutputStream oos = null;
 
@@ -74,7 +82,7 @@ public class RepertoireContact implements Comparable{
 		try {
 			FileInputStream repContact = new FileInputStream("listeContact.ser");
 			ois = new ObjectInputStream(repContact);
-			listeContact = (ArrayList) ois.readObject();
+			listeContact = (ArrayList<Contact>) ois.readObject();
 
 		} catch (final java.io.IOException e) {
 			e.printStackTrace();
@@ -97,34 +105,34 @@ public class RepertoireContact implements Comparable{
 			System.out.println(this.listeContact.get(i).getFirstName() + " " + this.listeContact.get(i).getLastName());
 	}
 
-	public String contactToString() {
-
-		System.out.println(this.listeContact.get(0).getFirstName() + " " + this.listeContact.get(0).getLastName());
-		return null;
-
+	public void sortByLastName() {
+		Collections.sort(listeContact, compareLastName());
 	}
 
-	public int compareToFirstName(Contact c) {
-		// TODO Auto-generated method stub
-		
-		int cptFirstName = this.listeContact.get(0).getFirstName().compareTo(c.getFirstName());
-		return cptFirstName;
-	}
-	
-	public int compareToLastName(Contact c) {
-		int cptLastName = this.listeContact.get(0).getLastName().compareTo(c.getLastName());
-		return cptLastName;
-		
+	public void sortByFirstName() {
+		Collections.sort(listeContact, compareFirstName());
 	}
 
+	public static Comparator<Contact> compareLastName() {
+		Comparator comp = new Comparator<Contact>() {
+			@Override
+			public int compare(Contact c1, Contact c2) {
+				return c1.getLastName().toUpperCase().compareTo(c2.getLastName().toUpperCase());
+			}
+		};
+		return comp;
+	}
 
-	
+	public static Comparator<Contact> compareFirstName() {
+		Comparator comp = new Comparator<Contact>() {
+			@Override
+			public int compare(Contact c1, Contact c2) {
+				return c1.getFirstName().toUpperCase().compareTo(c2.getFirstName().toUpperCase());
+			}
+		};
+		return comp;
+	}
+
 }
 
-// public void listContact(){
-// for (int i =0;i>listeContact.size(); i++){
-// return listeContact.getClass().get;}
-// }
-//
-//
-// }
+
