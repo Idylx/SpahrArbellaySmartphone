@@ -42,9 +42,9 @@ public class CalculatorPanel extends JPanel implements ActionListener {
 	double R=Integer.MIN_VALUE,L=Integer.MIN_VALUE;
 	
 	
-	Dimension dimensionTextField = new Dimension(450, 90);
-	Dimension dimensionMainPane = new Dimension(450,0);
-	Dimension buttonDimension = new Dimension(100,100);
+	Dimension dimensionTextField = new Dimension(420, 90);
+	Dimension dimensionMainPane = new Dimension(420,0);
+	Dimension buttonDimension = new Dimension(95,95);
 	Font fontTextField = new Font("Arial", Font.BOLD, 47);
 	
 	Font buttonFont = new Font("Arial", Font.BOLD, 30);
