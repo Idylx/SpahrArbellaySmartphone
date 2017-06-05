@@ -22,7 +22,7 @@ public class DatePanel extends JPanel{
 	public DatePanel() {
 		
 		setBackground(Color.BLACK);
-		setBorder(new EmptyBorder(10, 0, 0, 0));
+		setBorder(new EmptyBorder(10, 0, 0, 15));
 
 		date = new JLabel();
 		date.setOpaque(false);
