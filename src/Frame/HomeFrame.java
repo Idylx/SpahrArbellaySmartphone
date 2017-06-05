@@ -3,6 +3,7 @@ package Frame;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
@@ -10,12 +11,16 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import Buttons.ButtonApp;
@@ -23,7 +28,10 @@ import Buttons.HomeButton;
 import Gallerie.Photo;
 import Panel.ApplicationsPanel;
 import Panel.CalculatorPanel;
+import Panel.ClockPanel;
+import Panel.DatePanel;
 import Panel.GalleryPanel;
+import Panel.GoogleQueryPanel;
 import Panel.TopPanel;
 
 
@@ -49,6 +57,11 @@ public class HomeFrame extends JFrame {
 	private CalculatorPanel calculatrice = new CalculatorPanel();
 	private GalleryPanel gallery = new GalleryPanel();
 	
+	JPanel panel = new JPanel(new FlowLayout());
+	ClockPanel clock = new ClockPanel();
+	GoogleQueryPanel google = new GoogleQueryPanel();
+	
+	
 
 	public HomeFrame() {
 
@@ -62,11 +75,18 @@ public class HomeFrame extends JFrame {
 		bCalculatrice.addActionListener(new BoutonCalculatrice());
 		bHome.addActionListener(new BoutonHome());
 		bGallery.addActionListener(new BoutonGallery());
+		
 
-		appsPanel.add(bCalculatrice);
-		appsPanel.add(bGallery);
-		appsPanel.add(app3);
-		appsPanel.add(app4);
+		panel.add(bCalculatrice);
+		panel.add(bGallery);
+		panel.add(app3);
+		panel.add(app4);
+		
+		panel.setOpaque(false);
+		
+		appsPanel.add(panel, BorderLayout.NORTH);
+		appsPanel.add(clock, BorderLayout.CENTER);
+		appsPanel.add(google, BorderLayout.SOUTH);
 
 
 		west.setPreferredSize(new Dimension(0,0));
@@ -90,6 +110,7 @@ public class HomeFrame extends JFrame {
 		pack();
 
 	}
+
 
 	class BoutonHome implements ActionListener {
 

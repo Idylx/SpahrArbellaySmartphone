@@ -1,5 +1,6 @@
 package Panel;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -20,13 +21,14 @@ public class ApplicationsPanel extends JPanel {
 
 	private Photo photo;
 	
-
+	private BorderLayout bl = new BorderLayout();
 
 	public ApplicationsPanel() {
-		setLayout(fl);
+//		setLayout(fl);
+		setLayout(bl);
 		setBackground(Color.black);
 		setPhoto();
-		setBorder(new EmptyBorder(20, 30, 0, 20));
+		setBorder(new EmptyBorder(20, 10, 0, 20));
 		
 		
 	}
