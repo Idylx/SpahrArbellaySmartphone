@@ -11,6 +11,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -23,6 +25,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import org.opencv.core.Core;
+
 import Buttons.ButtonApp;
 import Buttons.HomeButton;
 import Gallerie.Photo;
@@ -32,8 +36,8 @@ import Panel.ClockPanel;
 import Panel.DatePanel;
 import Panel.GalleryPanel;
 import Panel.GoogleQueryPanel;
+import Panel.CameraPanel;
 import Panel.TopPanel;
-
 
 public class HomeFrame extends JFrame {
 
@@ -56,12 +60,11 @@ public class HomeFrame extends JFrame {
 
 	private CalculatorPanel calculatrice = new CalculatorPanel();
 	private GalleryPanel gallery = new GalleryPanel();
-	
+	private CameraPanel hello = new CameraPanel();
+
 	JPanel panel = new JPanel(new FlowLayout());
 	ClockPanel clock = new ClockPanel();
 	GoogleQueryPanel google = new GoogleQueryPanel();
-	
-	
 
 	public HomeFrame() {
 
@@ -70,32 +73,30 @@ public class HomeFrame extends JFrame {
 		setSize(480, 800);
 		setResizable(false);
 		setLocationRelativeTo(null);
-	
 
 		bCalculatrice.addActionListener(new BoutonCalculatrice());
 		bHome.addActionListener(new BoutonHome());
 		bGallery.addActionListener(new BoutonGallery());
-		
+		app3.addActionListener(new BoutonCamera());
 
 		panel.add(bCalculatrice);
 		panel.add(bGallery);
 		panel.add(app3);
 		panel.add(app4);
-		
+
 		panel.setOpaque(false);
-		
+
 		appsPanel.add(panel, BorderLayout.NORTH);
 		appsPanel.add(clock, BorderLayout.CENTER);
 		appsPanel.add(google, BorderLayout.SOUTH);
 
-
-		west.setPreferredSize(new Dimension(0,0));
-		est.setPreferredSize(new Dimension(0,0));
+		west.setPreferredSize(new Dimension(0, 0));
+		est.setPreferredSize(new Dimension(0, 0));
 		south.setBackground(Color.BLACK);
 		north.setBackground(Color.BLACK);
-		
+
 		south.add(bHome);
-		
+
 		mainPanel.setLayout(c1);
 		mainPanel.add(appsPanel, "ApplicationsPanel");
 		c1.show(mainPanel, "mainPanel");
@@ -111,14 +112,30 @@ public class HomeFrame extends JFrame {
 
 	}
 
-
 	class BoutonHome implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
+			if (hello.running == true) {
+				hello.myThread.runnable = false;
+				hello.webSource.release();
+			}
+
 			c1.show(mainPanel, "ApplicationsPanel");
 
+		}
+
+	}
+
+	class BoutonCamera implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			hello.start();
+			mainPanel.add(hello, "hello");
+			c1.show(mainPanel, "hello");
 		}
 
 	}
@@ -133,22 +150,23 @@ public class HomeFrame extends JFrame {
 
 		}
 	}
-	
+
 	class BoutonGallery implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+
 			mainPanel.add(gallery, "gallery");
 			c1.show(mainPanel, "gallery");
-			
+
 		}
-		
-		
+
 	}
-	
 
 	public static void main(String[] args) {
+
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

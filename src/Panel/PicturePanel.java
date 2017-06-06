@@ -25,7 +25,6 @@ public class PicturePanel extends JPanel {
 	private String pathPhoto;
 	
 	
-	
 	private JPanel closePanel = new JPanel(new BorderLayout());
 	private JPanel previousPanel = new JPanel(new BorderLayout());
 	private JPanel nextPanel = new JPanel(new BorderLayout());
