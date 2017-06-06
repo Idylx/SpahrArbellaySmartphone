@@ -23,7 +23,7 @@ public class ClockPanel extends JPanel{
 	public ClockPanel() {
 		
 		setBackground(Color.BLACK);
-		setBorder(new EmptyBorder(70, 0, 0, 0));
+		setBorder(new EmptyBorder(30, 0, 20, 0));
 
 		clock = new JLabel();
 		

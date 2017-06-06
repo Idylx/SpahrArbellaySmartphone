@@ -30,6 +30,7 @@ import org.opencv.core.MatOfByte;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.videoio.VideoCapture;
 
+import Buttons.ButtonApp;
 import Gallerie.Photo;
 import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;
@@ -47,7 +48,7 @@ public class CameraPanel extends JPanel {
 	JPanel bottomPanel = new JPanel(new FlowLayout());
 	JPanel topPanel = new JPanel(new BorderLayout());
 
-	JButton take = new JButton("take");
+	ButtonApp camera = new ButtonApp(new Photo("./src/Pictures/cameraButton.png"));
 
 	Photo photo = new Photo("./src/Pictures/wallpaperr.jpg");
 
@@ -70,10 +71,11 @@ public class CameraPanel extends JPanel {
 		west.setOpaque(false);
 		est.setOpaque(false);
 		topPanel.setOpaque(false);
+		camera.setVerticalAlignment(SwingConstants.TOP);
 
-		take.addActionListener(new BoutonTake());
+		camera.addActionListener(new BoutonTake());
 
-		bottomPanel.add(take);
+		bottomPanel.add(camera);
 
 		add(est, BorderLayout.EAST);
 		add(west, BorderLayout.WEST);
@@ -89,7 +91,7 @@ public class CameraPanel extends JPanel {
 		topPanel.add(saved);
 		saved.setVisible(false);
 
-		bottomPanel.setBorder(new EmptyBorder(30, 0, 0, 0));
+		bottomPanel.setBorder(new EmptyBorder(10, 0, 0, 0));
 
 		cam.setOpaque(false);
 
@@ -195,7 +197,7 @@ public class CameraPanel extends JPanel {
 			name = Integer.toString(randomName);
 			name += ".jpg";
 
-			System.out.println(name);
+			
 
 			File f = new File("./src/GalleriePhotos/");
 			File[] images = f.listFiles();
@@ -203,11 +205,11 @@ public class CameraPanel extends JPanel {
 
 			for (int i = 0; i < images.length; i++) {
 				imagesName[i] = images[i].getName();
-				System.out.println(images[i].getName());
+				
 			}
 
 			for (int i = 0; i < imagesName.length; i++) {
-				System.out.println(reroll);
+				
 				if (name.equals(imagesName[i])) {
 					reroll = true;
 
@@ -217,7 +219,7 @@ public class CameraPanel extends JPanel {
 				Imgcodecs.imwrite("./src/GalleriePhotos/" + name, frame);
 				confirmation();
 			} else {
-				System.out.println("already exists " + name);
+				
 				actionPerformed(e);
 			}
 		}
@@ -242,18 +244,4 @@ public class CameraPanel extends JPanel {
 
 	}
 
-	// class bottomPaneltop implements ActionListener{
-	//
-	// @Override
-	// public void actionPerformed(ActionEvent e) {
-	//
-	// myThread.runnable = false;
-	// stop.setEnabled(false);
-	// start.setEnabled(true);
-	//
-	// webSource.release();
-	//
-	// }
-	//
-	// }
 }

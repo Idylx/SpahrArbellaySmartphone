@@ -8,7 +8,9 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -52,9 +54,11 @@ public class HomeFrame extends JFrame {
 	private ApplicationsPanel appsPanel = new ApplicationsPanel();
 
 	private ButtonApp bCalculatrice = new ButtonApp(new Photo("./src/Pictures/calculator.png"));
-	private JButton bGallery = new ButtonApp(new Photo("./src/Pictures/gallery.png"));
-	private JButton app3 = new JButton("Appli 3");
-	private JButton app4 = new JButton("Appli 4");
+	private ButtonApp bGallery = new ButtonApp(new Photo("./src/Pictures/gallery.png"));
+	private ButtonApp bCamera = new ButtonApp(new Photo("./src/Pictures/camera.png"));
+	private ButtonApp app4 = new ButtonApp(new Photo("./src/Pictures/camera.png"));
+	private ButtonApp app5 = new ButtonApp(new Photo("./src/Pictures/camera.png"));
+	private ButtonApp app6 = new ButtonApp(new Photo("./src/Pictures/camera.png"));
 
 	private HomeButton bHome = new HomeButton();
 
@@ -73,21 +77,25 @@ public class HomeFrame extends JFrame {
 		setSize(480, 800);
 		setResizable(false);
 		setLocationRelativeTo(null);
+		
+		panel.setPreferredSize(new Dimension(440, 150));
 
 		bCalculatrice.addActionListener(new BoutonCalculatrice());
 		bHome.addActionListener(new BoutonHome());
 		bGallery.addActionListener(new BoutonGallery());
-		app3.addActionListener(new BoutonCamera());
+		bCamera.addActionListener(new BoutonCamera());
 
 		panel.add(bCalculatrice);
 		panel.add(bGallery);
-		panel.add(app3);
-		panel.add(app4);
+		panel.add(bCamera);
+//		panel.add(app4);
+//		panel.add(app5);
+//		panel.add(app6);
 
 		panel.setOpaque(false);
 
-		appsPanel.add(panel, BorderLayout.NORTH);
-		appsPanel.add(clock, BorderLayout.CENTER);
+		appsPanel.add(clock, BorderLayout.NORTH);
+		appsPanel.add(panel, BorderLayout.CENTER);
 		appsPanel.add(google, BorderLayout.SOUTH);
 
 		west.setPreferredSize(new Dimension(0, 0));
@@ -102,11 +110,11 @@ public class HomeFrame extends JFrame {
 		c1.show(mainPanel, "mainPanel");
 
 		// add panels to container
-		add(north, BorderLayout.NORTH);
-		add(est, BorderLayout.EAST);
-		add(west, BorderLayout.WEST);
-		add(south, BorderLayout.SOUTH);
-		add(mainPanel);
+		getContentPane().add(north, BorderLayout.NORTH);
+		getContentPane().add(est, BorderLayout.EAST);
+		getContentPane().add(west, BorderLayout.WEST);
+		getContentPane().add(south, BorderLayout.SOUTH);
+		getContentPane().add(mainPanel);
 
 		pack();
 
