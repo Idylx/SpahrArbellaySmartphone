@@ -4,7 +4,7 @@ import java.awt.Dimension;
 
 import javax.swing.JButton;
 
-import Gallerie.Photo;
+import Photo.Photo;
 
 public class CalculatorButton extends JButton {
 

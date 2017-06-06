@@ -5,7 +5,7 @@ import java.awt.Image;
 
 import javax.swing.JButton;
 
-import Gallerie.Photo;
+import Photo.Photo;
 
 public class PhotoButton extends JButton {
 

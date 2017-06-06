@@ -2,7 +2,7 @@ package Buttons;
 
 import javax.swing.JButton;
 
-import Gallerie.Photo;
+import Photo.Photo;
 
 
 public class ButtonApp extends JButton {

@@ -13,12 +13,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import Buttons.ButtonApp;
 import Frame.HomeFrame;
-import Gallerie.Photo;
+import Photo.Photo;
 
 public class PicturePanel extends JPanel {
 
@@ -27,9 +29,10 @@ public class PicturePanel extends JPanel {
 	private JPanel closePanel = new JPanel(new BorderLayout());
 	private JPanel previousPanel = new JPanel(new BorderLayout());
 	private JPanel nextPanel = new JPanel(new BorderLayout());
+	
 
 	ButtonApp close = new ButtonApp(new Photo("./src/Pictures/close.png"));
-	ButtonApp delete = new ButtonApp(new Photo("./src/Pictures/google.png"));
+	ButtonApp delete = new ButtonApp(new Photo("./src/Pictures/delete.png"));
 	ButtonApp previous = new ButtonApp(new Photo("./src/Pictures/leftArrow.png"));
 	ButtonApp next = new ButtonApp(new Photo("./src/Pictures/rightArrow.png"));
 
@@ -75,6 +78,7 @@ public class PicturePanel extends JPanel {
 		closePanel.setOpaque(false);
 		closePanel.add(close, BorderLayout.EAST);
 		closePanel.add(delete, BorderLayout.WEST);
+		
 
 		add(closePanel, BorderLayout.NORTH);
 		add(previousPanel, BorderLayout.WEST);
@@ -82,23 +86,32 @@ public class PicturePanel extends JPanel {
 		setBackground(Color.BLACK);
 
 	}
+	
 
 	class Delete_Button implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			System.out.println(index);
-			System.out.println(top.path.get(index));
+			int options = JOptionPane.YES_NO_CANCEL_OPTION;
+			
+			options = JOptionPane.showConfirmDialog(null, "Es-tu sûr de vouloir supprimer cette photo ?", null,
+					options);
 
-			top.delete(index, top.path.get(index));
+			if (options == JOptionPane.YES_OPTION) {
 
-			top.getContainerPhotos().removeAll();
+				top.delete(index, top.path.get(index));
 
-			top.remove(PicturePanel.this);
+				top.getContainerPhotos().removeAll();
 
-			top.addButton();
+				top.remove(PicturePanel.this);
 
+				top.addButton();
+			}
+
+			else {
+				return;
+			}
 		}
 
 	}

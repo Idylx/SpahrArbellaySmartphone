@@ -11,9 +11,9 @@ import java.io.File;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
-import Gallerie.Photo;
 import javax.swing.border.EmptyBorder;
+
+import Photo.Photo;
 
 public class ApplicationsPanel extends JPanel {
 

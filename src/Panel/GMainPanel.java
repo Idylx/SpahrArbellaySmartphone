@@ -9,7 +9,7 @@ import java.awt.Image;
 
 import javax.swing.JPanel;
 
-import Gallerie.Photo;
+import Photo.Photo;
 
 public class GMainPanel extends JPanel {
 

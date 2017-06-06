@@ -31,7 +31,8 @@ import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.videoio.VideoCapture;
 
 import Buttons.ButtonApp;
-import Gallerie.Photo;
+import Photo.Photo;
+
 import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;

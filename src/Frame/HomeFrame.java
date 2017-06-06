@@ -31,7 +31,6 @@ import org.opencv.core.Core;
 
 import Buttons.ButtonApp;
 import Buttons.HomeButton;
-import Gallerie.Photo;
 import Panel.ApplicationsPanel;
 import Panel.CalculatorPanel;
 import Panel.ClockPanel;
@@ -40,6 +39,7 @@ import Panel.GalleryPanel;
 import Panel.GoogleQueryPanel;
 import Panel.CameraPanel;
 import Panel.TopPanel;
+import Photo.Photo;
 
 public class HomeFrame extends JFrame {
 
@@ -180,21 +180,4 @@ public class HomeFrame extends JFrame {
 		}
 
 	}
-
-	public static void main(String[] args) {
-
-		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HomeFrame frame = new HomeFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 }

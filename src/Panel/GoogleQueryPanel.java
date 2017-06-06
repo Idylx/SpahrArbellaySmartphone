@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import Buttons.ButtonApp;
-import Gallerie.Photo;
+import Photo.Photo;
 
 
 public class GoogleQueryPanel extends JPanel {

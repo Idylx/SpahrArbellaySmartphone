@@ -25,7 +25,7 @@ import javax.swing.JScrollPane;
 
 import Buttons.PhotoButton;
 import Frame.HomeFrame;
-import Gallerie.Photo;
+import Photo.Photo;
 
 public class GalleryPanel extends JPanel {
 	
