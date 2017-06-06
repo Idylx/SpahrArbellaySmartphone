@@ -1,3 +1,7 @@
+/*
+ * Author : Bryan Spahr
+ */
+
 package Panel;
 
 import java.awt.BorderLayout;
@@ -198,19 +202,17 @@ public class CameraPanel extends JPanel {
 			name = Integer.toString(randomName);
 			name += ".jpg";
 
-			
-
 			File f = new File("./src/GalleriePhotos/");
 			File[] images = f.listFiles();
 			String[] imagesName = new String[images.length];
 
 			for (int i = 0; i < images.length; i++) {
 				imagesName[i] = images[i].getName();
-				
+
 			}
 
 			for (int i = 0; i < imagesName.length; i++) {
-				
+
 				if (name.equals(imagesName[i])) {
 					reroll = true;
 
@@ -220,7 +222,7 @@ public class CameraPanel extends JPanel {
 				Imgcodecs.imwrite("./src/GalleriePhotos/" + name, frame);
 				confirmation();
 			} else {
-				
+
 				actionPerformed(e);
 			}
 		}

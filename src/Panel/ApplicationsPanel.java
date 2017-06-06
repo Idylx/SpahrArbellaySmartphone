@@ -1,3 +1,7 @@
+/*
+ * Author : Bryan Spahr
+ */
+
 package Panel;
 
 import java.awt.BorderLayout;
@@ -20,17 +24,16 @@ public class ApplicationsPanel extends JPanel {
 	private FlowLayout fl = new FlowLayout(FlowLayout.LEFT, 10, 10);
 
 	private Photo photo;
-	
+
 	private BorderLayout bl = new BorderLayout();
 
 	public ApplicationsPanel() {
-//		setLayout(fl);
+		// setLayout(fl);
 		setLayout(bl);
 		setBackground(Color.black);
 		setPhoto();
 		setBorder(new EmptyBorder(20, 10, 0, 20));
-		
-		
+
 	}
 
 	void setPhoto() {

@@ -1,3 +1,7 @@
+/*
+ * Author : Bryan Spahr
+ */
+
 package Panel;
 
 import java.awt.BorderLayout;
@@ -14,7 +18,7 @@ public class TopPanel extends JPanel {
 	Dimension dimension = new Dimension(450, 65);
 
 	public TopPanel() {
-		
+
 		setBackground(Color.BLACK);
 		setPreferredSize(dimension);
 		setLayout(new BorderLayout());

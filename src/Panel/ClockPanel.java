@@ -1,3 +1,7 @@
+/*
+ * Author : Bryan Spahr
+ */
+
 package Panel;
 
 import java.awt.BorderLayout;
@@ -14,27 +18,25 @@ import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;
 
-public class ClockPanel extends JPanel{
+public class ClockPanel extends JPanel {
 
 	private JLabel clock;
-	
+
 	Font font = new Font("Roboto", Font.PLAIN, 80);
 
 	public ClockPanel() {
-		
+
 		setBackground(Color.BLACK);
 		setBorder(new EmptyBorder(30, 0, 20, 0));
 
 		clock = new JLabel();
-		
-	
+
 		clock.setFont(new Font("Roboto Condensed", Font.BOLD, 80));
 		clock.setForeground(Color.white);
 		getTime();
 		add(clock, BorderLayout.EAST);
-		
-		setOpaque(false);
 
+		setOpaque(false);
 
 		Timer timer = new Timer(500, new ActionListener() {
 			@Override
@@ -42,14 +44,14 @@ public class ClockPanel extends JPanel{
 				getTime();
 			}
 		});
-		
+
 		timer.setRepeats(true);
 		timer.setCoalesce(true);
 		timer.setInitialDelay(0);
 		timer.start();
 
 	}
-	
+
 	public void getTime() {
 		clock.setText(DateFormat.getTimeInstance().format(new Date()));
 	}

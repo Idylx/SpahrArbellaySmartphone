@@ -1,3 +1,7 @@
+/*
+ * Author : Bryan Spahr
+ */
+
 package Buttons;
 
 import java.awt.Dimension;
@@ -16,6 +20,6 @@ public class CalculatorButton extends JButton {
 		setContentAreaFilled(false);
 		setFocusPainted(false);
 		setOpaque(false);
-		
+
 	}
 }

@@ -1,3 +1,7 @@
+/*
+ * Author : Bryan Spahr
+ */
+
 package Panel;
 
 import java.awt.Color;
@@ -13,19 +17,17 @@ import Photo.Photo;
 
 public class GMainPanel extends JPanel {
 
-	private GridLayout gl = new GridLayout(0,3);
+	private GridLayout gl = new GridLayout(0, 3);
 
 	private Photo photo;
-	
-
 
 	public GMainPanel() {
 		setLayout(gl);
 		setBackground(Color.black);
 		setPhoto();
-		
+
 	}
-	
+
 	void setPhoto() {
 		photo = new Photo("./src/Pictures/wallpaperr.jpg");
 	}

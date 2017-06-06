@@ -1,3 +1,7 @@
+/*
+ * Author : Bryan Spahr
+ */
+
 package Panel;
 
 import java.awt.Color;
@@ -21,46 +25,42 @@ import javax.swing.SwingConstants;
 import Buttons.ButtonApp;
 import Photo.Photo;
 
-
 public class GoogleQueryPanel extends JPanel {
-	
+
 	private FlowLayout fl = new FlowLayout();
-	
+
 	ButtonApp google = new ButtonApp(new Photo("./src/Pictures/google.png"));
 	ButtonApp loupe = new ButtonApp(new Photo("./src/Pictures/loupe.png"));
 	JTextField searchQuery = new JTextField();
-	
+
 	Font font = new Font("Arial", Font.PLAIN, 20);
-	
-	public GoogleQueryPanel()
-	{
+
+	public GoogleQueryPanel() {
 		setLayout(fl);
-		setPreferredSize(new Dimension(480,80));
-		
+		setPreferredSize(new Dimension(480, 80));
+
 		searchQuery.setPreferredSize(new Dimension(260, 48));
 		searchQuery.setFont(font);
 		searchQuery.setOpaque(false);
 		searchQuery.setForeground(Color.WHITE);
 		searchQuery.setCaretColor(Color.WHITE);
-		
-		
+
 		google.setHorizontalAlignment(SwingConstants.LEFT);
 		add(google);
 		add(searchQuery);
 		add(loupe);
 		loupe.addActionListener(new BrowserBouton());
 		setOpaque(false);
-		
-		
+
 	}
-	
-	class BrowserBouton implements ActionListener{
+
+	class BrowserBouton implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+
 			String query = searchQuery.getText();
-			String googleQuery = "http://www.google.ch/search?q="+query;
+			String googleQuery = "http://www.google.ch/search?q=" + query;
 			googleQuery = googleQuery.replace(" ", "+");
 			Desktop d = Desktop.getDesktop();
 			try {
@@ -70,7 +70,7 @@ public class GoogleQueryPanel extends JPanel {
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
 
 }

@@ -1,4 +1,9 @@
+/*
+ * Author : Bryan Spahr
+ */
+
 package Photo;
+
 import java.awt.Image;
 import java.io.Serializable;
 

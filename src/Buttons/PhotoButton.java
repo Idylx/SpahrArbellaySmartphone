@@ -1,3 +1,7 @@
+/*
+ * Author : Bryan Spahr
+ */
+
 package Buttons;
 
 import java.awt.Dimension;
@@ -17,7 +21,7 @@ public class PhotoButton extends JButton {
 		setContentAreaFilled(false);
 		setFocusPainted(false);
 		setOpaque(false);
-		
+
 	}
 
 }

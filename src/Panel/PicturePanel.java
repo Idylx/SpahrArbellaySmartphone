@@ -1,3 +1,7 @@
+/*
+ * Author : Bryan Spahr
+ */
+
 package Panel;
 
 import java.awt.BorderLayout;
@@ -29,7 +33,6 @@ public class PicturePanel extends JPanel {
 	private JPanel closePanel = new JPanel(new BorderLayout());
 	private JPanel previousPanel = new JPanel(new BorderLayout());
 	private JPanel nextPanel = new JPanel(new BorderLayout());
-	
 
 	ButtonApp close = new ButtonApp(new Photo("./src/Pictures/close.png"));
 	ButtonApp delete = new ButtonApp(new Photo("./src/Pictures/delete.png"));
@@ -78,7 +81,6 @@ public class PicturePanel extends JPanel {
 		closePanel.setOpaque(false);
 		closePanel.add(close, BorderLayout.EAST);
 		closePanel.add(delete, BorderLayout.WEST);
-		
 
 		add(closePanel, BorderLayout.NORTH);
 		add(previousPanel, BorderLayout.WEST);
@@ -86,7 +88,6 @@ public class PicturePanel extends JPanel {
 		setBackground(Color.BLACK);
 
 	}
-	
 
 	class Delete_Button implements ActionListener {
 
@@ -94,7 +95,7 @@ public class PicturePanel extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 
 			int options = JOptionPane.YES_NO_CANCEL_OPTION;
-			
+
 			options = JOptionPane.showConfirmDialog(null, "Es-tu sûr de vouloir supprimer cette photo ?", null,
 					options);
 

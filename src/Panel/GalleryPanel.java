@@ -1,3 +1,7 @@
+/*
+ * Author : Bryan Spahr
+ */
+
 package Panel;
 
 import java.awt.CardLayout;
@@ -28,14 +32,13 @@ import Frame.HomeFrame;
 import Photo.Photo;
 
 public class GalleryPanel extends JPanel {
-	
 
 	public CardLayout c2 = new CardLayout();
 
 	ApplicationsPanel picturePanell = new ApplicationsPanel();
 
 	GMainPanel mainPanel = new GMainPanel();
-	
+
 	GMainPanel panel = new GMainPanel();
 	GMainPanel containerPhotos = new GMainPanel();
 
@@ -49,58 +52,49 @@ public class GalleryPanel extends JPanel {
 	PicturePanel pp;
 
 	private Photo photo;
-	
+
 	JScrollPane scroll = new JScrollPane(containerPhotos, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-	
+
 	HomeFrame hf;
-	
 
 	public GalleryPanel(HomeFrame hf) {
-		
+
 		this.hf = hf;
-		
+
 		addButton();
-		
-		
-	
+
 		setLayout(c2);
 		add(scroll);
 		c2.show(GalleryPanel.this, "GalleryPanel");
-		
+
 		setBackground(Color.BLACK);
 		scroll.setBorder(BorderFactory.createEmptyBorder());
-		
-		
 
 	}
-	
-	public GMainPanel getContainerPhotos()
-	{
+
+	public GMainPanel getContainerPhotos() {
 		return containerPhotos;
 	}
-	
+
 	void addButton() {
-		
+
 		this.path = getPath();
 		this.imgs = fillImgs();
-		
+
 		for (int i = 0; i < imgs.size(); i++) {
 			boutons.add(new PhotoButton(new Photo(imgs.get(i))));
 			boutons.get(i).setActionCommand("" + i);
 			boutons.get(i).addActionListener(new PhotoBouton());
 			containerPhotos.add(boutons.get(i));
 		}
-		
+
 	}
-	
-	void removeButton()
-	{
-		for(int i = 0 ; i < boutons.size(); i++)
+
+	void removeButton() {
+		for (int i = 0; i < boutons.size(); i++)
 			containerPhotos.remove(boutons.get(i));
 	}
-	
-	
 
 	ArrayList<String> getPath() {
 
@@ -129,16 +123,13 @@ public class GalleryPanel extends JPanel {
 		return temp;
 
 	}
-	
-	CardLayout getCLayout()
-	{
+
+	CardLayout getCLayout() {
 		return c2;
 	}
 
-	public void delete(int index, String pathh)
-	{
-		
-		
+	public void delete(int index, String pathh) {
+
 		File f = new File(pathh);
 		Path pathFile = f.toPath();
 		try {
@@ -151,25 +142,19 @@ public class GalleryPanel extends JPanel {
 			// File permission problems are caught here.
 			System.err.println(x);
 		}
-		
+
 		boutons.clear();
 		imgs.clear();
 		path.clear();
-		
-	
-		
-		
-		
+
 	}
-	
-	
+
 	public void removePanel(JPanel panelRemove) {
-	
-		
+
 		remove(panelRemove);
 		revalidate();
 		repaint();
-		
+
 	}
 
 	class PhotoBouton implements ActionListener {
