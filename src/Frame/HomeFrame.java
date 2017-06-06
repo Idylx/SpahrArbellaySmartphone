@@ -62,9 +62,9 @@ public class HomeFrame extends JFrame {
 
 	private HomeButton bHome = new HomeButton();
 
-	private CalculatorPanel calculatrice = new CalculatorPanel();
-	private GalleryPanel gallery = new GalleryPanel();
-	private CameraPanel hello = new CameraPanel();
+	private CalculatorPanel calculatrice;
+	private GalleryPanel gallery;
+	private CameraPanel camera = new CameraPanel();
 
 	JPanel panel = new JPanel(new FlowLayout());
 	ClockPanel clock = new ClockPanel();
@@ -119,15 +119,20 @@ public class HomeFrame extends JFrame {
 		pack();
 
 	}
+	
+	public CardLayout getCL(){
+		
+		return c1;
+	}
 
 	class BoutonHome implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			if (hello.running == true) {
-				hello.myThread.runnable = false;
-				hello.webSource.release();
+			if (camera.running == true) {
+				camera.myThread.runnable = false;
+				camera.webSource.release();
 			}
 
 			c1.show(mainPanel, "ApplicationsPanel");
@@ -140,9 +145,10 @@ public class HomeFrame extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+	
 
-			hello.start();
-			mainPanel.add(hello, "hello");
+			camera.start();
+			mainPanel.add(camera, "hello");
 			c1.show(mainPanel, "hello");
 		}
 
@@ -152,6 +158,8 @@ public class HomeFrame extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
+			calculatrice = new CalculatorPanel();
 
 			mainPanel.add(calculatrice, "calculatrice");
 			c1.show(mainPanel, "calculatrice");
@@ -163,6 +171,8 @@ public class HomeFrame extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
+			gallery = new GalleryPanel(HomeFrame.this);
 
 			mainPanel.add(gallery, "gallery");
 			c1.show(mainPanel, "gallery");

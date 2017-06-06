@@ -17,56 +17,53 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import Buttons.ButtonApp;
+import Frame.HomeFrame;
 import Gallerie.Photo;
 
 public class PicturePanel extends JPanel {
 
-	
 	private String pathPhoto;
-	
-	
+
 	private JPanel closePanel = new JPanel(new BorderLayout());
 	private JPanel previousPanel = new JPanel(new BorderLayout());
 	private JPanel nextPanel = new JPanel(new BorderLayout());
-	
+
 	ButtonApp close = new ButtonApp(new Photo("./src/Pictures/close.png"));
+	ButtonApp delete = new ButtonApp(new Photo("./src/Pictures/google.png"));
 	ButtonApp previous = new ButtonApp(new Photo("./src/Pictures/leftArrow.png"));
 	ButtonApp next = new ButtonApp(new Photo("./src/Pictures/rightArrow.png"));
 
 	GalleryPanel top;
-	
+
 	int index;
 
 	public PicturePanel(int index, GalleryPanel top) {
-		//this.pathPhoto = pathPhoto;
+		// this.pathPhoto = pathPhoto;
 		this.top = top;
 		this.index = index;
-		
+
 		pathPhoto = top.path.get(index);
 
 		setLayout(new BorderLayout());
 		setBackground(Color.black);
-		
+
 		previous.setHorizontalAlignment(SwingConstants.LEFT);
 		next.setHorizontalAlignment(SwingConstants.RIGHT);
 
 		close.addActionListener(new Close_Button());
-
-		
+		delete.addActionListener(new Delete_Button());
 		previous.addActionListener(new Previous_Button());
 		next.addActionListener(new Next_Button());
-		
-		if(index == 0){
+
+		if (index == 0) {
 			previous.setEnabled(false);
 			previous.setVisible(false);
 		}
-		if(index == top.path.size()-1)
-		{
+		if (index == top.path.size() - 1) {
 			next.setEnabled(false);
 			next.setVisible(false);
 		}
-		
-		
+
 		previous.setVerticalAlignment(SwingConstants.CENTER);
 		next.setVerticalAlignment(SwingConstants.CENTER);
 
@@ -77,11 +74,32 @@ public class PicturePanel extends JPanel {
 
 		closePanel.setOpaque(false);
 		closePanel.add(close, BorderLayout.EAST);
-		
+		closePanel.add(delete, BorderLayout.WEST);
+
 		add(closePanel, BorderLayout.NORTH);
 		add(previousPanel, BorderLayout.WEST);
 		add(nextPanel, BorderLayout.EAST);
 		setBackground(Color.BLACK);
+
+	}
+
+	class Delete_Button implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			System.out.println(index);
+			System.out.println(top.path.get(index));
+
+			top.delete(index, top.path.get(index));
+
+			top.getContainerPhotos().removeAll();
+
+			top.remove(PicturePanel.this);
+
+			top.addButton();
+
+		}
 
 	}
 
@@ -94,33 +112,33 @@ public class PicturePanel extends JPanel {
 		}
 
 	}
-	
+
 	class Previous_Button implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+
 			top.remove(PicturePanel.this);
-			PicturePanel pp = new PicturePanel(index-1, top);
+			PicturePanel pp = new PicturePanel(index - 1, top);
 			top.add(pp, "newPP");
 			top.getCLayout().show(top, "newPP");
-			
+
 		}
-		
+
 	}
-	
+
 	class Next_Button implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+
 			top.remove(PicturePanel.this);
-			PicturePanel pp = new PicturePanel(index+1, top);
+			PicturePanel pp = new PicturePanel(index + 1, top);
 			top.add(pp, "newPP");
 			top.getCLayout().show(top, "newPP");
-			
+
 		}
-		
+
 	}
 
 	protected void paintComponent(Graphics g) {

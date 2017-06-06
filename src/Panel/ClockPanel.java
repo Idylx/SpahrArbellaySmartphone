@@ -28,7 +28,7 @@ public class ClockPanel extends JPanel{
 		clock = new JLabel();
 		
 	
-		clock.setFont(font);
+		clock.setFont(new Font("Roboto Condensed", Font.BOLD, 80));
 		clock.setForeground(Color.white);
 		getTime();
 		add(clock, BorderLayout.EAST);

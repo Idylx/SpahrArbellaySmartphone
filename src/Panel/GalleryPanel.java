@@ -9,15 +9,22 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import Buttons.PhotoButton;
+import Frame.HomeFrame;
 import Gallerie.Photo;
 
 public class GalleryPanel extends JPanel {
@@ -46,19 +53,14 @@ public class GalleryPanel extends JPanel {
 	JScrollPane scroll = new JScrollPane(containerPhotos, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	
-
-	public GalleryPanel() {
-		
-		path = getPath();
-		imgs = fillImgs();
+	HomeFrame hf;
 	
 
-		for (int i = 0; i < imgs.size(); i++) {
-			boutons.add(new PhotoButton(new Photo(imgs.get(i))));
-			boutons.get(i).setActionCommand("" + i);
-			boutons.get(i).addActionListener(new PhotoBouton());
-			containerPhotos.add(boutons.get(i));
-		}
+	public GalleryPanel(HomeFrame hf) {
+		
+		this.hf = hf;
+		
+		addButton();
 		
 		
 	
@@ -72,6 +74,33 @@ public class GalleryPanel extends JPanel {
 		
 
 	}
+	
+	public GMainPanel getContainerPhotos()
+	{
+		return containerPhotos;
+	}
+	
+	void addButton() {
+		
+		this.path = getPath();
+		this.imgs = fillImgs();
+		
+		for (int i = 0; i < imgs.size(); i++) {
+			boutons.add(new PhotoButton(new Photo(imgs.get(i))));
+			boutons.get(i).setActionCommand("" + i);
+			boutons.get(i).addActionListener(new PhotoBouton());
+			containerPhotos.add(boutons.get(i));
+		}
+		
+	}
+	
+	void removeButton()
+	{
+		for(int i = 0 ; i < boutons.size(); i++)
+			containerPhotos.remove(boutons.get(i));
+	}
+	
+	
 
 	ArrayList<String> getPath() {
 
@@ -106,6 +135,34 @@ public class GalleryPanel extends JPanel {
 		return c2;
 	}
 
+	public void delete(int index, String pathh)
+	{
+		
+		
+		File f = new File(pathh);
+		Path pathFile = f.toPath();
+		try {
+			Files.delete(pathFile);
+		} catch (NoSuchFileException x) {
+			System.err.format("%s: no such" + " file or directory%n", pathFile);
+		} catch (DirectoryNotEmptyException x) {
+			System.err.format("%s not empty%n", pathFile);
+		} catch (IOException x) {
+			// File permission problems are caught here.
+			System.err.println(x);
+		}
+		
+		boutons.clear();
+		imgs.clear();
+		path.clear();
+		
+	
+		
+		
+		
+	}
+	
+	
 	public void removePanel(JPanel panelRemove) {
 	
 		
