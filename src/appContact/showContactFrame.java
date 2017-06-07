@@ -1,64 +1,60 @@
-/*
-Author : Olivier Arbellay
-Date: 24 mai 2017
-*/
 package appContact;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+/*
+Author : Olivier Arbellay
+Date: 31 mai 2017
+*/
 
-public class addContactFrame extends JFrame{
+import appContact.modifyContactFrame.Windows_Close;
 
-	private JFrame addframe;
+public class showContactFrame extends JFrame {
+
+	private JFrame modifyFrame;
 	private JTextField prenom;
 	private JTextField nom;
 	private JTextField adresse;
 	private JTextField email;
 	private JTextField phone;
-	RepertoireContact rep = new RepertoireContact();
-	
-	
 
-	public addContactFrame() {
+	private JPanel contentPane;
+	int pos;
+	RepertoireContact rep = new RepertoireContact();
+
+	public showContactFrame(int pos) {
+		this.pos= pos;
 		initialize();
+		
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Create the frame.
+	 * 
+	 * @return
 	 */
-	private void initialize() {
+
+	public void initialize() {
 		setBounds(100, 100, 450, 576);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
-		rep.deserialize();
-		
-		JButton btnAddContact = new JButton("Add contact");
-		btnAddContact.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Contact c = new Contact(prenom.getText(), nom.getText(),adresse.getText(), email.getText(), phone.getText());
-				rep.add(c);
-				FrameContact reFrame = new FrameContact();
-				reFrame.frame.setVisible(true);
-				dispose();
-				
-			
-				
-			}
-		});
-		btnAddContact.setBounds(133, 465, 134, 23);
-		getContentPane().add(btnAddContact);
-		
-		
+		addWindowListener(new Windows_Close());
+		rep.deserialize();	
+
+	
 		JLabel prenomLabel = new JLabel("Prénom");
 		prenomLabel.setBounds(42, 135, 113, 22);
 		getContentPane().add(prenomLabel);
@@ -79,31 +75,43 @@ public class addContactFrame extends JFrame{
 		phoneLabel.setBounds(42, 327, 152, 23);
 		getContentPane().add(phoneLabel);
 
-		prenom = new JTextField();
+
+		prenom = new JTextField(rep.listeContact.get(pos).getFirstName());
 		prenom.setBounds(259, 137, 86, 20);
 		getContentPane().add(prenom);
 		prenom.setColumns(10);
-		
-		nom = new JTextField();
+
+		nom = new JTextField(rep.listeContact.get(pos).getLastName());
 		nom.setBounds(259, 179, 86, 23);
 		getContentPane().add(nom);
 		nom.setColumns(10);
-		
-		adresse = new JTextField();
+
+		adresse = new JTextField(rep.listeContact.get(pos).getAddress());
 		adresse.setBounds(259, 230, 86, 20);
 		getContentPane().add(adresse);
 		adresse.setColumns(10);
-		
-		email = new JTextField();
+
+		email = new JTextField(rep.listeContact.get(pos).getEmail());
 		email.setBounds(259, 284, 86, 20);
 		getContentPane().add(email);
 		email.setColumns(10);
-		
-		phone = new JTextField();
+
+		phone = new JTextField(rep.listeContact.get(pos).getPhone());
 		phone.setBounds(259, 329, 86, 20);
 		getContentPane().add(phone);
 		phone.setColumns(10);
-		
-		
+
 	}
+
+	class Windows_Close extends WindowAdapter {
+
+		public void windowClosing(WindowEvent e) {
+			FrameContact reFrame = new FrameContact();
+			reFrame.frame.setVisible(true);
+			dispose();
+
+		}
+
+	}
+
 }

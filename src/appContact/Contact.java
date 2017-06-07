@@ -57,5 +57,8 @@ public class Contact implements Serializable{
 		this.phone = phone;
 	}
     
-//	public void addContac
+	public String[] getArray(){
+		String[] array = {firstName, lastName, address, email, phone};
+		return array;
+	}
 }
