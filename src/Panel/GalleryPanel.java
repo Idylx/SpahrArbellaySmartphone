@@ -2,6 +2,11 @@
  * Author : Bryan Spahr
  */
 
+/*
+ * Panel représentant une galerie photos et implémenté à la frame principale
+ * comme application
+ */
+
 package Panel;
 
 import java.awt.CardLayout;
@@ -33,53 +38,56 @@ import Photo.Photo;
 
 public class GalleryPanel extends JPanel {
 
-	public CardLayout c2 = new CardLayout();
+	// Panel that contains all the pictures
+	private GMainPanel containerPhotos = new GMainPanel();
 
-	HomeFramePanel picturePanell = new HomeFramePanel();
+	// Layout (the individual pictures will be display on the top of this panel)
+	private CardLayout c2 = new CardLayout();
 
-	GMainPanel mainPanel = new GMainPanel();
+	// ArrayList of buttons, images and path of pictures
+	private ArrayList<ButtonPictures> boutons = new ArrayList<ButtonPictures>();
+	protected ArrayList<String> path = new ArrayList<String>();
+	private ArrayList<Image> imgs = new ArrayList<Image>();
 
-	GMainPanel panel = new GMainPanel();
-	GMainPanel containerPhotos = new GMainPanel();
+	// Panel used to display individual picture
+	private PicturePanel pp;
 
-	// private GridLayout gl = new GridLayout(5, 3, 5, 5);
-
-	ArrayList<ButtonPictures> boutons = new ArrayList<ButtonPictures>();
-	ArrayList<String> path = new ArrayList<String>();
-
-	ArrayList<Image> imgs = new ArrayList<Image>();
-
-	PicturePanel pp;
-
-	private Photo photo;
-
-	JScrollPane scroll = new JScrollPane(containerPhotos, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+	// JScrollPane that contains all the pictures (that are in the container)
+	private JScrollPane scroll = new JScrollPane(containerPhotos, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-	HomeFrame hf;
+	public GalleryPanel() {
 
-	public GalleryPanel(HomeFrame hf) {
-
-		this.hf = hf;
-
+		// add the buttons to the panel
 		addButton();
 
+		// Settings of the panel (Layout, Background color)
 		setLayout(c2);
-		add(scroll);
-		c2.show(GalleryPanel.this, "GalleryPanel");
-
 		setBackground(Color.BLACK);
+
+		// Add the scroll bar to the panel
+		add(scroll);
+
+		// Set empty border to the scroll pane
 		scroll.setBorder(BorderFactory.createEmptyBorder());
+
+		// Show the GalleryPanel
+		c2.show(GalleryPanel.this, "GalleryPanel");
 
 	}
 
+	// Return the content of the containerPhotos (used when a pic is deleted)
 	public GMainPanel getContainerPhotos() {
 		return containerPhotos;
 	}
 
+	/*
+	 * Initialize the buttons, set the icons, the action commands and the action
+	 * listener and finally add the buttons to the container
+	 */
 	void addButton() {
 
-		this.path = getPath();
+		this.path = fillPath();
 		this.imgs = fillImgs();
 
 		for (int i = 0; i < imgs.size(); i++) {
@@ -91,12 +99,17 @@ public class GalleryPanel extends JPanel {
 
 	}
 
+	/*
+	 * Remove the buttons from the container, used when the panel has to be
+	 * refreshed
+	 */
 	void removeButton() {
 		for (int i = 0; i < boutons.size(); i++)
 			containerPhotos.remove(boutons.get(i));
 	}
 
-	ArrayList<String> getPath() {
+	// Fill the array String with the path of the pictures
+	ArrayList<String> fillPath() {
 
 		ArrayList<String> temp = new ArrayList<String>();
 		File folder = new File("./src/PhotoGallery");
@@ -109,6 +122,7 @@ public class GalleryPanel extends JPanel {
 		return temp;
 	}
 
+	// Fill the array Image with the images used for the icons of the buttons
 	ArrayList<Image> fillImgs() {
 
 		ArrayList<Image> temp = new ArrayList<Image>();
@@ -124,31 +138,35 @@ public class GalleryPanel extends JPanel {
 
 	}
 
+	// Return the layout of this panel, used navigate between the pics
 	CardLayout getCLayout() {
 		return c2;
 	}
 
+	// Method that deletes a picture and all its references
 	public void delete(int index, String pathh) {
 
+		// Delete the file physically
 		File f = new File(pathh);
 		Path pathFile = f.toPath();
 		try {
 			Files.delete(pathFile);
-		} catch (NoSuchFileException x) {
-			System.err.format("%s: no such" + " file or directory%n", pathFile);
-		} catch (DirectoryNotEmptyException x) {
-			System.err.format("%s not empty%n", pathFile);
-		} catch (IOException x) {
-			// File permission problems are caught here.
-			System.err.println(x);
+		} catch (NoSuchFileException e) {
+			e.printStackTrace();
+		} catch (DirectoryNotEmptyException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
+		// Clear the ArrayLists, Removes all of the elements from the lists.
 		boutons.clear();
 		imgs.clear();
 		path.clear();
 
 	}
 
+	// Remove the panel (used when a pic is deleted)
 	public void removePanel(JPanel panelRemove) {
 
 		remove(panelRemove);
@@ -157,20 +175,24 @@ public class GalleryPanel extends JPanel {
 
 	}
 
+	// How to react when a picture/button is pressed
 	class PhotoBouton implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 
 			JButton button = (JButton) e.getSource();
-			String index = e.getActionCommand();
+			String index = e.getActionCommand(); // to know which pic was
+													// selected
 			int indx = Integer.parseInt(index);
 
+			/*
+			 * open a new panel on the top of this panel, indication on which
+			 * pic was selected is given in the parameter
+			 */
 			pp = new PicturePanel(indx, GalleryPanel.this);
 			add(pp, "pp");
 			c2.show(GalleryPanel.this, "pp");
 
 		}
-
 	}
-
 }

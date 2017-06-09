@@ -2,6 +2,10 @@
  * Author : Bryan Spahr
  */
 
+/*
+ * Panel qui sert de panel de base au panel PicturePanel
+ */
+
 package Panel;
 
 import java.awt.Color;
@@ -17,18 +21,21 @@ import Photo.Photo;
 
 public class GMainPanel extends JPanel {
 
+	// Layout
 	private GridLayout gl = new GridLayout(0, 3);
 
+	// Wallpaper
 	private Photo wallpaper = new Photo("./src/Pictures/wallpaper.jpg");
 
+	// Constructor
 	public GMainPanel() {
+
 		setLayout(gl);
 		setBackground(Color.black);
 
 	}
 
-
-
+	// Paint the background with the picture wallpaper
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Image img = wallpaper.getImage();
@@ -41,10 +48,8 @@ public class GMainPanel extends JPanel {
 		double newW = (imageWidth / imageHeight) * frameHeight;
 		double newH = (imageHeight / imageWidth) * frameWidth;
 
-		
-			g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2,
-					(int) imageWidth, (int) imageHeight, this);
-		
+		g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2, (int) imageWidth,
+				(int) imageHeight, this);
 
 	}
 }

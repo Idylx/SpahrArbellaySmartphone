@@ -161,16 +161,14 @@ public class HomeFrame extends JFrame {
 
 			/*
 			 * Ferme le thread de la camera si l'utilisateur clique sur le
-			 * bouton home
+			 * bouton home et le thread est ouvert
 			 */
-
 			if (camera.running == true) {
 				camera.thread.runnable = false;
 				camera.videoCapture.release();
 			}
 
 			c1.show(mainPanel, "ApplicationsPanel");
-
 		}
 
 	}
@@ -208,7 +206,7 @@ public class HomeFrame extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			gallery = new GalleryPanel(HomeFrame.this);
+			gallery = new GalleryPanel();
 
 			mainPanel.add(gallery, "gallery");
 			c1.show(mainPanel, "gallery");

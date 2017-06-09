@@ -2,6 +2,11 @@
  * Author : Bryan Spahr
  */
 
+/*
+ * Panel qui sert de panel de base à la frame principale HomeFrame
+ * Gère notamment le fond d'écran, le layout et les bordures
+ */
+
 package Panel;
 
 import java.awt.BorderLayout;
@@ -21,21 +26,22 @@ import Photo.Photo;
 
 public class HomeFramePanel extends JPanel {
 
-	private FlowLayout fl = new FlowLayout(FlowLayout.LEFT, 10, 10);
-
-	private Photo wallpaper = new Photo("./src/Pictures/wallpaper.jpg");
-
+	// Layout
 	private BorderLayout bl = new BorderLayout();
 
+	// Wallpaper
+	private Photo wallpaper = new Photo("./src/Pictures/wallpaper.jpg");
+
+	// Constructor
 	public HomeFramePanel() {
-		// setLayout(fl);
+
 		setLayout(bl);
 		setBackground(Color.black);
 		setBorder(new EmptyBorder(20, 10, 0, 20));
 
 	}
 
-
+	// Paint the background with the wallpaper picture
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Image img = wallpaper.getImage();
@@ -48,10 +54,8 @@ public class HomeFramePanel extends JPanel {
 		double newW = (imageWidth / imageHeight) * frameHeight;
 		double newH = (imageHeight / imageWidth) * frameWidth;
 
-		
-			g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2,
-					(int) imageWidth, (int) imageHeight, this);
-		
+		g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2, (int) imageWidth,
+				(int) imageHeight, this);
 
 	}
 }

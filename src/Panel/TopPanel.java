@@ -2,6 +2,11 @@
  * Author : Bryan Spahr
  */
 
+/*
+ * Panel de base qui va se placer au nord de la frame principale HomeFrame.
+ * Panel qui sert à contenir le panel DatePanel qui affiche la date
+ */
+
 package Panel;
 
 import java.awt.BorderLayout;
@@ -13,17 +18,22 @@ import javax.swing.JPanel;
 
 public class TopPanel extends JPanel {
 
-	DatePanel date = new DatePanel();
+	// Initialize the class DatePanel
+	private DatePanel date = new DatePanel();
 
-	Dimension dimension = new Dimension(450, 65);
+	// Dimension
+	private Dimension dimension = new Dimension(450, 65);
 
+	// Constructor
 	public TopPanel() {
-
+		
+		// set the color of the background
 		setBackground(Color.BLACK);
+		// Set the dimension of the panel
 		setPreferredSize(dimension);
+		// set the layout
 		setLayout(new BorderLayout());
+		// add the panel date to this panel
 		add(date, BorderLayout.EAST);
-
 	}
-
 }
