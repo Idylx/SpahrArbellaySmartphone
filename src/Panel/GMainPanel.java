@@ -19,22 +19,19 @@ public class GMainPanel extends JPanel {
 
 	private GridLayout gl = new GridLayout(0, 3);
 
-	private Photo photo;
+	private Photo wallpaper = new Photo("./src/Pictures/wallpaper.jpg");
 
 	public GMainPanel() {
 		setLayout(gl);
 		setBackground(Color.black);
-		setPhoto();
 
 	}
 
-	void setPhoto() {
-		photo = new Photo("./src/Pictures/wallpaperr.jpg");
-	}
+
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Image img = photo.getImage();
+		Image img = wallpaper.getImage();
 		int frameWidth = this.getWidth();
 		int frameHeight = this.getHeight();
 
@@ -44,19 +41,10 @@ public class GMainPanel extends JPanel {
 		double newW = (imageWidth / imageHeight) * frameHeight;
 		double newH = (imageHeight / imageWidth) * frameWidth;
 
-		if (imageWidth > imageHeight) {
-			double ratioWidth = imageWidth / frameWidth;
-			imageWidth = frameWidth;
-			imageHeight = (int) (imageHeight / ratioWidth);
+		
 			g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2,
-					(int) imageWidth, (int) newH, this);
-		} else if (imageHeight > imageWidth) {
-			double ratioHeight = imageHeight / frameHeight;
-			imageHeight = frameHeight;
-			imageWidth = (int) (imageWidth / ratioHeight);
-			g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2, (int) newW,
-					(int) imageHeight, this);
+					(int) imageWidth, (int) imageHeight, this);
+		
 
-		}
 	}
 }

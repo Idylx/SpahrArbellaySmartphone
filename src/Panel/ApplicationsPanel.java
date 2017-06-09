@@ -23,7 +23,7 @@ public class ApplicationsPanel extends JPanel {
 
 	private FlowLayout fl = new FlowLayout(FlowLayout.LEFT, 10, 10);
 
-	private Photo photo;
+	private Photo wallpaper = new Photo("./src/Pictures/wallpaper.jpg");
 
 	private BorderLayout bl = new BorderLayout();
 
@@ -31,18 +31,14 @@ public class ApplicationsPanel extends JPanel {
 		// setLayout(fl);
 		setLayout(bl);
 		setBackground(Color.black);
-		setPhoto();
 		setBorder(new EmptyBorder(20, 10, 0, 20));
 
 	}
 
-	void setPhoto() {
-		photo = new Photo("./src/Pictures/wallpaperr.jpg");
-	}
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Image img = photo.getImage();
+		Image img = wallpaper.getImage();
 		int frameWidth = this.getWidth();
 		int frameHeight = this.getHeight();
 
@@ -52,19 +48,10 @@ public class ApplicationsPanel extends JPanel {
 		double newW = (imageWidth / imageHeight) * frameHeight;
 		double newH = (imageHeight / imageWidth) * frameWidth;
 
-		if (imageWidth > imageHeight) {
-			double ratioWidth = imageWidth / frameWidth;
-			imageWidth = frameWidth;
-			imageHeight = (int) (imageHeight / ratioWidth);
+		
 			g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2,
-					(int) imageWidth, (int) newH, this);
-		} else if (imageHeight > imageWidth) {
-			double ratioHeight = imageHeight / frameHeight;
-			imageHeight = frameHeight;
-			imageWidth = (int) (imageWidth / ratioHeight);
-			g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2, (int) newW,
-					(int) imageHeight, this);
+					(int) imageWidth, (int) imageHeight, this);
+		
 
-		}
 	}
 }
