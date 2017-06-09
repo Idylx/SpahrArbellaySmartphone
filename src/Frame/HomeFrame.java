@@ -1,5 +1,8 @@
 /*
  * Author : Bryan Spahr
+
+/*
+ * Frame principale de l'application
  */
 
 package Frame;
@@ -33,16 +36,16 @@ import javax.swing.border.LineBorder;
 
 import org.opencv.core.Core;
 
-import Buttons.ButtonApp;
-import Buttons.HomeButton;
-import Panel.ApplicationsPanel;
-import Panel.CalculatorPanel;
-import Panel.ClockPanel;
-import Panel.DatePanel;
-import Panel.GalleryPanel;
-import Panel.GoogleQueryPanel;
-import Panel.CameraPanel;
-import Panel.TopPanel;
+import Buttons.ButtonApplication;
+import Buttons.ButtonHome;
+import Panels.CalculatorPanel;
+import Panels.CameraPanel;
+import Panels.ClockPanel;
+import Panels.DatePanel;
+import Panels.GalleryPanel;
+import Panels.GoogleQueryPanel;
+import Panels.HomeFramePanel;
+import Panels.TopPanel;
 import Photo.Photo;
 
 public class HomeFrame extends JFrame {
@@ -60,7 +63,7 @@ public class HomeFrame extends JFrame {
 	private JPanel mainPanel = new JPanel();
 
 	// Panels d'applications en CardLayout
-	private ApplicationsPanel appsPanel = new ApplicationsPanel();
+	private HomeFramePanel hfPanel = new HomeFramePanel();
 	private CalculatorPanel calculatrice;
 	private GalleryPanel gallery;
 	private CameraPanel camera = new CameraPanel();
@@ -69,18 +72,18 @@ public class HomeFrame extends JFrame {
 	private ClockPanel clock = new ClockPanel();
 
 	// Panel de la barre de recherche
-	GoogleQueryPanel google = new GoogleQueryPanel();
+	private GoogleQueryPanel google = new GoogleQueryPanel();
 
 	// Boutons des applications
-	private ButtonApp bCalculatrice = new ButtonApp(new Photo("./src/Pictures/calculator.png"));
-	private ButtonApp bGallery = new ButtonApp(new Photo("./src/Pictures/gallery.png"));
-	private ButtonApp bCamera = new ButtonApp(new Photo("./src/Pictures/camera.png"));
-	private ButtonApp app4 = new ButtonApp(new Photo("./src/Pictures/camera.png"));
-	private ButtonApp app5 = new ButtonApp(new Photo("./src/Pictures/camera.png"));
-	private ButtonApp app6 = new ButtonApp(new Photo("./src/Pictures/camera.png"));
+	private ButtonApplication bCalculatrice = new ButtonApplication(new Photo("./src/Pictures/calculator.png"));
+	private ButtonApplication bGallery = new ButtonApplication(new Photo("./src/Pictures/gallery.png"));
+	private ButtonApplication bCamera = new ButtonApplication(new Photo("./src/Pictures/camera.png"));
+	private ButtonApplication app4 = new ButtonApplication(new Photo("./src/Pictures/camera.png"));
+	private ButtonApplication app5 = new ButtonApplication(new Photo("./src/Pictures/camera.png"));
+	private ButtonApplication app6 = new ButtonApplication(new Photo("./src/Pictures/camera.png"));
 
 	// Bouton pour le south panel
-	private HomeButton bHome = new HomeButton();
+	private ButtonHome bHome = new ButtonHome();
 
 	public HomeFrame() {
 
@@ -113,14 +116,18 @@ public class HomeFrame extends JFrame {
 		// Réglage de la transparence du panel
 		panel.setOpaque(false);
 
-		// Ajout des différents panels (horloge, barre de recherche, etc) de la
-		// frame principale
-		appsPanel.add(clock, BorderLayout.NORTH);
-		appsPanel.add(panel, BorderLayout.CENTER);
-		appsPanel.add(google, BorderLayout.SOUTH);
+		/*
+		 * Ajout des différents panels (horloge, barre de recherche, etc) de la
+		 * frame principale
+		 */
+		hfPanel.add(clock, BorderLayout.NORTH);
+		hfPanel.add(panel, BorderLayout.CENTER);
+		hfPanel.add(google, BorderLayout.SOUTH);
 
-		// Réglage de la couleur d'arrière plan des panels au cas où le fond
-		// d'écran est redimensioné
+		/*
+		 * Réglage de la couleur d'arrière plan des panels au cas où le fond
+		 * d'écran est redimensioné
+		 */
 		south.setBackground(Color.BLACK);
 		north.setBackground(Color.BLACK);
 
@@ -129,7 +136,7 @@ public class HomeFrame extends JFrame {
 
 		// Définition du layout du mainPanel et ajout du panel principal
 		mainPanel.setLayout(c1);
-		mainPanel.add(appsPanel, "ApplicationsPanel");
+		mainPanel.add(hfPanel, "ApplicationsPanel");
 
 		// Définition du panel affiché par le CardLayout
 		c1.show(mainPanel, "mainPanel");
@@ -154,16 +161,14 @@ public class HomeFrame extends JFrame {
 
 			/*
 			 * Ferme le thread de la camera si l'utilisateur clique sur le
-			 * bouton home
+			 * bouton home et le thread est ouvert
 			 */
-
 			if (camera.running == true) {
-				camera.myThread.runnable = false;
-				camera.webSource.release();
+				camera.thread.runnable = false;
+				camera.videoCapture.release();
 			}
 
 			c1.show(mainPanel, "ApplicationsPanel");
-
 		}
 
 	}
@@ -201,7 +206,7 @@ public class HomeFrame extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			gallery = new GalleryPanel(HomeFrame.this);
+			gallery = new GalleryPanel();
 
 			mainPanel.add(gallery, "gallery");
 			c1.show(mainPanel, "gallery");
