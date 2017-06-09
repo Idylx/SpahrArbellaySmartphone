@@ -2,6 +2,11 @@
  * Author : Bryan Spahr
  */
 
+/*
+ * Panel qui représente une calculette implémentée comme appli
+ * à la frame principale HomeFrame
+ */
+
 package Panel;
 
 import java.awt.BorderLayout;
@@ -16,6 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -25,76 +31,97 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
+import javax.swing.border.EmptyBorder;
 
+import Buttons.ButtonCalculator;
 import Photo.Photo;
 
 public class CalculatorPanel extends JPanel implements ActionListener {
 
-	private Photo photo;
+	// Panels
+	private JPanel mainPanel = new JPanel();
+	private JPanel buttonsContainer = new JPanel();
 
-	JTextField result;
-	JPanel mainPane = new JPanel();
+	// Wallpaper
+	private Photo wallpaper = new Photo("./src/Pictures/wallpaper.jpg");
 
-	JButton b[] = new JButton[16];
-	String s[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "/", "*", "=", "C" };
-	JPanel buttons = new JPanel();
+	// Result
+	private JTextField result;
 
-	String screen = "";
-	String monitor1 = "", monitor2 = "", OperationOnScreen = "";
+	// Buttons
+	private ButtonCalculator buttons[] = new ButtonCalculator[16];
+	private String stringButtons[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "/", "*", "=", "C" };
+	private String pathButtons[] = new String[16];
 
-	// JLabel screen = new JLabel();
+	// Strings on screen
+	private String mainScreen = "";
+	private String screen1 = "", screen2 = "", OpsOnScreen = "";
 
-	boolean CommandEmpty = true, switcher = true;
-	double R = Integer.MIN_VALUE, L = Integer.MIN_VALUE;
+	// Booleans
+	private boolean empty = true, switcher = true;
 
-	Dimension dimensionTextField = new Dimension(420, 90);
-	Dimension dimensionMainPane = new Dimension(420, 0);
-	Dimension buttonDimension = new Dimension(95, 95);
-	Font fontTextField = new Font("Arial", Font.BOLD, 47);
+	// Min values
+	private double R = Integer.MIN_VALUE, L = Integer.MIN_VALUE;
 
-	Font buttonFont = new Font("Arial", Font.BOLD, 30);
+	// Dimensions
+	private Dimension dimensionTextField = new Dimension(420, 110);
+	private Dimension dimensionmainPanel = new Dimension(420, 0);
 
+	// Font
+	private Font fontTextField = new Font("Arial", Font.BOLD, 47);
+
+	// Constructor
 	public CalculatorPanel() {
 
-		setPhoto();
+		/*
+		 * Fill the array tab with path of the pictures for the buttons
+		 */
+		pathButtons = fillPath();
 
+		// Settings for the result JTextfield (size, font, color, etc)
 		result = new JTextField();
 		result.setEditable(false);
-		result.setBackground(Color.PINK);
+		result.setBackground(Color.BLUE);
+		result.setForeground(Color.WHITE);
 		result.setPreferredSize(dimensionTextField);
 		result.setFont(fontTextField);
+		result.setBorder(new EmptyBorder(20, 0, 20, 0));
 
-		buttons.setLayout(new GridLayout(4, 4, 15, 15));
+		/*
+		 * Add buttons to buttonsContainer (in GridLayout) and add them
+		 * ActionListener
+		 */
+		buttonsContainer.setLayout(new GridLayout(4, 4, 10, 10));
 		for (int i = 0; i < 16; i++) {
-			b[i] = new JButton(s[i]);
-			b[i].setPreferredSize(buttonDimension);
-			b[i].setFont(buttonFont);
-			b[i].addActionListener(this);
-			buttons.add(b[i]);
-
+			buttons[i] = new ButtonCalculator(new Photo(pathButtons[i]));
+			buttons[i].addActionListener(this);
+			buttonsContainer.add(buttons[i]);
 		}
 
-		mainPane.add(buttons);
+		// Set the buttonsContainer and the mainPanel opaque
+		buttonsContainer.setOpaque(false);
+		mainPanel.setOpaque(false);
 
-		buttons.setOpaque(false);
+		// Add the buttonsContainer to mainPanel
+		mainPanel.add(buttonsContainer);
 
-		mainPane.setOpaque(false);
-
+		// Add the result JTextfield and the mainPanel to the panel
 		add(result);
-		add(mainPane);
+		add(mainPanel);
 
+		/*
+		 * Settings of the JPanel (background color (in case the image is
+		 * missing for example) and the visibility
+		 */
 		setBackground(Color.BLACK);
 		setVisible(true);
 
 	}
 
-	void setPhoto() {
-		photo = new Photo("./src/Pictures/wallpaperr.jpg");
-	}
-
+	// Paint the background with the wallpaper
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Image img = photo.getImage();
+		Image img = wallpaper.getImage();
 		int frameWidth = this.getWidth();
 		int frameHeight = this.getHeight();
 
@@ -104,101 +131,110 @@ public class CalculatorPanel extends JPanel implements ActionListener {
 		double newW = (imageWidth / imageHeight) * frameHeight;
 		double newH = (imageHeight / imageWidth) * frameWidth;
 
-		if (imageWidth > imageHeight) {
-			double ratioWidth = imageWidth / frameWidth;
-			imageWidth = frameWidth;
-			imageHeight = (int) (imageHeight / ratioWidth);
-			g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2,
-					(int) imageWidth, (int) newH, this);
-		} else if (imageHeight > imageWidth) {
-			double ratioHeight = imageHeight / frameHeight;
-			imageHeight = frameHeight;
-			imageWidth = (int) (imageWidth / ratioHeight);
-			g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2, (int) newW,
-					(int) imageHeight, this);
+		g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2, (int) imageWidth,
+				(int) imageHeight, this);
 
-		}
 	}
 
+	// Method that fills the String array with the path of the pictures
+	String[] fillPath() {
+
+		String temp[] = new String[16];
+		File folder = new File("./src/PicturesCalculator");
+		File pics[] = folder.listFiles();
+
+		for (int i = 0; i < pics.length; i++)
+			temp[i] = "./src/PicturesCalculator/" + pics[i].getName();
+
+		return temp;
+	}
+
+	// What happens when a button is pressed (ActionListener)
 	@Override
 	public void actionPerformed(ActionEvent event) {
 
-		for (int i = 0; i <= 9; i++)// Numbers
-		{
-			if (event.getSource() == b[i]) {
-				screen += i;
+		// for the num 0 to 9
+		for (int i = 0; i <= 9; i++) {
+			if (event.getSource() == buttons[i]) {
+				mainScreen += i;
 				result.setText("");
-				result.setText(screen);
+				result.setText(mainScreen);
 			}
 		}
 
-		for (int i = 10; i <= 14; i++)// Commands
-		{
-			if (event.getSource() == b[i]) {
-				if (result.getText().lastIndexOf(OperationOnScreen) != -1)// prevent
-																			// exception
-					result.setText(
-							result.getText().substring(0, result.getText().lastIndexOf(OperationOnScreen)) + s[i]);
+		// for the operators
+		for (int i = 10; i <= 14; i++) {
+			if (event.getSource() == buttons[i]) {
+				if (result.getText().lastIndexOf(OpsOnScreen) != -1)
+
+					result.setText(result.getText().substring(0, result.getText().lastIndexOf(OpsOnScreen))
+							+ stringButtons[i]);
 				else
-					result.setText(result.getText() + s[i]);
-				OperationOnScreen = s[i];
+					result.setText(result.getText() + stringButtons[i]);
+				OpsOnScreen = stringButtons[i];
 
 				if (switcher) {
-					monitor1 = s[i];
+					screen1 = stringButtons[i];
 					switcher = false;
 				} else {
-					monitor2 = s[i];
+					screen2 = stringButtons[i];
 					switcher = true;
 				}
 
-				if (monitor1 != monitor2 && monitor2 != "") {
-					if (switcher) // execute older,send sign newer
-					{
-						Calc(event, monitor1.charAt(0), monitor2);
+				if (screen1 != screen2 && screen2 != "") {
+					if (switcher) {
+						calculate(event, screen1.charAt(0), screen2);
 					} else {
-						Calc(event, monitor2.charAt(0), monitor1);
+						calculate(event, screen2.charAt(0), screen1);
 					}
 				}
-				if (s[i] != "=") // calc returns 0
-					Calc(event, s[i].charAt(0), s[i]);
+				if (stringButtons[i] != "=")
+					calculate(event, stringButtons[i].charAt(0), stringButtons[i]);
 			}
 		}
 
-		if (event.getSource() == b[15]) // Clear
-		{
-			screen = "";
-			monitor1 = "";
-			monitor2 = "";
+		/*
+		 * in case the button pressed is the "clear" button, clear the screen
+		 * and reinitialize the variables
+		 */
+		if (event.getSource() == buttons[15]) {
+			mainScreen = "";
+			screen1 = "";
+			screen2 = "";
 			switcher = true;
-			CommandEmpty = true;
+			empty = true;
 			result.setText("");
 		}
 
 	}
 
-	public void Calc(ActionEvent event, char OpType, String Operator) {
+	// Method that verifies the inputs/variables of the operations/calculs
+	public void calculate(ActionEvent event, char OpType, String Operator) {
+
 		if (Operator == "=")
 			Operator = "";
 
-		if (CommandEmpty && screen == "") {
+		if (empty && mainScreen == "") {
 			return;
 		}
 
-		else if (CommandEmpty && screen != "") {
-			R = Integer.parseInt(screen);
-			result.setText(screen + Operator);
-			screen = "";
-			CommandEmpty = false;
-		} else if (!CommandEmpty && screen != "") {
-			L = Integer.parseInt(screen);
-			R = Operations(R, L, OpType);// calculate
-			screen = "";
+		else if (empty && mainScreen != "") {
+			R = Integer.parseInt(mainScreen);
+			result.setText(mainScreen + Operator);
+			mainScreen = "";
+			empty = false;
+
+		} else if (!empty && mainScreen != "") {
+			L = Integer.parseInt(mainScreen);
+			R = operation(R, L, OpType); // does the operation/calcul
+			mainScreen = "";
 			result.setText("");
 			result.setText(R + Operator);
 		}
 	}
 
-	public static double Operations(double R, double L, char op) {
+	// Method that actually does the calcul/operation and return the result
+	public static double operation(double R, double L, char op) {
 		switch (op) {
 		case '+':
 			return R + L;

@@ -2,18 +2,20 @@
  * Author : Bryan Spahr
  */
 
+/*
+ * Boutons des applications personnalisés avec photo comme icône
+ */
+
 package Buttons;
 
 import javax.swing.JButton;
 
 import Photo.Photo;
 
-public class HomeButton extends JButton {
+public class ButtonApplication extends JButton {
 
-	private Photo homePhoto = new Photo("./src/Pictures/home.png");
-
-	public HomeButton() {
-		setIcon(homePhoto);
+	public ButtonApplication(Photo photo) {
+		setIcon(photo);
 		setBorderPainted(false);
 		setContentAreaFilled(false);
 		setFocusPainted(false);

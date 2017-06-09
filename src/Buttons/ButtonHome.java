@@ -1,5 +1,8 @@
 /*
  * Author : Bryan Spahr
+
+/*
+ * Bouton home qui apparaît au bas de l'appli
  */
 
 package Buttons;
@@ -8,10 +11,12 @@ import javax.swing.JButton;
 
 import Photo.Photo;
 
-public class ButtonApp extends JButton {
+public class ButtonHome extends JButton {
 
-	public ButtonApp(Photo photo) {
-		setIcon(photo);
+	private Photo home = new Photo("./src/Pictures/home.png");
+
+	public ButtonHome() {
+		setIcon(home);
 		setBorderPainted(false);
 		setContentAreaFilled(false);
 		setFocusPainted(false);

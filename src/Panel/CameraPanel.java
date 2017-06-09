@@ -34,7 +34,7 @@ import org.opencv.core.MatOfByte;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.videoio.VideoCapture;
 
-import Buttons.ButtonApp;
+import Buttons.ButtonApplication;
 import Photo.Photo;
 
 import javax.swing.border.EmptyBorder;
@@ -53,9 +53,9 @@ public class CameraPanel extends JPanel {
 	JPanel bottomPanel = new JPanel(new FlowLayout());
 	JPanel topPanel = new JPanel(new BorderLayout());
 
-	ButtonApp camera = new ButtonApp(new Photo("./src/Pictures/cameraButton.png"));
+	ButtonApplication camera = new ButtonApplication(new Photo("./src/Pictures/cameraButton.png"));
 
-	Photo photo = new Photo("./src/Pictures/wallpaperr.jpg");
+	Photo wallpaper = new Photo("./src/Pictures/wallpaper.jpg");
 
 	public DaemonThread myThread = null;
 	int count = 0;
@@ -110,7 +110,7 @@ public class CameraPanel extends JPanel {
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		Image img = photo.getImage();
+		Image img = wallpaper.getImage();
 		int frameWidth = this.getWidth();
 		int frameHeight = this.getHeight();
 
@@ -120,20 +120,9 @@ public class CameraPanel extends JPanel {
 		double newW = (imageWidth / imageHeight) * frameHeight;
 		double newH = (imageHeight / imageWidth) * frameWidth;
 
-		if (imageWidth > imageHeight) {
-			double ratioWidth = imageWidth / frameWidth;
-			imageWidth = frameWidth;
-			imageHeight = (int) (imageHeight / ratioWidth);
-			g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2,
-					(int) imageWidth, (int) newH, this);
-		} else if (imageHeight > imageWidth) {
-			double ratioHeight = imageHeight / frameHeight;
-			imageHeight = frameHeight;
-			imageWidth = (int) (imageWidth / ratioHeight);
-			g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2, (int) newW,
-					(int) imageHeight, this);
+		g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2, (int) imageWidth,
+				(int) imageHeight, this);
 
-		}
 	}
 
 	public void start() {

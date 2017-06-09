@@ -19,7 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 import Photo.Photo;
 
-public class ApplicationsPanel extends JPanel {
+public class HomeFramePanel extends JPanel {
 
 	private FlowLayout fl = new FlowLayout(FlowLayout.LEFT, 10, 10);
 
@@ -27,7 +27,7 @@ public class ApplicationsPanel extends JPanel {
 
 	private BorderLayout bl = new BorderLayout();
 
-	public ApplicationsPanel() {
+	public HomeFramePanel() {
 		// setLayout(fl);
 		setLayout(bl);
 		setBackground(Color.black);

@@ -27,7 +27,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import Buttons.PhotoButton;
+import Buttons.ButtonPictures;
 import Frame.HomeFrame;
 import Photo.Photo;
 
@@ -35,7 +35,7 @@ public class GalleryPanel extends JPanel {
 
 	public CardLayout c2 = new CardLayout();
 
-	ApplicationsPanel picturePanell = new ApplicationsPanel();
+	HomeFramePanel picturePanell = new HomeFramePanel();
 
 	GMainPanel mainPanel = new GMainPanel();
 
@@ -44,7 +44,7 @@ public class GalleryPanel extends JPanel {
 
 	// private GridLayout gl = new GridLayout(5, 3, 5, 5);
 
-	ArrayList<PhotoButton> boutons = new ArrayList<PhotoButton>();
+	ArrayList<ButtonPictures> boutons = new ArrayList<ButtonPictures>();
 	ArrayList<String> path = new ArrayList<String>();
 
 	ArrayList<Image> imgs = new ArrayList<Image>();
@@ -83,7 +83,7 @@ public class GalleryPanel extends JPanel {
 		this.imgs = fillImgs();
 
 		for (int i = 0; i < imgs.size(); i++) {
-			boutons.add(new PhotoButton(new Photo(imgs.get(i))));
+			boutons.add(new ButtonPictures(new Photo(imgs.get(i))));
 			boutons.get(i).setActionCommand("" + i);
 			boutons.get(i).addActionListener(new PhotoBouton());
 			containerPhotos.add(boutons.get(i));
@@ -99,12 +99,12 @@ public class GalleryPanel extends JPanel {
 	ArrayList<String> getPath() {
 
 		ArrayList<String> temp = new ArrayList<String>();
-		File folder = new File("./src/GalleriePhotos");
+		File folder = new File("./src/PhotoGallery");
 		File imgs[] = folder.listFiles();
 
 		for (int i = 0; i < imgs.length; i++)
 
-			temp.add("./src/GalleriePhotos/" + imgs[i].getName());
+			temp.add("./src/PhotoGallery/" + imgs[i].getName());
 
 		return temp;
 	}

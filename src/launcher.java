@@ -1,12 +1,14 @@
+/*
+ * Author : Bryan Spahr
+ */
+
 import java.awt.EventQueue;
 
 import org.opencv.core.Core;
 
 import Frame.HomeFrame;
 
-public class launcher {
-	
-	//test commit
+public class launcher { //launcher de l'application
 
 	public static void main(String[] args) {
 

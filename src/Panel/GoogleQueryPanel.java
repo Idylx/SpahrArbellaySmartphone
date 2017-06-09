@@ -22,15 +22,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import Buttons.ButtonApp;
+import Buttons.ButtonApplication;
 import Photo.Photo;
 
 public class GoogleQueryPanel extends JPanel {
 
 	private FlowLayout fl = new FlowLayout();
 
-	ButtonApp google = new ButtonApp(new Photo("./src/Pictures/google.png"));
-	ButtonApp loupe = new ButtonApp(new Photo("./src/Pictures/loupe.png"));
+	ButtonApplication google = new ButtonApplication(new Photo("./src/Pictures/google.png"));
+	ButtonApplication loupe = new ButtonApplication(new Photo("./src/Pictures/loupe.png"));
 	JTextField searchQuery = new JTextField();
 
 	Font font = new Font("Arial", Font.PLAIN, 20);

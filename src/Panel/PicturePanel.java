@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import Buttons.ButtonApp;
+import Buttons.ButtonApplication;
 import Frame.HomeFrame;
 import Photo.Photo;
 
@@ -34,10 +34,10 @@ public class PicturePanel extends JPanel {
 	private JPanel previousPanel = new JPanel(new BorderLayout());
 	private JPanel nextPanel = new JPanel(new BorderLayout());
 
-	ButtonApp close = new ButtonApp(new Photo("./src/Pictures/close.png"));
-	ButtonApp delete = new ButtonApp(new Photo("./src/Pictures/delete.png"));
-	ButtonApp previous = new ButtonApp(new Photo("./src/Pictures/leftArrow.png"));
-	ButtonApp next = new ButtonApp(new Photo("./src/Pictures/rightArrow.png"));
+	ButtonApplication close = new ButtonApplication(new Photo("./src/Pictures/close.png"));
+	ButtonApplication delete = new ButtonApplication(new Photo("./src/Pictures/delete.png"));
+	ButtonApplication previous = new ButtonApplication(new Photo("./src/Pictures/leftArrow.png"));
+	ButtonApplication next = new ButtonApplication(new Photo("./src/Pictures/rightArrow.png"));
 
 	GalleryPanel top;
 
