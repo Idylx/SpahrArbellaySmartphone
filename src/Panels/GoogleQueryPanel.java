@@ -8,7 +8,7 @@
  * Le panel est implémenté à la frame principale HomeFrame
  */
 
-package Panel;
+package Panels;
 
 import java.awt.Color;
 import java.awt.Desktop;

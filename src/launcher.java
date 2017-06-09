@@ -2,6 +2,11 @@
  * Author : Bryan Spahr
  */
 
+/*
+ * Launcher de l'application, instancie et rend visible HomeFrame
+ * qui est la frame principale
+ */
+
 import java.awt.EventQueue;
 
 import org.opencv.core.Core;

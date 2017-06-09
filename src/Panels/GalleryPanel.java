@@ -7,7 +7,7 @@
  * comme application
  */
 
-package Panel;
+package Panels;
 
 import java.awt.CardLayout;
 import java.awt.Color;

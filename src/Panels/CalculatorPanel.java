@@ -7,7 +7,7 @@
  * à la frame principale HomeFrame
  */
 
-package Panel;
+package Panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

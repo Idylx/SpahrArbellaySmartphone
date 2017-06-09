@@ -6,7 +6,7 @@
  * Panel qui affiche l'heure au format HH:MM:SS et implémenté à la frame principale
  */
 
-package Panel;
+package Panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

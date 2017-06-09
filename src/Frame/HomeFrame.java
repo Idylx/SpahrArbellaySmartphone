@@ -38,14 +38,14 @@ import org.opencv.core.Core;
 
 import Buttons.ButtonApplication;
 import Buttons.ButtonHome;
-import Panel.HomeFramePanel;
-import Panel.CalculatorPanel;
-import Panel.ClockPanel;
-import Panel.DatePanel;
-import Panel.GalleryPanel;
-import Panel.GoogleQueryPanel;
-import Panel.CameraPanel;
-import Panel.TopPanel;
+import Panels.CalculatorPanel;
+import Panels.CameraPanel;
+import Panels.ClockPanel;
+import Panels.DatePanel;
+import Panels.GalleryPanel;
+import Panels.GoogleQueryPanel;
+import Panels.HomeFramePanel;
+import Panels.TopPanel;
 import Photo.Photo;
 
 public class HomeFrame extends JFrame {

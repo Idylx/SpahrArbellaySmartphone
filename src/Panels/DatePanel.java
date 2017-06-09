@@ -6,7 +6,7 @@
  * Panel qui affiche la date implémenté NORD-EST à la frame principale
  */
 
-package Panel;
+package Panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

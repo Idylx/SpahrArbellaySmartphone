@@ -7,7 +7,7 @@
  *  Ce panel s'affiche au-dessus du panel GalleryPanel lorsqu'on clique sur une photo précise.
  */
 
-package Panel;
+package Panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

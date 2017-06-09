@@ -3,39 +3,45 @@
  */
 
 /*
- * Panel qui sert de panel de base au panel PicturePanel
+ * Panel qui sert de panel de base à la frame principale HomeFrame
+ * Gère notamment le fond d'écran, le layout et les bordures
  */
 
-package Panel;
+package Panels;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.Image;
+import java.io.File;
 
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import Photo.Photo;
 
-public class GMainPanel extends JPanel {
+public class HomeFramePanel extends JPanel {
 
 	// Layout
-	private GridLayout gl = new GridLayout(0, 3);
+	private BorderLayout bl = new BorderLayout();
 
 	// Wallpaper
 	private Photo wallpaper = new Photo("./src/Pictures/wallpaper.jpg");
 
 	// Constructor
-	public GMainPanel() {
+	public HomeFramePanel() {
 
-		setLayout(gl);
+		setLayout(bl);
 		setBackground(Color.black);
+		setBorder(new EmptyBorder(20, 10, 0, 20));
 
 	}
 
-	// Paint the background with the picture wallpaper
+	// Paint the background with the wallpaper picture
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Image img = wallpaper.getImage();
