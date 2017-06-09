@@ -165,8 +165,8 @@ public class HomeFrame extends JFrame {
 			 */
 
 			if (camera.running == true) {
-				camera.myThread.runnable = false;
-				camera.webSource.release();
+				camera.thread.runnable = false;
+				camera.videoCapture.release();
 			}
 
 			c1.show(mainPanel, "ApplicationsPanel");

@@ -2,6 +2,12 @@
  * Author : Bryan Spahr
  */
 
+/*
+ * Panel qui accède à la caméra et l'active pour prendre des photos qui sont 
+ * directement enregistrées dans la galerie photo. Panel implémenté à la frame
+ * HomeFrame comme application.
+ */
+
 package Panel;
 
 import java.awt.BorderLayout;
@@ -44,70 +50,86 @@ import java.awt.Font;
 
 public class CameraPanel extends JPanel {
 
-	public boolean running = false;
-
+	// Panels
 	private JPanel west = new JPanel();
 	private JPanel est = new JPanel();
+	private JPanel cam = new JPanel(new FlowLayout());
+	private JPanel bottomPanel = new JPanel(new FlowLayout());
+	private JPanel topPanel = new JPanel(new BorderLayout());
 
-	JPanel cam = new JPanel(new FlowLayout());
-	JPanel bottomPanel = new JPanel(new FlowLayout());
-	JPanel topPanel = new JPanel(new BorderLayout());
+	// Button to take a pic
+	private ButtonApplication camera = new ButtonApplication(new Photo("./src/Pictures/cameraButton.png"));
 
-	ButtonApplication camera = new ButtonApplication(new Photo("./src/Pictures/cameraButton.png"));
+	// CLasses
+	public DaemonThread thread = null;
+	public VideoCapture videoCapture = null;
 
-	Photo wallpaper = new Photo("./src/Pictures/wallpaper.jpg");
+	private Mat frame = new Mat();
+	private MatOfByte mem = new MatOfByte();
 
-	public DaemonThread myThread = null;
-	int count = 0;
-	public VideoCapture webSource = null;
-
-	Mat frame = new Mat();
-	MatOfByte mem = new MatOfByte();
-
+	// JLabel that confirms when a pic is taken
 	private JLabel saved = new JLabel("Saved !");
 
+	// Wallpaper
+	private Photo wallpaper = new Photo("./src/Pictures/wallpaper.jpg");
+
+	// Boolean
+	public boolean running = false;
+
+	// Constructor
 	public CameraPanel() {
 
+		// Setting of the panel
 		setLayout(new BorderLayout());
+
+		// Dimensions of the differents panels
 		bottomPanel.setPreferredSize(new Dimension(0, 100));
 		topPanel.setPreferredSize(new Dimension(0, 70));
 		west.setPreferredSize(new Dimension(20, 0));
 		est.setPreferredSize(new Dimension(20, 0));
+		bottomPanel.setBorder(new EmptyBorder(10, 0, 0, 0));
+
+		// Set the panels non-opaque
 		west.setOpaque(false);
 		est.setOpaque(false);
 		topPanel.setOpaque(false);
+		cam.setOpaque(false);
+		bottomPanel.setOpaque(false);
+
+		// Alignment of the button
 		camera.setVerticalAlignment(SwingConstants.TOP);
 
+		// Add the ActionsLister to the button
 		camera.addActionListener(new BoutonTake());
 
+		// Add the button to the panel
 		bottomPanel.add(camera);
 
+		// Add the different panels to the root Panel
 		add(est, BorderLayout.EAST);
 		add(west, BorderLayout.WEST);
-
 		add(topPanel, BorderLayout.NORTH);
 		add(cam, BorderLayout.CENTER);
 		add(bottomPanel, BorderLayout.SOUTH);
 
+		// Add the label saved to the top panel
+		topPanel.add(saved);
+
+		// Settings of the JLabel saved
 		saved.setHorizontalAlignment(SwingConstants.CENTER);
 		saved.setFont(new Font("Arial", Font.BOLD, 18));
 		saved.setForeground(Color.WHITE);
 
-		topPanel.add(saved);
+		// Set the JLabel invisible by default
 		saved.setVisible(false);
 
-		bottomPanel.setBorder(new EmptyBorder(10, 0, 0, 0));
-
-		cam.setOpaque(false);
-
+		// Settings of the panel
 		setBackground(Color.BLACK);
-
-		bottomPanel.setOpaque(false);
-
 		setVisible(true);
 
 	}
 
+	// Paint the background with the wallpaper picture
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Image img = wallpaper.getImage();
@@ -125,16 +147,19 @@ public class CameraPanel extends JPanel {
 
 	}
 
+	// Start the thread of the camera
 	public void start() {
-		webSource = new VideoCapture(0);
-		myThread = new DaemonThread();
-		Thread t = new Thread(myThread);
+
+		videoCapture = new VideoCapture(0);
+		thread = new DaemonThread();
+		Thread t = new Thread(thread);
 		t.setDaemon(true);
-		myThread.runnable = true;
+		thread.runnable = true;
 		t.start();
 		running = true;
 	}
 
+	// Class DaemonThred
 	public class DaemonThread implements Runnable {
 		public volatile boolean runnable = false;
 
@@ -142,9 +167,9 @@ public class CameraPanel extends JPanel {
 		public void run() {
 			synchronized (this) {
 				while (runnable) {
-					if (webSource.grab()) {
+					if (videoCapture.grab()) {
 						try {
-							webSource.retrieve(frame);
+							videoCapture.retrieve(frame);
 							Imgcodecs.imencode(".bmp", frame, mem);
 							Image im = ImageIO.read(new ByteArrayInputStream(mem.toArray()));
 
@@ -167,21 +192,19 @@ public class CameraPanel extends JPanel {
 		}
 	}
 
-	class ButtonQuit implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-
-		}
-
-	}
+	/*
+	 * Classes that implements ActionListener to indicate what to do when a
+	 * button is pressed
+	 */
 
 	class BoutonTake implements ActionListener {
 
+		// Give the picture a random name
 		Random rand = new Random();
 		int randomName;
 		String name;
 
+		// True if a pic with this name already exists
 		boolean reroll = false;
 
 		public void actionPerformed(ActionEvent e) {
@@ -191,44 +214,41 @@ public class CameraPanel extends JPanel {
 			name = Integer.toString(randomName);
 			name += ".jpg";
 
-			File f = new File("./src/GalleriePhotos/");
+			File f = new File("./src/PhotoGallery/");
 			File[] images = f.listFiles();
 			String[] imagesName = new String[images.length];
 
 			for (int i = 0; i < images.length; i++) {
 				imagesName[i] = images[i].getName();
-
 			}
 
+			// Verifies if a picture with this name already exists
 			for (int i = 0; i < imagesName.length; i++) {
-
-				if (name.equals(imagesName[i])) {
+				if (name.equals(imagesName[i]))
 					reroll = true;
-
-				}
 			}
+			// Save/write the picture in the Photo Gallery
 			if (reroll == false) {
-				Imgcodecs.imwrite("./src/GalleriePhotos/" + name, frame);
+				Imgcodecs.imwrite("./src/PhotoGallery/" + name, frame);
 				confirmation();
 			} else {
-
 				actionPerformed(e);
 			}
+
 		}
 
+		// Method that will confirm that the pic has been taken
 		void confirmation() {
 
-			// create timer to dispose of dialog after 5 seconds
+			// Create a timer to display the JLabel for 1 second
 			Timer timer = new Timer(1000, new AbstractAction() {
 				@Override
 				public void actionPerformed(ActionEvent ae) {
 					saved.setVisible(false);
 				}
 			});
-			timer.setRepeats(false);// the timer should only go off once
+			timer.setRepeats(false);
 
-			// start timer to close JDialog as dialog modal we must start the
-			// timer before its visible
 			timer.start();
 
 			saved.setVisible(true);

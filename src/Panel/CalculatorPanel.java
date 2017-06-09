@@ -98,7 +98,7 @@ public class CalculatorPanel extends JPanel implements ActionListener {
 			buttonsContainer.add(buttons[i]);
 		}
 
-		// Set the buttonsContainer and the mainPanel opaque
+		// Set the buttonsContainer and the mainPanel non-opaque
 		buttonsContainer.setOpaque(false);
 		mainPanel.setOpaque(false);
 
