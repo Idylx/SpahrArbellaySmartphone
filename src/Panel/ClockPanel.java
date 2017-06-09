@@ -16,33 +16,32 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
+import javax.swing.SwingConstants;
 
-public class DatePanel extends JPanel {
+public class ClockPanel extends JPanel {
 
-	private JLabel date;
+	private JLabel clock;
 
-	Font font = new Font("Arial", Font.BOLD, 30);
+	Font font = new Font("Roboto", Font.PLAIN, 80);
 
-	public DatePanel() {
+	public ClockPanel() {
 
 		setBackground(Color.BLACK);
-		setBorder(new EmptyBorder(10, 0, 0, 15));
+		setBorder(new EmptyBorder(30, 0, 20, 0));
 
-		date = new JLabel();
-		date.setOpaque(false);
+		clock = new JLabel();
 
-		date.setFont(font);
-		date.setForeground(Color.white);
-		getDate();
-		add(date, BorderLayout.EAST);
-		// setBackground(new Color(0,0,0,0));
-		//
-		// add(container);
+		clock.setFont(new Font("Roboto Condensed", Font.BOLD, 80));
+		clock.setForeground(Color.white);
+		getTime();
+		add(clock, BorderLayout.EAST);
+
+		setOpaque(false);
 
 		Timer timer = new Timer(500, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				getDate();
+				getTime();
 			}
 		});
 
@@ -53,8 +52,7 @@ public class DatePanel extends JPanel {
 
 	}
 
-	public void getDate() {
-		date.setText(DateFormat.getDateInstance().format(new Date()));
+	public void getTime() {
+		clock.setText(DateFormat.getTimeInstance().format(new Date()));
 	}
-
 }

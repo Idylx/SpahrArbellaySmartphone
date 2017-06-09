@@ -4,35 +4,27 @@
 
 package Panel;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
-import java.io.File;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import Photo.Photo;
 
-public class ApplicationsPanel extends JPanel {
+public class GMainPanel extends JPanel {
 
-	private FlowLayout fl = new FlowLayout(FlowLayout.LEFT, 10, 10);
+	private GridLayout gl = new GridLayout(0, 3);
 
 	private Photo photo;
 
-	private BorderLayout bl = new BorderLayout();
-
-	public ApplicationsPanel() {
-		// setLayout(fl);
-		setLayout(bl);
+	public GMainPanel() {
+		setLayout(gl);
 		setBackground(Color.black);
 		setPhoto();
-		setBorder(new EmptyBorder(20, 10, 0, 20));
 
 	}
 
