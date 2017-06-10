@@ -3,21 +3,19 @@
  */
 
 /*
- * Panel qui sert de panel de base au panel PicturePanel
+ * Personalized panel that is used as main panel for the GalleryPanel
  */
 
-package Panels;
+package panels;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 
 import javax.swing.JPanel;
 
-import Photo.Photo;
+import photo.Photo;
 
 public class GMainPanel extends JPanel {
 
@@ -44,9 +42,6 @@ public class GMainPanel extends JPanel {
 
 		double imageWidth = img.getWidth(this);
 		double imageHeight = img.getHeight(this);
-
-		double newW = (imageWidth / imageHeight) * frameHeight;
-		double newH = (imageHeight / imageWidth) * frameWidth;
 
 		g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2, (int) imageWidth,
 				(int) imageHeight, this);

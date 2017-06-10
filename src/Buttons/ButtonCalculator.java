@@ -3,16 +3,16 @@
  */
 
 /*
- * Boutons de la calculette (avec dimension imposée et égale pour tous)
+ * Buttons of the calculatorPanel personalized with icons and dimensions
  */
 
-package Buttons;
+package buttons;
 
 import java.awt.Dimension;
 
 import javax.swing.JButton;
 
-import Photo.Photo;
+import photo.Photo;
 
 public class ButtonCalculator extends JButton {
 

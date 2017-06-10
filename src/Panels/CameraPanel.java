@@ -3,16 +3,15 @@
  */
 
 /*
- * Panel qui accède à la caméra et l'active pour prendre des photos qui sont 
- * directement enregistrées dans la galerie photo. Panel implémenté à la frame
- * HomeFrame comme application.
+ * Panel that access to the webcam of the computer and activate it to take pictures.
+ * The pictures are immedialty saved in the photo gallery. Panel displayed over
+ * the HomeFrame as an application
  */
 
-package Panels;
+package panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -26,22 +25,16 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.videoio.VideoCapture;
 
-import Buttons.ButtonApplication;
-import Photo.Photo;
+import buttons.ButtonApplication;
+import photo.Photo;
 
 import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;
@@ -138,9 +131,6 @@ public class CameraPanel extends JPanel {
 
 		double imageWidth = img.getWidth(this);
 		double imageHeight = img.getHeight(this);
-
-		double newW = (imageWidth / imageHeight) * frameHeight;
-		double newH = (imageHeight / imageWidth) * frameWidth;
 
 		g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2, (int) imageWidth,
 				(int) imageHeight, this);

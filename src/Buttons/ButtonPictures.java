@@ -3,17 +3,17 @@
  */
 
 /*
- * Boutons de la galerie photo
+ * Buttons of the GalleryPanel with personalized dimensions and icons
  */
 
-package Buttons;
+package buttons;
 
 import java.awt.Dimension;
 import java.awt.Image;
 
 import javax.swing.JButton;
 
-import Photo.Photo;
+import photo.Photo;
 
 public class ButtonPictures extends JButton {
 

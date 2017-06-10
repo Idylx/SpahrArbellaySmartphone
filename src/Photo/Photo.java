@@ -2,16 +2,17 @@
  * Author : Bryan Spahr
  */
 
-package Photo;
+/*
+ * Class that extends ImageIcon and is used to create personalized buttons
+ */
+
+package photo;
 
 import java.awt.Image;
-import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 
-public class Photo extends ImageIcon implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class Photo extends ImageIcon {
 
 	private String path;
 
@@ -26,10 +27,6 @@ public class Photo extends ImageIcon implements Serializable {
 
 	public String getPath() {
 		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
 	}
 
 }

@@ -3,14 +3,14 @@
  */
 
 /*
- * Boutons des applications personnalisés avec photo comme icône
+ * Buttons of the apps with personalized icons
  */
 
-package Buttons;
+package buttons;
 
 import javax.swing.JButton;
 
-import Photo.Photo;
+import photo.Photo;
 
 public class ButtonApplication extends JButton {
 
