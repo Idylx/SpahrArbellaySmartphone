@@ -3,17 +3,16 @@
  */
 
 /*
- * Panel de base qui va se placer au nord de la frame principale HomeFrame.
- * Panel qui sert à contenir le panel DatePanel qui affiche la date
+ * Basic personalized panel wich goes in the north of the HomeFrame
+ * Panel that contains DatePanel which display the date
  */
 
-package Panels;
+package panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class TopPanel extends JPanel {
@@ -26,7 +25,7 @@ public class TopPanel extends JPanel {
 
 	// Constructor
 	public TopPanel() {
-		
+
 		// set the color of the background
 		setBackground(Color.BLACK);
 		// Set the dimension of the panel

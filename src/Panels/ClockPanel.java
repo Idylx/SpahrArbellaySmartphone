@@ -3,10 +3,11 @@
  */
 
 /*
- * Panel qui affiche l'heure au format HH:MM:SS et implémenté à la frame principale
+ *  Panel that displays the hour in real time with this format : HH-MM-SS
+ *  and displayed in the HomeFrame
  */
 
-package Panels;
+package panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,40 +21,39 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
-import javax.swing.SwingConstants;
 
 public class ClockPanel extends JPanel {
 
-	// JLabel qui affiche l'heure
+	// JLabel used to display the hour
 	private JLabel clock;
 
-	// Police de l'horloge
+	// Font of the clock
 	private Font font = new Font("Roboto", Font.PLAIN, 80);
 
-	// Constructeur
+	// Constructor
 	public ClockPanel() {
 
-		// Réglages du panel
+		// Settings of the panel
 		setBackground(Color.BLACK);
 		setBorder(new EmptyBorder(30, 0, 20, 0));
 
-		// Initialise le JLabel
+		// Initialize the label
 		clock = new JLabel();
 
-		// Réglages du JLabel clock
-		clock.setFont(new Font("Roboto Condensed", Font.BOLD, 80));
+		// Settings of the JLabel
+		clock.setFont(font);
 		clock.setForeground(Color.white);
 
-		// Appel à la méthode getTime
+		// Call to the getTime method
 		getTime();
 
-		// Ajout du JLabel au panel
+		// Add the clock panel to this panel
 		add(clock, BorderLayout.EAST);
 
-		// Rend le panel transparent
+		// Set the panel non-opaque
 		setOpaque(false);
 
-		// Instanciation d'un timer qui se rafraichît chaque 1/2 seconde
+		// Initialize a timer that refresh every 1/2 second
 		Timer timer = new Timer(500, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -67,8 +67,13 @@ public class ClockPanel extends JPanel {
 		timer.start();
 	}
 
-	// Méthode qui écrit l'heure sur le JLabel
+	// Method that formats and writes the hour on the JLabel
 	public void getTime() {
 		clock.setText(DateFormat.getTimeInstance().format(new Date()));
+	}
+
+	// Method that return the text of clock used for the JUnit test
+	public String getTimeText() {
+		return clock.getText();
 	}
 }

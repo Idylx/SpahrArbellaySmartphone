@@ -3,10 +3,11 @@
  */
 
 /*
- * Panel qui affiche la date implémenté NORD-EST à la frame principale
+ *  Panel that displays the date of the day with this format : DD-MONTHS-YEAR
+ *  and displayed NORTH-EAST in the HomeFrame
  */
 
-package Panels;
+package panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -65,6 +66,11 @@ public class DatePanel extends JPanel {
 	// Write the date on the JLabel
 	public void getDate() {
 		date.setText(DateFormat.getDateInstance().format(new Date()));
+	}
+
+	// Method that return the text of date used for the JUnit test
+	public String getDateText() {
+		return date.getText();
 	}
 
 }

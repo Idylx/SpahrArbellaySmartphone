@@ -3,33 +3,24 @@
  */
 
 /*
- *  Panel qui affiche une photo individuelle avec les options de défilement, fermeture ou suppression de la photo
- *  Ce panel s'affiche au-dessus du panel GalleryPanel lorsqu'on clique sur une photo précise.
+ * Panel that displays an individual picture with the options of navigation, closing and deleting of the picture.
+ * This panel is displayed over the GalleryPanel panel when a picture is clicked
  */
 
-package Panels;
+package panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import Buttons.ButtonApplication;
-import Frame.HomeFrame;
-import Photo.Photo;
+import buttons.ButtonApplication;
+import photo.Photo;
 
 public class PicturePanel extends JPanel {
 
@@ -80,10 +71,6 @@ public class PicturePanel extends JPanel {
 		previous.addActionListener(new Previous_Button());
 		next.addActionListener(new Next_Button());
 
-		
-	
-	
-	
 		// Verifies if the picture selected is the first or the last one
 		checkIdPhoto();
 
@@ -95,7 +82,7 @@ public class PicturePanel extends JPanel {
 		closePanel.setOpaque(false);
 		closePanel.add(close, BorderLayout.EAST);
 		closePanel.add(delete, BorderLayout.WEST);
-		
+
 		// Add the panels to the root panel
 		add(closePanel, BorderLayout.NORTH);
 		add(previousPanel, BorderLayout.WEST);
@@ -127,7 +114,7 @@ public class PicturePanel extends JPanel {
 	 * Delete the picture when the button is pressed by calling the delete
 	 * method of the GalleryPanel
 	 */
-	class Delete_Button implements ActionListener {
+	public class Delete_Button implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {

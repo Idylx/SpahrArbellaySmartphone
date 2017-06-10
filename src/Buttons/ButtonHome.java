@@ -2,14 +2,14 @@
  * Author : Bryan Spahr
 
 /*
- * Bouton home qui apparaît au bas de l'appli
+ * Home Button that's displayed in the south of the HomeFrame
  */
 
-package Buttons;
+package buttons;
 
 import javax.swing.JButton;
 
-import Photo.Photo;
+import photo.Photo;
 
 public class ButtonHome extends JButton {
 

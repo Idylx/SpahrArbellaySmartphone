@@ -3,38 +3,27 @@
  */
 
 /*
- * Panel qui représente une calculette implémentée comme appli
- * à la frame principale HomeFrame
+ * Panel that represents a calculator and displayed over the HomeFrame
  */
 
-package Panels;
+package panels;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.File;
 
-import javax.swing.AbstractAction;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 
-import Buttons.ButtonCalculator;
-import Photo.Photo;
+import buttons.ButtonCalculator;
+import photo.Photo;
 
 public class CalculatorPanel extends JPanel implements ActionListener {
 
@@ -127,9 +116,6 @@ public class CalculatorPanel extends JPanel implements ActionListener {
 
 		double imageWidth = img.getWidth(this);
 		double imageHeight = img.getHeight(this);
-
-		double newW = (imageWidth / imageHeight) * frameHeight;
-		double newH = (imageHeight / imageWidth) * frameWidth;
 
 		g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2, (int) imageWidth,
 				(int) imageHeight, this);

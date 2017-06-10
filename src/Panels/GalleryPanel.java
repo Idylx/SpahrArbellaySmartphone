@@ -3,17 +3,14 @@
  */
 
 /*
- * Panel représentant une galerie photos et implémenté à la frame principale
- * comme application
+ * Panel that represents a Photo Gallery and displayed over the HomeFrame.
+ * This panel reads the folder PhotoGallery to display the pictures.
  */
 
-package Panels;
+package panels;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,15 +23,11 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import Buttons.ButtonPictures;
-import Frame.HomeFrame;
-import Photo.Photo;
+import buttons.ButtonPictures;
+import photo.Photo;
 
 public class GalleryPanel extends JPanel {
 
@@ -85,7 +78,7 @@ public class GalleryPanel extends JPanel {
 	 * Initialize the buttons, set the icons, the action commands and the action
 	 * listener and finally add the buttons to the container
 	 */
-	void addButton() {
+	public void addButton() {
 
 		this.path = fillPath();
 		this.imgs = fillImgs();
@@ -103,13 +96,13 @@ public class GalleryPanel extends JPanel {
 	 * Remove the buttons from the container, used when the panel has to be
 	 * refreshed
 	 */
-	void removeButton() {
+	public void removeButton() {
 		for (int i = 0; i < boutons.size(); i++)
 			containerPhotos.remove(boutons.get(i));
 	}
 
 	// Fill the array String with the path of the pictures
-	ArrayList<String> fillPath() {
+	public ArrayList<String> fillPath() {
 
 		ArrayList<String> temp = new ArrayList<String>();
 		File folder = new File("./src/PhotoGallery");
@@ -123,7 +116,7 @@ public class GalleryPanel extends JPanel {
 	}
 
 	// Fill the array Image with the images used for the icons of the buttons
-	ArrayList<Image> fillImgs() {
+	public ArrayList<Image> fillImgs() {
 
 		ArrayList<Image> temp = new ArrayList<Image>();
 
@@ -180,9 +173,8 @@ public class GalleryPanel extends JPanel {
 
 		public void actionPerformed(ActionEvent e) {
 
-			JButton button = (JButton) e.getSource();
-			String index = e.getActionCommand(); // to know which pic was
-													// selected
+			// To know which pic was selected
+			String index = e.getActionCommand();
 			int indx = Integer.parseInt(index);
 
 			/*
@@ -195,4 +187,18 @@ public class GalleryPanel extends JPanel {
 
 		}
 	}
+
+	// Getters of the arrays used for the JUnit test
+	public ArrayList<ButtonPictures> getBoutons() {
+		return boutons;
+	}
+
+	public ArrayList<String> getPath() {
+		return path;
+	}
+
+	public ArrayList<Image> getImgs() {
+		return imgs;
+	}
+
 }

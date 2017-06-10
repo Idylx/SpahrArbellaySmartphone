@@ -2,58 +2,38 @@
  * Author : Bryan Spahr
 
 /*
- * Frame principale de l'application
+ * Home/Main Frame of the applications. Used as base for the app.
+ * The differents panels come over this frame.
  */
 
-package Frame;
+package frame;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.LineBorder;
-
-import org.opencv.core.Core;
-
-import Buttons.ButtonApplication;
-import Buttons.ButtonHome;
-import Panels.CalculatorPanel;
-import Panels.CameraPanel;
-import Panels.ClockPanel;
-import Panels.DatePanel;
-import Panels.GalleryPanel;
-import Panels.GoogleQueryPanel;
-import Panels.HomeFramePanel;
-import Panels.TopPanel;
-import Photo.Photo;
+import buttons.ButtonApplication;
+import buttons.ButtonHome;
+import panels.CalculatorPanel;
+import panels.CameraPanel;
+import panels.ClockPanel;
+import panels.GalleryPanel;
+import panels.GoogleQueryPanel;
+import panels.HomeFramePanel;
+import panels.TopPanel;
+import photo.Photo;
 
 public class HomeFrame extends JFrame {
 
 	// Layout
 	private CardLayout c1 = new CardLayout();
 
-	// Panels principaux de la Frame
+	// Main panels of the frame
 	private JPanel west = new JPanel();
 	private JPanel est = new JPanel();
 	private JPanel south = new JPanel();
@@ -62,19 +42,19 @@ public class HomeFrame extends JFrame {
 	private JPanel panel = new JPanel(new FlowLayout());
 	private JPanel mainPanel = new JPanel();
 
-	// Panels d'applications en CardLayout
+	// Apps panels in CardLayout
 	private HomeFramePanel hfPanel = new HomeFramePanel();
 	private CalculatorPanel calculatrice;
 	private GalleryPanel gallery;
 	private CameraPanel camera = new CameraPanel();
 
-	// Panel de l'horloge
+	// Clock Panel
 	private ClockPanel clock = new ClockPanel();
 
-	// Panel de la barre de recherche
+	// Google search bar panel
 	private GoogleQueryPanel google = new GoogleQueryPanel();
 
-	// Boutons des applications
+	// Apps Buttons
 	private ButtonApplication bCalculatrice = new ButtonApplication(new Photo("./src/Pictures/calculator.png"));
 	private ButtonApplication bGallery = new ButtonApplication(new Photo("./src/Pictures/gallery.png"));
 	private ButtonApplication bCamera = new ButtonApplication(new Photo("./src/Pictures/camera.png"));
@@ -82,30 +62,30 @@ public class HomeFrame extends JFrame {
 	private ButtonApplication app5 = new ButtonApplication(new Photo("./src/Pictures/camera.png"));
 	private ButtonApplication app6 = new ButtonApplication(new Photo("./src/Pictures/camera.png"));
 
-	// Bouton pour le south panel
+	// Home Button for the south panel
 	private ButtonHome bHome = new ButtonHome();
 
 	public HomeFrame() {
 
-		// Divers réglages (dimension, position, etc) de la frame principale
+		// Different settings for the frame (dimension, position, etc)
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(480, 800));
 		setSize(480, 800);
 		setResizable(false);
 		setLocationRelativeTo(null);
 
-		// Réglage dimension des panels
+		// Dimension settigs of the panels
 		panel.setPreferredSize(new Dimension(440, 150));
 		west.setPreferredSize(new Dimension(0, 0));
 		est.setPreferredSize(new Dimension(0, 0));
 
-		// Ajout des ActionListener au différents boutons
+		// Add action listener to buttons
 		bCalculatrice.addActionListener(new BoutonCalculatrice());
 		bHome.addActionListener(new BoutonHome());
 		bGallery.addActionListener(new BoutonGallery());
 		bCamera.addActionListener(new BoutonCamera());
 
-		// Ajout des boutons d'applications au panel
+		// Add buttons to the panel
 		panel.add(bCalculatrice);
 		panel.add(bGallery);
 		panel.add(bCamera);
@@ -113,35 +93,34 @@ public class HomeFrame extends JFrame {
 		// panel.add(app5);
 		// panel.add(app6);
 
-		// Réglage de la transparence du panel
+		// Set the panel non-opaque
 		panel.setOpaque(false);
 
 		/*
-		 * Ajout des différents panels (horloge, barre de recherche, etc) de la
-		 * frame principale
+		 * Add the different panels (clock, google search bar) to the homeframe
+		 * panel
 		 */
 		hfPanel.add(clock, BorderLayout.NORTH);
 		hfPanel.add(panel, BorderLayout.CENTER);
 		hfPanel.add(google, BorderLayout.SOUTH);
 
 		/*
-		 * Réglage de la couleur d'arrière plan des panels au cas où le fond
-		 * d'écran est redimensioné
+		 * Set the background color of the panels south & north
 		 */
 		south.setBackground(Color.BLACK);
 		north.setBackground(Color.BLACK);
 
-		// Ajout du bouton Home au panel south
+		// Add button home to south panel
 		south.add(bHome);
 
-		// Définition du layout du mainPanel et ajout du panel principal
+		// Set the layout of mainPanel and add the hfpanel to the mainPanel
 		mainPanel.setLayout(c1);
 		mainPanel.add(hfPanel, "ApplicationsPanel");
 
-		// Définition du panel affiché par le CardLayout
+		// Display of the mainPanel
 		c1.show(mainPanel, "mainPanel");
 
-		// Ajout des panels de la frame principale
+		// add the differents panels to this frame
 		add(north, BorderLayout.NORTH);
 		add(est, BorderLayout.EAST);
 		add(west, BorderLayout.WEST);
@@ -151,8 +130,8 @@ public class HomeFrame extends JFrame {
 	}
 
 	/*
-	 * Permet de revenir à la frame principale lorsque l'utilisateur clique sur
-	 * le bouton / Home
+	 * Allows the user to come back at the Home Frame when the Home Button is
+	 * pressed
 	 */
 	class BoutonHome implements ActionListener {
 
@@ -160,8 +139,8 @@ public class HomeFrame extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 
 			/*
-			 * Ferme le thread de la camera si l'utilisateur clique sur le
-			 * bouton home et le thread est ouvert
+			 * Close the thread of the camera if the user click on the home
+			 * button and the camera is running
 			 */
 			if (camera.running == true) {
 				camera.thread.runnable = false;
@@ -173,7 +152,7 @@ public class HomeFrame extends JFrame {
 
 	}
 
-	// Ouvre le panel Camera (en CardLayout) pour prendre une photo
+	// Open the camera panel to take a picture (over the mainPanel)
 	class BoutonCamera implements ActionListener {
 
 		@Override
@@ -186,7 +165,7 @@ public class HomeFrame extends JFrame {
 
 	}
 
-	// Ouvre le panel Calculatrice (en CardLayout)
+	// Open the calculator panel (over the mainPanel)
 	class BoutonCalculatrice implements ActionListener {
 
 		@Override
@@ -200,7 +179,7 @@ public class HomeFrame extends JFrame {
 		}
 	}
 
-	// Ouvre la galerie photo (en CardLayout)
+	// Open the PhotoGallery over the mainPanel
 	class BoutonGallery implements ActionListener {
 
 		@Override

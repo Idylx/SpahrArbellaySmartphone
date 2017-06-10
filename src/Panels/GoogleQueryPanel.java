@@ -3,12 +3,12 @@
  */
 
 /*
- * Panel qui contient un JTextField et utilisé comme barre de recherche google.
- * Ouvre le navigateur web de l'utilisateur.
- * Le panel est implémenté à la frame principale HomeFrame
+ * Panel that contains a JTextField and used as a Google search engine.
+ * Open the browser of the user.
+ * The panel is displayed in the HomeFrame.
  */
 
-package Panels;
+package panels;
 
 import java.awt.Color;
 import java.awt.Desktop;
@@ -21,15 +21,12 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import Buttons.ButtonApplication;
-import Photo.Photo;
+import buttons.ButtonApplication;
+import photo.Photo;
 
 public class GoogleQueryPanel extends JPanel {
 

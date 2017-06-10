@@ -3,26 +3,20 @@
  */
 
 /*
- * Panel qui sert de panel de base à la frame principale HomeFrame
- * Gère notamment le fond d'écran, le layout et les bordures
+ * Personalized panel used as main panel for the Home Frame.
+ * Personalize the wallpaper, the background color and the layout.
  */
 
-package Panels;
+package panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.io.File;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Photo.Photo;
+import photo.Photo;
 
 public class HomeFramePanel extends JPanel {
 
@@ -50,9 +44,6 @@ public class HomeFramePanel extends JPanel {
 
 		double imageWidth = img.getWidth(this);
 		double imageHeight = img.getHeight(this);
-
-		double newW = (imageWidth / imageHeight) * frameHeight;
-		double newH = (imageHeight / imageWidth) * frameWidth;
 
 		g.drawImage(img, (int) (frameWidth - imageWidth) / 2, (int) (frameHeight - imageHeight) / 2, (int) imageWidth,
 				(int) imageHeight, this);
