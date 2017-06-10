@@ -3,20 +3,22 @@
  */
 
 /*
- * Launcher de l'application, instancie et rend visible HomeFrame
- * qui est la frame principale
+ * Launcher of the app, initialize HomeFrame and make it visible
  */
+
+package launcher;
 
 import java.awt.EventQueue;
 
 import org.opencv.core.Core;
 
-import Frame.HomeFrame;
+import frame.HomeFrame;
 
-public class launcher { //launcher de l'application
+public class launcher {
 
 	public static void main(String[] args) {
 
+		// Load the specified library by default (used for the cam app)
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
 		EventQueue.invokeLater(new Runnable() {
