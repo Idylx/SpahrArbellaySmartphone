@@ -108,16 +108,6 @@ public class ModifyContactPanel extends JPanel {
 		 email.setText(rep.listeContact.get(index).getEmail());
 		 phone.setText(rep.listeContact.get(index).getPhone());
 
-		// prenom
-		// nom
-		// adresse
-		// email
-		// phone
-		// prenom
-		// nom
-		// adresse
-		// email
-		// phone
 	}
 
 	void addJLabel() {

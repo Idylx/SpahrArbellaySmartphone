@@ -168,13 +168,13 @@ public class AddContactPanel extends JPanel {
 
 		public void actionPerformed(ActionEvent e) {
 
+			top.remove(AddContactPanel.this);
+			
 			camera.start();
 			top.add(camera, "hello");
 			c3.show(top, "hello");
 			isAddContact= true;
-//			getpathphoto
-//			pathTronche= path
-//			Add
+
 			
 		}
 
