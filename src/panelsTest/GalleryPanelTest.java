@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 import org.junit.Assert;
 import org.junit.Test;
 
-import panels.GalleryPanel;
+import panelss.GalleryPanel;
 
 public class GalleryPanelTest extends GalleryPanel {
 

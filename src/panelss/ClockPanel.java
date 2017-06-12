@@ -7,7 +7,7 @@
  *  and displayed in the HomeFrame
  */
 
-package panels;
+package panelss;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

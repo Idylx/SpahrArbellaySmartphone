@@ -6,7 +6,7 @@
  * The differents panels come over this frame.
  */
 
-package frame;
+package framee;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -17,16 +17,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import buttons.ButtonApplication;
-import buttons.ButtonHome;
-import panels.CalculatorPanel;
-import panels.CameraPanel;
-import panels.ClockPanel;
-import panels.GalleryPanel;
-import panels.GoogleQueryPanel;
-import panels.HomeFramePanel;
-import panels.TopPanel;
-import photo.Photo;
+
+import buttonss.ButtonApplication;
+import buttonss.ButtonHome;
+import panelss.CalculatorPanel;
+import panelss.CameraPanel;
+import panelss.ClockPanel;
+import panelss.GalleryPanel;
+import panelss.GoogleQueryPanel;
+import panelss.HomeFramePanel;
+import panelss.TopPanel;
+import photoo.Photo;
 
 public class HomeFrame extends JFrame {
 

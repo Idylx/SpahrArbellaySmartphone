@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 import org.junit.Assert;
 import org.junit.Test;
 
-import panels.ClockPanel;
+import panelss.ClockPanel;
 
 public class ClockPanelTest {
 

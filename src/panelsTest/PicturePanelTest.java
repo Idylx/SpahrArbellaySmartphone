@@ -13,9 +13,9 @@ import static org.junit.Assert.*;
 import org.junit.Assert;
 import org.junit.Test;
 
-import panels.GalleryPanel;
-import panels.PicturePanel;
-import panels.PicturePanel.Delete_Button;
+import panelss.GalleryPanel;
+import panelss.PicturePanel;
+import panelss.PicturePanel.Delete_Button;
 
 public class PicturePanelTest {
 

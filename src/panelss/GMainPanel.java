@@ -6,7 +6,7 @@
  * Personalized panel that is used as main panel for the GalleryPanel
  */
 
-package panels;
+package panelss;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -15,7 +15,7 @@ import java.awt.Image;
 
 import javax.swing.JPanel;
 
-import photo.Photo;
+import photoo.Photo;
 
 public class GMainPanel extends JPanel {
 
