@@ -12,7 +12,7 @@ import java.awt.EventQueue;
 
 import org.opencv.core.Core;
 
-import framee.HomeFrame;
+import frame.HomeFrame;
 
 public class launcher {
 

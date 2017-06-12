@@ -7,7 +7,7 @@
  * This panel reads the folder PhotoGallery to display the pictures.
  */
 
-package panelss;
+package panels;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -26,8 +26,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import buttonss.ButtonPictures;
-import photoo.Photo;
+import buttons.ButtonPictures;
+import photo.Photo;
 
 public class GalleryPanel extends JPanel {
 

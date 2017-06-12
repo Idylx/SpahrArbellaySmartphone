@@ -5,11 +5,11 @@
  * Home Button that's displayed in the south of the HomeFrame
  */
 
-package buttonss;
+package buttons;
 
 import javax.swing.JButton;
 
-import photoo.Photo;
+import photo.Photo;
 
 public class ButtonHome extends JButton {
 

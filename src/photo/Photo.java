@@ -6,7 +6,7 @@
  * Class that extends ImageIcon and is used to create personalized buttons
  */
 
-package photoo;
+package photo;
 
 import java.awt.Image;
 
