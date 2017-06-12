@@ -20,7 +20,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-public class FrameContact extends JFrame {
+public class FrameContact extends JPanel {
 
 	JFrame frame;
 

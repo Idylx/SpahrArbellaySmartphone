@@ -18,13 +18,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.*;
 import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.SystemColor;
 
-public class mediaPlayerPanel extends JFrame {
+public class mediaPlayerPanel extends JFrame{
 
 	/**
 	 * Create the panel.
 	 */
 	public mediaPlayerPanel() {
+		getContentPane().setBackground(SystemColor.menu);
 
 		mediaPlayer mp = new mediaPlayer();
 		setPreferredSize(new Dimension(480, 800));
@@ -32,7 +36,10 @@ public class mediaPlayerPanel extends JFrame {
 		getContentPane().setLayout(null);
 
 		JLabel displaySong = new JLabel("Choose a song");
-		displaySong.setBounds(77, 107, 244, 23);
+		displaySong.setForeground(Color.BLACK);
+		displaySong.setBackground(Color.ORANGE);
+		displaySong.setFont(new Font("28-Segment LED Display", Font.BOLD, 30));
+		displaySong.setBounds(10, 58, 444, 170);
 		getContentPane().add(displaySong);
 
 		JButton btnStop = new JButton("Stop");

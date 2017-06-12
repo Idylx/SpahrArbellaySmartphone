@@ -41,9 +41,11 @@ import Panel.ClockPanel;
 import Panel.DatePanel;
 import Panel.GalleryPanel;
 import Panel.GoogleQueryPanel;
+import Panel.Mp3PlayerPanel;
 import Panel.CameraPanel;
 import Panel.TopPanel;
 import Photo.Photo;
+import Panel.RepertoirePanel;
 
 public class HomeFrame extends JFrame {
 
@@ -64,20 +66,25 @@ public class HomeFrame extends JFrame {
 	private CalculatorPanel calculatrice;
 	private GalleryPanel gallery;
 	private CameraPanel camera = new CameraPanel();
+	private RepertoirePanel contact ;
+	private Mp3PlayerPanel player;
 
 	// Panel de l'horloge
 	private ClockPanel clock = new ClockPanel();
 
 	// Panel de la barre de recherche
 	GoogleQueryPanel google = new GoogleQueryPanel();
+	
 
 	// Boutons des applications
 	private ButtonApp bCalculatrice = new ButtonApp(new Photo("./src/Pictures/calculator.png"));
 	private ButtonApp bGallery = new ButtonApp(new Photo("./src/Pictures/gallery.png"));
 	private ButtonApp bCamera = new ButtonApp(new Photo("./src/Pictures/camera.png"));
-	private ButtonApp app4 = new ButtonApp(new Photo("./src/Pictures/camera.png"));
+	private ButtonApp bContact = new ButtonApp(new Photo("./src/Pictures/contact.png"));
+	private ButtonApp bPlayer = new ButtonApp(new Photo("./src/Pictures/music.png"));
 	private ButtonApp app5 = new ButtonApp(new Photo("./src/Pictures/camera.png"));
 	private ButtonApp app6 = new ButtonApp(new Photo("./src/Pictures/camera.png"));
+	
 
 	// Bouton pour le south panel
 	private HomeButton bHome = new HomeButton();
@@ -101,13 +108,16 @@ public class HomeFrame extends JFrame {
 		bHome.addActionListener(new BoutonHome());
 		bGallery.addActionListener(new BoutonGallery());
 		bCamera.addActionListener(new BoutonCamera());
+		bContact.addActionListener(new BoutonContact());
+		bPlayer.addActionListener(new BoutonPlayer());
+		
 
 		// Ajout des boutons d'applications au panel
 		panel.add(bCalculatrice);
 		panel.add(bGallery);
 		panel.add(bCamera);
-		// panel.add(app4);
-		// panel.add(app5);
+		panel.add(bContact);
+		panel.add(bPlayer);
 		// panel.add(app6);
 
 		// Réglage de la transparence du panel
@@ -208,5 +218,32 @@ public class HomeFrame extends JFrame {
 
 		}
 
+	}
+	// ouvre les contacts
+	class BoutonContact implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			contact = new RepertoirePanel(HomeFrame.this);
+
+			mainPanel.add(contact, "contact");
+			c1.show(mainPanel, "contact");
+
+		}
+		
+
+	}
+	class BoutonPlayer implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			player = new Mp3PlayerPanel(HomeFrame.this);
+
+			mainPanel.add(player, "player");
+			c1.show(mainPanel, "player");
+			
+		}
 	}
 }

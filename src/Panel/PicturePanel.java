@@ -96,7 +96,7 @@ public class PicturePanel extends JPanel {
 
 			int options = JOptionPane.YES_NO_CANCEL_OPTION;
 
-			options = JOptionPane.showConfirmDialog(null, "Es-tu sûr de vouloir supprimer cette photo ?", null,
+			options = JOptionPane.showConfirmDialog(null, "Es-tu ssetr de vouloir supprimer cette photo ?", null,
 					options);
 
 			if (options == JOptionPane.YES_OPTION) {

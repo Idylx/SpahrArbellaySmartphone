@@ -36,6 +36,7 @@ import org.opencv.videoio.VideoCapture;
 
 import Buttons.ButtonApp;
 import Photo.Photo;
+import appContact.RepertoireContact;
 
 import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;
@@ -43,7 +44,9 @@ import javax.swing.Timer;
 import java.awt.Font;
 
 public class CameraPanel extends JPanel {
-
+	
+//	RepertoireContact rep = new RepertoireContact();
+	
 	public boolean running = false;
 
 	private JPanel west = new JPanel();
@@ -221,8 +224,21 @@ public class CameraPanel extends JPanel {
 			if (reroll == false) {
 				Imgcodecs.imwrite("./src/GalleriePhotos/" + name, frame);
 				confirmation();
+				
+				if (AddContactPanel.isAddContact == true){
+					
+					AddContactPanel.pathTronche ="./src/GalleriePhotos/" + name;
+					AddContactPanel.isAddContact = false;
+					
+//					A 
+//						
+//						isaddContact false
+//						cardlayout show addcontactPanel
+//					}	
+				}
 			} else {
-
+			
+				
 				actionPerformed(e);
 			}
 		}

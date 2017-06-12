@@ -100,6 +100,10 @@ public class showContactFrame extends JFrame {
 		phone.setBounds(259, 329, 86, 20);
 		getContentPane().add(phone);
 		phone.setColumns(10);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(140, 11, 124, 103);
+		getContentPane().add(panel);
 
 	}
 
@@ -113,5 +117,4 @@ public class showContactFrame extends JFrame {
 		}
 
 	}
-
 }

@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
-public class addContactFrame extends JFrame{
+public class addContactFrame extends JFrame {
 
 	private JFrame addframe;
 	private JTextField prenom;
@@ -26,8 +26,6 @@ public class addContactFrame extends JFrame{
 	private JTextField email;
 	private JTextField phone;
 	RepertoireContact rep = new RepertoireContact();
-	
-	
 
 	public addContactFrame() {
 		initialize();
@@ -41,24 +39,22 @@ public class addContactFrame extends JFrame{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		rep.deserialize();
-		
+
 		JButton btnAddContact = new JButton("Add contact");
 		btnAddContact.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Contact c = new Contact(prenom.getText(), nom.getText(),adresse.getText(), email.getText(), phone.getText());
+				Contact c = new Contact(prenom.getText(), nom.getText(), adresse.getText(), email.getText(),
+						phone.getText(), "");
 				rep.add(c);
 				FrameContact reFrame = new FrameContact();
 				reFrame.frame.setVisible(true);
 				dispose();
-				
-			
-				
+
 			}
 		});
 		btnAddContact.setBounds(133, 465, 134, 23);
 		getContentPane().add(btnAddContact);
-		
-		
+
 		JLabel prenomLabel = new JLabel("Prénom");
 		prenomLabel.setBounds(42, 135, 113, 22);
 		getContentPane().add(prenomLabel);
@@ -83,27 +79,26 @@ public class addContactFrame extends JFrame{
 		prenom.setBounds(259, 137, 86, 20);
 		getContentPane().add(prenom);
 		prenom.setColumns(10);
-		
+
 		nom = new JTextField();
 		nom.setBounds(259, 179, 86, 23);
 		getContentPane().add(nom);
 		nom.setColumns(10);
-		
+
 		adresse = new JTextField();
 		adresse.setBounds(259, 230, 86, 20);
 		getContentPane().add(adresse);
 		adresse.setColumns(10);
-		
+
 		email = new JTextField();
 		email.setBounds(259, 284, 86, 20);
 		getContentPane().add(email);
 		email.setColumns(10);
-		
+
 		phone = new JTextField();
 		phone.setBounds(259, 329, 86, 20);
 		getContentPane().add(phone);
 		phone.setColumns(10);
-		
-		
+
 	}
 }

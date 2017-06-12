@@ -6,6 +6,8 @@ package appContact;
 
 import java.io.Serializable;
 
+import Photo.Photo;
+
 public class Contact implements Serializable{
 	
 	private String firstName;
@@ -14,16 +16,24 @@ public class Contact implements Serializable{
     private String email;
     private String phone;
     
-    //photo contact ??
+    
+
+
+
+	private String path;
+    
+
     
     
-    public Contact(String firstName, String lastName, String address, String email, String phone) {
+    public Contact(String firstName, String lastName, String address, String email, String phone, String path) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
 		this.email = email;
 		this.phone = phone;
+		this.path = path;
+
 		
 	}
 	public String getFirstName() {
@@ -55,6 +65,13 @@ public class Contact implements Serializable{
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
 	}
     
 	public String[] getArray(){
