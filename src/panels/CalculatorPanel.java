@@ -6,7 +6,7 @@
  * Panel that represents a calculator and displayed over the HomeFrame
  */
 
-package panelss; 
+package panels; 
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -22,8 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import buttonss.ButtonCalculator;
-import photoo.Photo;
+import buttons.ButtonCalculator;
+import photo.Photo;
 
 public class CalculatorPanel extends JPanel implements ActionListener {
 

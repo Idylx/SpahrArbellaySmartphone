@@ -7,7 +7,7 @@
  * Personalize the wallpaper, the background color and the layout.
  */
 
-package panelss;
+package panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -16,7 +16,7 @@ import java.awt.Image;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import photoo.Photo;
+import photo.Photo;
 
 public class HomeFramePanel extends JPanel {
 

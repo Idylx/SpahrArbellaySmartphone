@@ -7,7 +7,7 @@
  *  and displayed NORTH-EAST in the HomeFrame
  */
 
-package panelss;
+package panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

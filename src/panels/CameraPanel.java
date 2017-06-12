@@ -8,7 +8,7 @@
  * the HomeFrame as an application
  */
 
-package panelss;
+package panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -33,8 +33,8 @@ import org.opencv.core.MatOfByte;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.videoio.VideoCapture;
 
-import buttonss.ButtonApplication;
-import photoo.Photo;
+import buttons.ButtonApplication;
+import photo.Photo;
 
 import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;

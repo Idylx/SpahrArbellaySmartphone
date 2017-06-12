@@ -6,11 +6,11 @@
  * Buttons of the apps with personalized icons
  */
 
-package buttonss;
+package buttons;
 
 import javax.swing.JButton;
 
-import photoo.Photo;
+import photo.Photo;
 
 public class ButtonApplication extends JButton {
 
