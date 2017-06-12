@@ -6,13 +6,13 @@
  * Buttons of the calculatorPanel personalized with icons and dimensions
  */
 
-package buttons;
+package buttonss;
 
 import java.awt.Dimension;
 
 import javax.swing.JButton;
 
-import photo.Photo;
+import photoo.Photo;
 
 public class ButtonCalculator extends JButton {
 

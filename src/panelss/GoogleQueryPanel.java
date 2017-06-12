@@ -8,7 +8,7 @@
  * The panel is displayed in the HomeFrame.
  */
 
-package panels;
+package panelss;
 
 import java.awt.Color;
 import java.awt.Desktop;
@@ -25,8 +25,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import buttons.ButtonApplication;
-import photo.Photo;
+import buttonss.ButtonApplication;
+import photoo.Photo;
 
 public class GoogleQueryPanel extends JPanel {
 

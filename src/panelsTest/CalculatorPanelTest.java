@@ -11,7 +11,7 @@ package panelsTest;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import panels.CalculatorPanel;
+import panelss.CalculatorPanel;
 
 public class CalculatorPanelTest {
 

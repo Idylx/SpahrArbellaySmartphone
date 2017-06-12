@@ -7,7 +7,7 @@
  * Panel that contains DatePanel which display the date
  */
 
-package panels;
+package panelss;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

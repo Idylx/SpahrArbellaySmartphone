@@ -6,14 +6,14 @@
  * Buttons of the GalleryPanel with personalized dimensions and icons
  */
 
-package buttons;
+package buttonss;
 
 import java.awt.Dimension;
 import java.awt.Image;
 
 import javax.swing.JButton;
 
-import photo.Photo;
+import photoo.Photo;
 
 public class ButtonPictures extends JButton {
 

@@ -7,7 +7,7 @@
  * This panel is displayed over the GalleryPanel panel when a picture is clicked
  */
 
-package panels;
+package panelss;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,8 +19,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import buttons.ButtonApplication;
-import photo.Photo;
+import buttonss.ButtonApplication;
+import photoo.Photo;
 
 public class PicturePanel extends JPanel {
 
