@@ -11,6 +11,7 @@ package frame;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import appContact.RepertoireContact;
 import buttons.ButtonApplication;
 import buttons.ButtonHome;
 import panels.CalculatorPanel;
@@ -26,6 +28,8 @@ import panels.ClockPanel;
 import panels.GalleryPanel;
 import panels.GoogleQueryPanel;
 import panels.HomeFramePanel;
+import panels.Mp3PlayerPanel;
+import panels.RepertoirePanel;
 import panels.TopPanel;
 import photo.Photo;
 
@@ -48,6 +52,8 @@ public class HomeFrame extends JFrame {
 	private CalculatorPanel calculatrice;
 	private GalleryPanel gallery;
 	private CameraPanel camera = new CameraPanel();
+	private RepertoirePanel repContact = new RepertoirePanel();
+	private Mp3PlayerPanel player= new Mp3PlayerPanel();
 
 	// Clock Panel
 	private ClockPanel clock = new ClockPanel();
@@ -59,8 +65,8 @@ public class HomeFrame extends JFrame {
 	private ButtonApplication bCalculatrice = new ButtonApplication(new Photo("./src/Pictures/calculator.png"));
 	private ButtonApplication bGallery = new ButtonApplication(new Photo("./src/Pictures/gallery.png"));
 	private ButtonApplication bCamera = new ButtonApplication(new Photo("./src/Pictures/camera.png"));
-	private ButtonApplication app4 = new ButtonApplication(new Photo("./src/Pictures/camera.png"));
-	private ButtonApplication app5 = new ButtonApplication(new Photo("./src/Pictures/camera.png"));
+	private ButtonApplication bContact = new ButtonApplication(new Photo("./src/Pictures/contact.png"));
+	private ButtonApplication bPlayer = new ButtonApplication(new Photo("./src/Pictures/music.png"));
 	private ButtonApplication app6 = new ButtonApplication(new Photo("./src/Pictures/camera.png"));
 
 	// Home Button for the south panel
@@ -85,13 +91,16 @@ public class HomeFrame extends JFrame {
 		bHome.addActionListener(new BoutonHome());
 		bGallery.addActionListener(new BoutonGallery());
 		bCamera.addActionListener(new BoutonCamera());
+		bContact.addActionListener(new BoutonContact());
+		bPlayer.addActionListener(new BoutonPlayer());
+		
 
 		// Add buttons to the panel
 		panel.add(bCalculatrice);
 		panel.add(bGallery);
 		panel.add(bCamera);
-		// panel.add(app4);
-		// panel.add(app5);
+		panel.add(bContact);
+		panel.add(bPlayer);
 		// panel.add(app6);
 
 		// Set the panel non-opaque
@@ -190,6 +199,30 @@ public class HomeFrame extends JFrame {
 
 			mainPanel.add(gallery, "gallery");
 			c1.show(mainPanel, "gallery");
+
+		}
+
+	}
+
+	class BoutonContact implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			mainPanel.add(repContact, "repContact");
+			c1.show(mainPanel, "repContact");
+
+		}
+
+	}
+
+	class BoutonPlayer implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			mainPanel.add(player, "player");
+			c1.show(mainPanel, "player");
 
 		}
 

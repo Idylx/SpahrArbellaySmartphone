@@ -106,7 +106,7 @@ public class modifyContactFrame extends JFrame {
 		btnModifyContact.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Contact c = new Contact(prenom.getText(), nom.getText(), adresse.getText(), email.getText(),
-						phone.getText());
+						phone.getText(),"");
 				rep.modify(pos, c);
 				FrameContact reFrame = new FrameContact();
 				dispose();

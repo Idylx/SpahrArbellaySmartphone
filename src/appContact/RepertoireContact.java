@@ -20,7 +20,9 @@ public class RepertoireContact {
 	
 	// test du test du retest
 
-	ArrayList<Contact> listeContact = new ArrayList<Contact>();
+	public ArrayList<Contact> listeContact = new ArrayList<Contact>();
+	
+	int lastIndex;
 
 	public String[][] toArray() {
 		String[][] array = new String[listeContact.size()][5];
@@ -30,6 +32,10 @@ public class RepertoireContact {
 
 		}
 		return array;
+	}
+	
+	public int getLastIndex (){
+		return this.lastIndex;
 	}
 
 	public void add(Contact c1) {
@@ -50,11 +56,15 @@ public class RepertoireContact {
 	public void modify(int pos, Contact setContact) {
 		this.listeContact.remove(pos);
 		this.listeContact.add(setContact);
+		
 		sortByFirstName();
 		sortByLastName();
 		serialize();
+		this.lastIndex= this.listeContact.indexOf(setContact);
 
 	}
+	
+
 	
 
 	public void serialize() {// serialize le repertoire

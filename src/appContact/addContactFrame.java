@@ -46,7 +46,7 @@ public class addContactFrame extends JFrame{
 		JButton btnAddContact = new JButton("Add contact");
 		btnAddContact.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Contact c = new Contact(prenom.getText(), nom.getText(),adresse.getText(), email.getText(), phone.getText());
+				Contact c = new Contact(prenom.getText(), nom.getText(),adresse.getText(), email.getText(), phone.getText(),"");
 				rep.add(c);
 				FrameContact reFrame = new FrameContact();
 				reFrame.frame.setVisible(true);
