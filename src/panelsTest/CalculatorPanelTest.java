@@ -3,7 +3,7 @@
  */
 
 /*
- * Classe qui vérifie que les résultats des opérations de la calculette sont correctes
+ * Class that verifies that the operations of the calculator are correct
  */
 
 package panelsTest;
