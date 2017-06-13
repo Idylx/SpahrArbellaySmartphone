@@ -14,6 +14,9 @@ import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 import javax.swing.plaf.FontUIResource;
 
+
+//classe de rendu de la liste de contact
+
 public class ContactCellRenderer extends DefaultListCellRenderer {
 	public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
 			boolean cellHasFocus) {

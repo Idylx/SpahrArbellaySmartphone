@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 Author : Olivier Arbellay
 Date: 31 mai 2017
 */
+//classe de test de modifications de contact
 
 public class modifyContactFrame extends JFrame {
 

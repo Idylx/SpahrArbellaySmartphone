@@ -28,39 +28,49 @@ import java.awt.CardLayout;
 
 public class AddContactPanel extends JPanel {
 
+	// déclaration des variable
+
 	AddContactPhotoPanel camera = new AddContactPhotoPanel();
+	// set le logo de base par défauten caméra
 	String pathTronche = "./src/Pictures/camera.png";
 
+	// déclare le layout
 	CardLayout c3 = new CardLayout();
 
 	RepertoireContact rep = new RepertoireContact();
 
+	// panel
 	private JPanel closePanel = new JPanel();
 	private JPanel textPanel = new JPanel();
 	private JPanel addPanel = new JPanel();
 	private JPanel stuff = new JPanel(new BorderLayout());
 
+	// bouton
 	ButtonApplication closeBtn = new ButtonApplication(new Photo("./src/Pictures/close.png"));
 	ButtonApplication addBtn = new ButtonApplication(new Photo("./src/Pictures/addUser.png"));
 	ButtonApplication tronche;
-
+	// textfield
 	JTextField prenom = new JTextField();
 	JTextField nom = new JTextField();
 	JTextField adresse = new JTextField();
 	JTextField email = new JTextField();
 	JTextField phone = new JTextField();
 
+	// label
 	JLabel prenomLabel = new JLabel("Prénom");
 	JLabel nomLabel = new JLabel("Nom");
 	JLabel adresseLabel = new JLabel("Adresse");
 	JLabel emailLabel = new JLabel("E-mail");
 	JLabel phoneLabel = new JLabel("Téléphone");
 
+	// rep
 	RepertoirePanel top;
 
 	public AddContactPanel(RepertoirePanel top) {
+
 		rep.deserialize();
 
+		// met le panel du sommet
 		this.top = top;
 
 		setLayout(c3);
@@ -76,10 +86,13 @@ public class AddContactPanel extends JPanel {
 
 	}
 
+	
+	//rajoute tout le bordel sur 1 panel
 	void addStuff() {
 
 		stuff.setBackground(Color.BLACK);
 
+		
 		closeBtn.addActionListener(new Close_Button());
 		addBtn.addActionListener(new Add_Button());
 
@@ -100,6 +113,7 @@ public class AddContactPanel extends JPanel {
 
 	}
 
+	//rajoute tout les texfield
 	void addTextField() {
 
 		prenom.setBounds(250, 200, 115, 20);
@@ -122,6 +136,7 @@ public class AddContactPanel extends JPanel {
 
 	}
 
+	//rajoute tout les label
 	void addJLabel() {
 
 		Color fColor = Color.white;
@@ -157,45 +172,44 @@ public class AddContactPanel extends JPanel {
 
 	}
 
+	//démare la caméra pour prendre une photo pour un contact 
 	class Cam_Button implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 
 			camera.addPropertyChangeListener(new PropertyChangeListener() {
-
+// affecte la poto prise au contact 
 				@Override
 				public void propertyChange(PropertyChangeEvent evt) {
 					if (evt.getPropertyName().equals("photoPrise")) {
 						System.out.println("on a pris une photo woohoo");
 						pathTronche = (String) evt.getNewValue();
-						
+
 						tronche.setIcon(new Photo(pathTronche));
-						
+
 						AddContactPanel.this.remove(camera);
 						// top.remove(camera);
 						AddContactPanel.this.addStuff();
 						AddContactPanel.this.add(stuff);
 						AddContactPanel.this.addJLabel();
 						AddContactPanel.this.addTextField();
-						
-						
-//						 revalidate();
-//						 repaint();
+
+						// revalidate();
+						// repaint();
 						c3.show(AddContactPanel.this, "AddContactPanel");
 						// top.removePanel(ModifyContactPanel.this);
-//						top.revalidate();
-//						top.repaint();
-//						top.addStuff();
+						// top.revalidate();
+						// top.repaint();
+						// top.addStuff();
 					}
 
 				}
 			});
 
 			camera.start();
-			
-			
+
 			AddContactPanel.this.removeAll();
-			
+
 			AddContactPanel.this.add(camera, "Camera");
 
 			c3.show(AddContactPanel.this, "camera");
@@ -207,6 +221,7 @@ public class AddContactPanel extends JPanel {
 
 	}
 
+	// rajoute les informations au contact 
 	class Add_Button implements ActionListener {
 
 		@Override
@@ -222,15 +237,16 @@ public class AddContactPanel extends JPanel {
 				rep.add(c);
 
 				top.removePanel(AddContactPanel.this);
-//				top.removeAll();
-				top.addStuff();
-				top.revalidate();
-				top.repaint();
+				top.reloadAll();
+//				// top.removeAll();
+//				top.addStuff();
+//				top.revalidate();
+//				top.repaint();
 			}
 
 		}
 	}
-
+//ferme l'ajout
 	class Close_Button implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {

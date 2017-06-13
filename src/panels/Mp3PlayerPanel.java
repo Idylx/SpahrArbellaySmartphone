@@ -33,7 +33,7 @@ import javax.swing.UIManager;
 public class Mp3PlayerPanel extends JPanel {
 
 	mediaPlayer mp = new mediaPlayer();
-	
+
 	private CardLayout c2 = new CardLayout();
 
 	public static int count;
@@ -46,45 +46,48 @@ public class Mp3PlayerPanel extends JPanel {
 
 	public static JLabel displaySong = new JLabel("Choose a song");
 
+	// loop photo pour
 	Photo noLoop = new Photo("./src/Pictures/noLoop.png");
 	Photo Loop = new Photo("./src/Pictures/loop.png");
 
+	// bouton
 	ButtonApplication play = new ButtonApplication(new Photo("./src/Pictures/play.png"));
 	ButtonApplication stop = new ButtonApplication(new Photo("./src/Pictures/stop.png"));
 	ButtonApplication pause = new ButtonApplication(new Photo("./src/Pictures/pause.png"));
 	ButtonApplication choose = new ButtonApplication(new Photo("./src/Pictures/choose.png"));
 	ButtonApplication loop = new ButtonApplication(noLoop);
 
+	// fond décran
 	CMainPanel c = new CMainPanel();
 
-
 	public Mp3PlayerPanel() {
-		
+
 		setLayout(c2);
-		 addStuff();
+		addStuff();
 		add(c);
-		
-		
+
 		c2.show(Mp3PlayerPanel.this, "MP3");
-		
 
 	}
 
+	// ajoute tout le stuff
 	void addStuff() {
 
 		c.setLayout(new BorderLayout());
 		c.add(infoPanel, BorderLayout.CENTER);
 
+		// panel de base
 		infoPanel.setLayout(new BorderLayout());
 		infoPanel.add(displayPanel, BorderLayout.NORTH);
 		infoPanel.add(playPanel, BorderLayout.CENTER);
 		infoPanel.setOpaque(false);
 		infoPanel.add(choosePanel, BorderLayout.SOUTH);
 
+		// display
 		displayPanel.setLayout(new BorderLayout());
 		displayPanel.add(displaySong, BorderLayout.CENTER);
 		displaySong.setForeground(Color.white);
-		displaySong.setFont(new Font("28-Segment LED Display", Font.BOLD, 30));
+		displaySong.setFont(new Font("Arial", Font.BOLD, 30));
 		displayPanel.setOpaque(false);
 
 		playPanel.setLayout(new BorderLayout());
@@ -128,7 +131,7 @@ public class Mp3PlayerPanel extends JPanel {
 
 		}
 	}
-
+//stop la musique 
 	class Stop_Button implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
@@ -138,6 +141,7 @@ public class Mp3PlayerPanel extends JPanel {
 		}
 	}
 
+	// choisi la musique
 	class Choose_Button implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
@@ -147,7 +151,7 @@ public class Mp3PlayerPanel extends JPanel {
 
 			int returnVal = chooser.showOpenDialog(null);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
-
+				// stop le player
 				mp.Stop();
 
 				File myFile = chooser.getSelectedFile();
@@ -168,6 +172,7 @@ public class Mp3PlayerPanel extends JPanel {
 		}
 	}
 
+	// permet de metre une musique de loop
 	class Loop_Button implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {

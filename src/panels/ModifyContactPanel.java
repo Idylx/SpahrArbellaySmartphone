@@ -28,19 +28,23 @@ public class ModifyContactPanel extends JPanel {
 
 	RepertoireContact rep = new RepertoireContact();
 
+	// panel
 	private JPanel closePanel = new JPanel();
 	private JPanel textPanel = new JPanel();
 	private JPanel addPanel = new JPanel();
 
+	// bouton
 	ButtonApplication closeBtn = new ButtonApplication(new Photo("./src/Pictures/close.png"));
 	ButtonApplication modifyBtn = new ButtonApplication(new Photo("./src/Pictures/pen.png"));
 
+	// textfield
 	JTextField prenom = new JTextField();
 	JTextField nom = new JTextField();
 	JTextField adresse = new JTextField();
 	JTextField email = new JTextField();
 	JTextField phone = new JTextField();
 
+	// label
 	JLabel prenomLabel = new JLabel("Prénom");
 	JLabel nomLabel = new JLabel("Nom");
 	JLabel adresseLabel = new JLabel("Adresse");
@@ -48,7 +52,7 @@ public class ModifyContactPanel extends JPanel {
 	JLabel phoneLabel = new JLabel("Téléphone");
 
 	ContactPanel top;
-	
+
 	int index;
 
 	public ModifyContactPanel(int index, ContactPanel top) {
@@ -82,6 +86,7 @@ public class ModifyContactPanel extends JPanel {
 
 	}
 
+	// rajoute les textfield
 	void addTextField() {
 
 		prenom.setBounds(250, 200, 115, 20);
@@ -89,7 +94,7 @@ public class ModifyContactPanel extends JPanel {
 		adresse.setBounds(250, 300, 115, 20);
 		email.setBounds(250, 350, 115, 20);
 		phone.setBounds(250, 400, 115, 20);
-		
+
 		textPanel.add(prenom);
 		textPanel.add(nom);
 		textPanel.add(adresse);
@@ -102,28 +107,20 @@ public class ModifyContactPanel extends JPanel {
 		email.setColumns(10);
 		phone.setColumns(10);
 
-		 prenom.setText(rep.listeContact.get(index).getFirstName());
-		 nom.setText(rep.listeContact.get(index).getLastName());
-		 adresse.setText(rep.listeContact.get(index).getAddress());
-		 email.setText(rep.listeContact.get(index).getEmail());
-		 phone.setText(rep.listeContact.get(index).getPhone());
+		// set les text field avec le l'index pour savoir lequel afficher
+		prenom.setText(rep.listeContact.get(index).getFirstName());
+		nom.setText(rep.listeContact.get(index).getLastName());
+		adresse.setText(rep.listeContact.get(index).getAddress());
+		email.setText(rep.listeContact.get(index).getEmail());
+		phone.setText(rep.listeContact.get(index).getPhone());
 
-		// prenom
-		// nom
-		// adresse
-		// email
-		// phone
-		// prenom
-		// nom
-		// adresse
-		// email
-		// phone
+
 	}
-
+	//rajoute les label
 	void addJLabel() {
 
 		Color fColor = Color.white;
-		
+
 		ButtonApplication tronche = new ButtonApplication(new Photo(rep.listeContact.get(index).getPath()));
 
 		prenomLabel.setBounds(40, 200, 115, 20);
@@ -131,9 +128,9 @@ public class ModifyContactPanel extends JPanel {
 		adresseLabel.setBounds(40, 300, 115, 20);
 		emailLabel.setBounds(40, 350, 115, 20);
 		phoneLabel.setBounds(40, 400, 115, 20);
-		
+
 		tronche.setBounds(150, 10, 125, 125);
-		
+
 		textPanel.add(prenomLabel);
 		textPanel.add(nomLabel);
 		textPanel.add(adresseLabel);
@@ -154,7 +151,7 @@ public class ModifyContactPanel extends JPanel {
 		phoneLabel.setFont(new FontUIResource(new Font("Arial", 0, 20)));
 
 	}
-
+// modifie le contatc en récupérant le dernier index
 	class Modify_Button implements ActionListener {
 
 		@Override
@@ -163,24 +160,24 @@ public class ModifyContactPanel extends JPanel {
 			if (prenom.getText().equals("") && nom.getText().equals("") && phone.getText().equals("")) {
 
 				JOptionPane.showMessageDialog(null, "Veuillez remplir les champs prénom, nom, téléphone");
-				
+
 			} else {
 				Contact c = new Contact(prenom.getText(), nom.getText(), adresse.getText(), email.getText(),
-						phone.getText(),"");
+						phone.getText(), "");
 				rep.modify(index, c);
-				
+
 				top.setIndex(rep.getLastIndex());
 				top.removePanel(ModifyContactPanel.this);
 				top.addStuff();
 				top.revalidate();
 				top.repaint();
-			
-				
+
 			}
 
 		}
 	}
 
+	// ferme le panel
 	class Close_Button implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {

@@ -30,58 +30,65 @@ import photo.Photo;
 import appContact.*;
 
 public class RepertoirePanel extends JPanel {
-
+	
+//créer un panel de base avesc un fond d'écran 
 	private CMainPanel containerContact = new CMainPanel();
 
 	private CardLayout c2 = new CardLayout();
 
-	JPanel addPanel = new JPanel();
-	JPanel stuff = new JPanel();
+	// panell du stuff et bouton
+	JPanel addPanel;
+	JPanel stuff;
+	// déclare le repertoire
 
-	RepertoireContact rep = new RepertoireContact();
+	RepertoireContact rep ;
 
 	Color bColor = Color.black;
-
-	ButtonApplication btnAddContact = new ButtonApplication(new Photo("./src/Pictures/addUser.png"));
-
+// bouton 
+	ButtonApplication btnAddContact;
+// créer les panel suivant 
 	AddContactPanel adp;
 	ContactPanel cp;
 
 	public RepertoirePanel() {
-
-		addStuff();
-
-		setLayout(c2);
-		setBackground(bColor);
-
-		add(stuff);
-
-		c2.show(RepertoirePanel.this, "RepertoireContact");
-
+		// charge tout le stuff
+		reloadAll();
+		
 	}
-
+	// charge le stuff
 	void addStuff() {
-		System.out.println("jai chargé du stuff");
+		removeAll();
+		rep = new RepertoireContact();
 		rep.deserialize();
+		stuff = new JPanel();
+		addPanel= new JPanel();
+		btnAddContact  = new ButtonApplication(new Photo("./src/Pictures/addUser.png"));
+		System.out.println("jai chargé du stuff");
+		
+		
+		// créer une jlist et un scrollpane lié 
 		JList<?> list = new JList<Object>(rep.listeContact.toArray());
 		JScrollPane scroll = new JScrollPane(list);
 
 		stuff.setLayout(new BorderLayout());
-
+		// ajoute le reste 
 		stuff.add(addPanel, BorderLayout.NORTH);
 		stuff.add(scroll, BorderLayout.CENTER);
+		
+		
 		addPanel.setLayout(new BorderLayout());
 		addPanel.setBackground(bColor);
 		addPanel.add(btnAddContact, BorderLayout.EAST);
 		btnAddContact.addActionListener(new Add_Button());
 
+		// créer un listener de double click sur la liste 
 		list.setCellRenderer(new ContactCellRenderer());
 		list.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
 				JList list = (JList) evt.getSource();
 				if (evt.getClickCount() == 2) {
 
-					// Double-click detected
+					// Double-click detecté
 					int index = list.locationToIndex(evt.getPoint());
 
 					JPanel individualPanel = new ContactPanel(index, RepertoirePanel.this);
@@ -90,7 +97,7 @@ public class RepertoirePanel extends JPanel {
 					c2.show(RepertoirePanel.this, "ip");
 				} else if (evt.getClickCount() == 3) {
 
-					// Triple-click detected
+					// Triple-click detecté
 					int index = list.locationToIndex(evt.getPoint());
 				}
 			}
@@ -146,6 +153,22 @@ public class RepertoirePanel extends JPanel {
 //		return scrollPane;
 //	}
 
+	// methode permettant de raffraichir le panel
+	public void reloadAll(){
+		
+		addStuff();
+
+		setLayout(c2);
+		setBackground(bColor);
+
+		add(stuff);
+
+		c2.show(RepertoirePanel.this, "RepertoireContact");
+		revalidate();
+		repaint();
+	}
+	
+	// retourne le panel
 	public CMainPanel getContainerContact() {
 		return containerContact;
 	}
@@ -153,7 +176,9 @@ public class RepertoirePanel extends JPanel {
 	CardLayout getCLayout() {
 		return c2;
 	}
-
+// rajoute
+	
+	// bouton ouvrant la création de contact
 	class Add_Button implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {

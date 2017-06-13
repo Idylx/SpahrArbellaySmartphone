@@ -8,21 +8,19 @@ import java.io.Serializable;
 
 public class Contact implements Serializable{
 	
+	//classe contacts
+
+	//déclaration des contacts
 	private String firstName;
 	private String lastName;
     private String address;
     private String email;
     private String phone;
-    
-    
-
-
-
 	private String path;
     
 
     
-    
+    //constructeur contact
     public Contact(String firstName, String lastName, String address, String email, String phone, String path) {
 		super();
 		this.firstName = firstName;
@@ -32,7 +30,7 @@ public class Contact implements Serializable{
 		this.phone = phone;
 		this.path = path;
 
-		
+		//getter and setters
 	}
 	public String getFirstName() {
 		return firstName;
@@ -72,8 +70,10 @@ public class Contact implements Serializable{
 		this.path = path;
 	}
     
+	
+	//transforme un contact en array
 	public String[] getArray(){
-		String[] array = {firstName, lastName, address, email, phone};
+		String[] array = {firstName, lastName, address, email, phone, path};
 		return array;
 	}
 }

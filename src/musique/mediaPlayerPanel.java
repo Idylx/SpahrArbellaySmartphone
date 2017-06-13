@@ -23,6 +23,8 @@ import java.awt.Color;
 import java.awt.SystemColor;
 
 public class mediaPlayerPanel extends JFrame{
+	
+	//frame de test du mp3
 
 	/**
 	 * Create the panel.
