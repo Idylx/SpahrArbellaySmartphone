@@ -20,6 +20,8 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
+//classe de test de
+
 public class FrameContact extends JFrame {
 
 	JFrame frame;
@@ -52,7 +54,7 @@ public class FrameContact extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	public void initialize() {
-
+		//déclare le rep et deserialize
 		RepertoireContact rep = new RepertoireContact();
 		rep.deserialize();
 
@@ -60,10 +62,14 @@ public class FrameContact extends JFrame {
 		frame.setBounds(100, 100, 450, 576);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		//ajout du scrollpane
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 107, 414, 419);
 		frame.getContentPane().add(scrollPane);
+		
+		//ajout de la liste 
 
 		JList<?> list = new JList<Object>(rep.listeContact.toArray());
 		list.getModel();

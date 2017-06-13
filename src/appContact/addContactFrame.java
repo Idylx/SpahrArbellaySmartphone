@@ -2,8 +2,12 @@
 Author : Olivier Arbellay
 Date: 24 mai 2017
 */
+
+
+
+//classe de test d'ajout de contact
 package appContact;
-//TEst
+
 
 import java.awt.EventQueue;
 
@@ -20,6 +24,8 @@ import javax.swing.JTextArea;
 
 public class addContactFrame extends JFrame{
 
+	
+	//créations des textfield
 	private JFrame addframe;
 	private JTextField prenom;
 	private JTextField nom;
@@ -46,7 +52,7 @@ public class addContactFrame extends JFrame{
 		JButton btnAddContact = new JButton("Add contact");
 		btnAddContact.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Contact c = new Contact(prenom.getText(), nom.getText(),adresse.getText(), email.getText(), phone.getText());
+				Contact c = new Contact(prenom.getText(), nom.getText(),adresse.getText(), email.getText(), phone.getText(),"");
 				rep.add(c);
 				FrameContact reFrame = new FrameContact();
 				reFrame.frame.setVisible(true);
@@ -56,6 +62,8 @@ public class addContactFrame extends JFrame{
 				
 			}
 		});
+		
+		//ajout du stuff
 		btnAddContact.setBounds(133, 465, 134, 23);
 		getContentPane().add(btnAddContact);
 		

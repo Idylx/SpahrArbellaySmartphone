@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 Author : Olivier Arbellay
 Date: 31 mai 2017
 */
+//classe de test de modifications de contact
 
 public class modifyContactFrame extends JFrame {
 
@@ -106,7 +107,7 @@ public class modifyContactFrame extends JFrame {
 		btnModifyContact.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Contact c = new Contact(prenom.getText(), nom.getText(), adresse.getText(), email.getText(),
-						phone.getText());
+						phone.getText(),"");
 				rep.modify(pos, c);
 				FrameContact reFrame = new FrameContact();
 				dispose();

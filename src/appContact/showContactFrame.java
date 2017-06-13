@@ -20,6 +20,7 @@ Author : Olivier Arbellay
 Date: 31 mai 2017
 */
 
+// méthode de test d'affichage du contact 
 import appContact.modifyContactFrame.Windows_Close;
 
 public class showContactFrame extends JFrame {

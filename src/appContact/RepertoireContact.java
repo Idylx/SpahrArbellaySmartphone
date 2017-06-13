@@ -18,10 +18,15 @@ import java.util.Comparator;
 public class RepertoireContact {
 	
 	
-	// test du test du retest
+	//Crée une arraylist de contact
 
-	ArrayList<Contact> listeContact = new ArrayList<Contact>();
+	public ArrayList<Contact> listeContact = new ArrayList<Contact>();
+	
+ //déclare un index pour récupéere un contact en cas de modifcations
+	int lastIndex;
 
+	
+	//méthode déclarant un tableau de contact avec les collones des attributrs
 	public String[][] toArray() {
 		String[][] array = new String[listeContact.size()][5];
 		for (int i = 0; i < array.length; i++) {
@@ -31,7 +36,13 @@ public class RepertoireContact {
 		}
 		return array;
 	}
+	
+	//récupère le dernier index en cas de modifications de contact
+	public int getLastIndex (){
+		return this.lastIndex;
+	}
 
+	//ajoute un contact a la liste et trie et seriazlize le tout
 	public void add(Contact c1) {
 		this.listeContact.add(c1);
 		sortByFirstName();
@@ -39,7 +50,8 @@ public class RepertoireContact {
 		serialize();
 
 	}
-
+	
+//supprime un contatc de la liste avec une pos et serialize 
 	public void remove(int pos) {
 		this.listeContact.remove(pos);
 		sortByFirstName();
@@ -47,14 +59,22 @@ public class RepertoireContact {
 		serialize();
 	}
 
+	
+	// modifie un contact en le detruisant, puis rajoutant le contact modifié, 
 	public void modify(int pos, Contact setContact) {
 		this.listeContact.remove(pos);
 		this.listeContact.add(setContact);
+		
 		sortByFirstName();
 		sortByLastName();
 		serialize();
+		
+		//permet de récupérer l'index du contact supprimer
+		this.lastIndex= this.listeContact.indexOf(setContact);
 
 	}
+	
+
 	
 
 	public void serialize() {// serialize le repertoire
@@ -102,20 +122,21 @@ public class RepertoireContact {
 		}
 
 	}
-
+//contact du repertoire to string 
 	public void repContactToString() {
 		for (int i = 0; i < listeContact.size(); i++)
 			System.out.println(this.listeContact.get(i).getFirstName() + " " + this.listeContact.get(i).getLastName());
 	}
-
+// trie les contactpar nom
 	public void sortByLastName() {
 		Collections.sort(listeContact, compareLastName());
 	}
 
+	//Trie les contact par prénom
 	public void sortByFirstName() {
 		Collections.sort(listeContact, compareFirstName());
 	}
-
+	//méthode de comparaison du nom
 	public static Comparator<Contact> compareLastName() {
 		Comparator comp = new Comparator<Contact>() {
 			@Override
@@ -125,7 +146,7 @@ public class RepertoireContact {
 		};
 		return comp;
 	}
-
+	//méthode de comparaison du prénom
 	public static Comparator<Contact> compareFirstName() {
 		Comparator comp = new Comparator<Contact>() {
 			@Override
