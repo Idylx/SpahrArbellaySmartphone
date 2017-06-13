@@ -1,13 +1,7 @@
 /*
- * Author : Bryan Spahr
- */
-
-/*
- * Panel that access to the webcam of the computer and activate it to take pictures.
- * The pictures are immedialty saved in the photo gallery. Panel displayed over
- * the HomeFrame as an application
- */
-
+Author : Olivier Arbellay
+Date: 12 juin 2017
+*/
 package panels;
 
 import java.awt.BorderLayout;
@@ -28,6 +22,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.hamcrest.core.IsInstanceOf;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
 import org.opencv.imgcodecs.Imgcodecs;
@@ -41,7 +36,7 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import java.awt.Font;
 
-public class CameraPanel extends JPanel {
+public class AddContactPhotoPanel extends JPanel {
 
 	// Panels
 	private JPanel west = new JPanel();
@@ -68,9 +63,19 @@ public class CameraPanel extends JPanel {
 
 	// Boolean
 	public boolean running = false;
+	
+//	AddContactPanel apd; 
+//	ModifyContactPanel mdp;
 
 	// Constructor
-	public CameraPanel() {
+	public AddContactPhotoPanel() {
+		
+//		if (top.getClass().getSimpleName() =="AddContactPanel")
+//			this.apd=(AddContactPanel) top;
+//		else{
+//			this.mdp = (ModifyContactPanel) top;
+//		}
+//		
 
 		// Setting of the panel
 		setLayout(new BorderLayout());
@@ -198,6 +203,8 @@ public class CameraPanel extends JPanel {
 		boolean reroll = false;
 
 		public void actionPerformed(ActionEvent e) {
+			
+			System.out.println("Photo prise");
 
 			randomName = rand.nextInt(999999);
 
@@ -219,10 +226,26 @@ public class CameraPanel extends JPanel {
 			}
 			// Save/write the picture in the Photo Gallery
 			if (reroll == false) {
+				
 				Imgcodecs.imwrite("./src/PhotoGallery/" + name, frame);
 				confirmation();
-
+				
+				
+				//save the picture for the contat 
+				
+				String pathTronche = "./src/PhotoGallery/" + name;
+				
+				
+				
+				AddContactPhotoPanel.this.thread.runnable = false;
+				AddContactPhotoPanel.this.videoCapture.release();
+				
+				//save the property change
+				AddContactPhotoPanel.this.firePropertyChange("photoPrise", null, pathTronche);
+				
+				
 			} else {
+				System.out.println("on rerentre dans la boucle");
 				actionPerformed(e);
 			}
 
