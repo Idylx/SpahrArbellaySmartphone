@@ -3,7 +3,6 @@ Author : Olivier Arbellay
 Date: 24 mai 2017
 */
 package appContact;
-//TEst
 
 import java.awt.EventQueue;
 
@@ -60,7 +59,7 @@ public class addContactFrame extends JFrame{
 		getContentPane().add(btnAddContact);
 		
 		
-		JLabel prenomLabel = new JLabel("Prénom");
+		JLabel prenomLabel = new JLabel("Prï¿½nom");
 		prenomLabel.setBounds(42, 135, 113, 22);
 		getContentPane().add(prenomLabel);
 
@@ -76,7 +75,7 @@ public class addContactFrame extends JFrame{
 		emailLabel.setBounds(42, 284, 117, 20);
 		getContentPane().add(emailLabel);
 
-		JLabel phoneLabel = new JLabel("N° de Téléphone");
+		JLabel phoneLabel = new JLabel("Nï¿½ de Tï¿½lï¿½phone");
 		phoneLabel.setBounds(42, 327, 152, 23);
 		getContentPane().add(phoneLabel);
 
