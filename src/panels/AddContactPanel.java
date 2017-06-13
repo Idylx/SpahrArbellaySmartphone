@@ -28,13 +28,13 @@ import java.awt.CardLayout;
 
 public class AddContactPanel extends JPanel {
 
-	// déclaration des variable
+	// dï¿½claration des variable
 
 	AddContactPhotoPanel camera = new AddContactPhotoPanel();
-	// set le logo de base par défauten caméra
+	// set le logo de base par dï¿½fauten camï¿½ra
 	String pathTronche = "./src/Pictures/camera.png";
 
-	// déclare le layout
+	// dï¿½clare le layout
 	CardLayout c3 = new CardLayout();
 
 	RepertoireContact rep = new RepertoireContact();
@@ -57,11 +57,11 @@ public class AddContactPanel extends JPanel {
 	JTextField phone = new JTextField();
 
 	// label
-	JLabel prenomLabel = new JLabel("Prénom");
+	JLabel prenomLabel = new JLabel("PrÃ©nom");
 	JLabel nomLabel = new JLabel("Nom");
 	JLabel adresseLabel = new JLabel("Adresse");
 	JLabel emailLabel = new JLabel("E-mail");
-	JLabel phoneLabel = new JLabel("Téléphone");
+	JLabel phoneLabel = new JLabel("TÃ©lÃ©phone");
 
 	// rep
 	RepertoirePanel top;
@@ -169,14 +169,14 @@ public class AddContactPanel extends JPanel {
 
 	}
 
-	// démare la caméra pour prendre une photo pour un contact
+	// dï¿½mare la camï¿½ra pour prendre une photo pour un contact
 	class Cam_Button implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 
 			camera.addPropertyChangeListener(new PropertyChangeListener() {
 
-				// en cas de changement de propriété
+				// en cas de changement de propriï¿½tï¿½
 				
 				@Override
 				public void propertyChange(PropertyChangeEvent evt) {
@@ -229,7 +229,7 @@ public class AddContactPanel extends JPanel {
 
 			if (prenom.getText().equals("") && nom.getText().equals("") && phone.getText().equals("")) {
 
-				JOptionPane.showMessageDialog(null, "Veuillez remplir les champs prénom, nom, téléphone");
+				JOptionPane.showMessageDialog(null, "Veuillez remplir les champs prÃ©nom, nom, tÃ©lÃ©phone");
 
 			} else {
 				Contact c = new Contact(prenom.getText(), nom.getText(), adresse.getText(), email.getText(),
