@@ -25,7 +25,7 @@ import javax.swing.JTextArea;
 public class addContactFrame extends JFrame{
 
 	
-	//créations des textfield
+	//crÃ©ations des textfield
 	private JFrame addframe;
 	private JTextField prenom;
 	private JTextField nom;
@@ -68,7 +68,7 @@ public class addContactFrame extends JFrame{
 		getContentPane().add(btnAddContact);
 		
 		
-		JLabel prenomLabel = new JLabel("Prénom");
+		JLabel prenomLabel = new JLabel("PrÃ©nom");
 		prenomLabel.setBounds(42, 135, 113, 22);
 		getContentPane().add(prenomLabel);
 
@@ -84,7 +84,7 @@ public class addContactFrame extends JFrame{
 		emailLabel.setBounds(42, 284, 117, 20);
 		getContentPane().add(emailLabel);
 
-		JLabel phoneLabel = new JLabel("N° de Téléphone");
+		JLabel phoneLabel = new JLabel("NÂ° de TÃ©lÃ©phone");
 		phoneLabel.setBounds(42, 327, 152, 23);
 		getContentPane().add(phoneLabel);
 
