@@ -90,6 +90,7 @@ public class Mp3PlayerPanel extends JPanel {
 		displaySong.setFont(new Font("Arial", Font.BOLD, 30));
 		displayPanel.setOpaque(false);
 
+		//panel des boutons
 		playPanel.setLayout(new BorderLayout());
 		playPanel.add(play, BorderLayout.CENTER);
 		playPanel.setOpaque(false);
@@ -107,6 +108,7 @@ public class Mp3PlayerPanel extends JPanel {
 		choose.addActionListener(new Choose_Button());
 
 	}
+	//play sur la musique avec methode resume 
 
 	class Play_Button implements ActionListener {
 
@@ -122,7 +124,7 @@ public class Mp3PlayerPanel extends JPanel {
 
 		}
 	}
-
+// bouton pause
 	class Pause_Button implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {

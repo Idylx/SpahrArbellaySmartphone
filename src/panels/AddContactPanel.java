@@ -83,16 +83,13 @@ public class AddContactPanel extends JPanel {
 		addTextField();
 
 		c3.show(AddContactPanel.this, "AddContactPanel");
-
 	}
 
-	
-	//rajoute tout le bordel sur 1 panel
+	// rajoute tout le bordel sur 1 panel
 	void addStuff() {
 
 		stuff.setBackground(Color.BLACK);
 
-		
 		closeBtn.addActionListener(new Close_Button());
 		addBtn.addActionListener(new Add_Button());
 
@@ -113,7 +110,7 @@ public class AddContactPanel extends JPanel {
 
 	}
 
-	//rajoute tout les texfield
+	// rajoute tout les texfield
 	void addTextField() {
 
 		prenom.setBounds(250, 200, 115, 20);
@@ -136,7 +133,7 @@ public class AddContactPanel extends JPanel {
 
 	}
 
-	//rajoute tout les label
+	// rajoute tout les label
 	void addJLabel() {
 
 		Color fColor = Color.white;
@@ -172,23 +169,27 @@ public class AddContactPanel extends JPanel {
 
 	}
 
-	//démare la caméra pour prendre une photo pour un contact 
+	// démare la caméra pour prendre une photo pour un contact
 	class Cam_Button implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 
 			camera.addPropertyChangeListener(new PropertyChangeListener() {
-// affecte la poto prise au contact 
+
+				// en cas de changement de propriété
+				
 				@Override
 				public void propertyChange(PropertyChangeEvent evt) {
 					if (evt.getPropertyName().equals("photoPrise")) {
-						System.out.println("on a pris une photo woohoo");
+//						System.out.println("on a pris une photo woohoo");
 						pathTronche = (String) evt.getNewValue();
 
 						tronche.setIcon(new Photo(pathTronche));
 
 						AddContactPanel.this.remove(camera);
 						// top.remove(camera);
+						
+//						AddContactPanel.this.removeAll();
 						AddContactPanel.this.addStuff();
 						AddContactPanel.this.add(stuff);
 						AddContactPanel.this.addJLabel();
@@ -218,10 +219,9 @@ public class AddContactPanel extends JPanel {
 			// top.repaint();
 
 		}
-
 	}
 
-	// rajoute les informations au contact 
+	// rajoute les informations au contact
 	class Add_Button implements ActionListener {
 
 		@Override
@@ -234,19 +234,21 @@ public class AddContactPanel extends JPanel {
 			} else {
 				Contact c = new Contact(prenom.getText(), nom.getText(), adresse.getText(), email.getText(),
 						phone.getText(), pathTronche);
+
 				rep.add(c);
 
 				top.removePanel(AddContactPanel.this);
 				top.reloadAll();
-//				// top.removeAll();
-//				top.addStuff();
-//				top.revalidate();
-//				top.repaint();
+				// // top.removeAll();
+				// top.addStuff();
+				// top.revalidate();
+				// top.repaint();
 			}
 
 		}
 	}
-//ferme l'ajout
+
+	// ferme l'ajout
 	class Close_Button implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {

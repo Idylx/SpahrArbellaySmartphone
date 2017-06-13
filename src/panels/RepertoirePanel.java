@@ -63,7 +63,7 @@ public class RepertoirePanel extends JPanel {
 		stuff = new JPanel();
 		addPanel= new JPanel();
 		btnAddContact  = new ButtonApplication(new Photo("./src/Pictures/addUser.png"));
-		System.out.println("jai chargé du stuff");
+//		System.out.println("jai chargé du stuff");
 		
 		
 		// créer une jlist et un scrollpane lié 
