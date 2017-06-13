@@ -24,8 +24,8 @@ public class launcher {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HomeFrame hf = new HomeFrame();
-					hf.setVisible(true);
+					HomeFrame hf1 = new HomeFrame();
+					hf1.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

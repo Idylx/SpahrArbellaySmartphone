@@ -56,7 +56,6 @@ public class CameraPanel extends JPanel {
 	// CLasses
 	public DaemonThread thread = null;
 	public VideoCapture videoCapture = null;
-
 	private Mat frame = new Mat();
 	private MatOfByte mem = new MatOfByte();
 
@@ -186,7 +185,6 @@ public class CameraPanel extends JPanel {
 	 * Classes that implements ActionListener to indicate what to do when a
 	 * button is pressed
 	 */
-
 	class BoutonTake implements ActionListener {
 
 		// Give the picture a random name
@@ -198,7 +196,7 @@ public class CameraPanel extends JPanel {
 		boolean reroll = false;
 
 		public void actionPerformed(ActionEvent e) {
-
+			
 			randomName = rand.nextInt(999999);
 
 			name = Integer.toString(randomName);

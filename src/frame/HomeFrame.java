@@ -3,7 +3,7 @@
 
 /*
  * Home/Main Frame of the applications. Used as base for the app.
- * The differents panels come over this frame.
+ * The different panels come over this frame.
  */
 
 package frame;
@@ -14,10 +14,12 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import appContact.RepertoireContact;
 import buttons.ButtonApplication;
@@ -44,7 +46,10 @@ public class HomeFrame extends JFrame {
 	private JPanel south = new JPanel();
 	private JPanel north = new TopPanel();
 
-	private JPanel panel = new JPanel(new FlowLayout());
+	//Panel that contains the app buttons
+	private JPanel panel = new JPanel(new GridLayout(2,3,10,10));
+	
+	//Main Panel of the frame
 	private JPanel mainPanel = new JPanel();
 
 	// Apps panels in CardLayout
@@ -67,7 +72,6 @@ public class HomeFrame extends JFrame {
 	private ButtonApplication bCamera = new ButtonApplication(new Photo("./src/Pictures/camera.png"));
 	private ButtonApplication bContact = new ButtonApplication(new Photo("./src/Pictures/contact.png"));
 	private ButtonApplication bPlayer = new ButtonApplication(new Photo("./src/Pictures/music.png"));
-	private ButtonApplication app6 = new ButtonApplication(new Photo("./src/Pictures/camera.png"));
 
 	// Home Button for the south panel
 	private ButtonHome bHome = new ButtonHome();
@@ -82,9 +86,11 @@ public class HomeFrame extends JFrame {
 		setLocationRelativeTo(null);
 
 		// Dimension settigs of the panels
-		panel.setPreferredSize(new Dimension(440, 150));
 		west.setPreferredSize(new Dimension(0, 0));
 		est.setPreferredSize(new Dimension(0, 0));
+		
+		//Set empty border for the design
+		panel.setBorder(new EmptyBorder(10,0,160,0));
 
 		// Add action listener to buttons
 		bCalculatrice.addActionListener(new BoutonCalculatrice());
@@ -93,7 +99,6 @@ public class HomeFrame extends JFrame {
 		bCamera.addActionListener(new BoutonCamera());
 		bContact.addActionListener(new BoutonContact());
 		bPlayer.addActionListener(new BoutonPlayer());
-		
 
 		// Add buttons to the panel
 		panel.add(bCalculatrice);
@@ -101,7 +106,6 @@ public class HomeFrame extends JFrame {
 		panel.add(bCamera);
 		panel.add(bContact);
 		panel.add(bPlayer);
-		// panel.add(app6);
 
 		// Set the panel non-opaque
 		panel.setOpaque(false);
@@ -204,6 +208,7 @@ public class HomeFrame extends JFrame {
 
 	}
 
+	//Open the RepertoirePanel over the mainPanel
 	class BoutonContact implements ActionListener {
 
 		@Override
@@ -215,7 +220,8 @@ public class HomeFrame extends JFrame {
 		}
 
 	}
-
+	
+	//Open the Mp3PlayerPanel over the mainPanel
 	class BoutonPlayer implements ActionListener {
 
 		@Override
