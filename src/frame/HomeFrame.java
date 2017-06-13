@@ -67,7 +67,6 @@ public class HomeFrame extends JFrame {
 	private ButtonApplication bCamera = new ButtonApplication(new Photo("./src/Pictures/camera.png"));
 	private ButtonApplication bContact = new ButtonApplication(new Photo("./src/Pictures/contact.png"));
 	private ButtonApplication bPlayer = new ButtonApplication(new Photo("./src/Pictures/music.png"));
-	private ButtonApplication app6 = new ButtonApplication(new Photo("./src/Pictures/camera.png"));
 
 	// Home Button for the south panel
 	private ButtonHome bHome = new ButtonHome();
@@ -101,7 +100,6 @@ public class HomeFrame extends JFrame {
 		panel.add(bCamera);
 		panel.add(bContact);
 		panel.add(bPlayer);
-		// panel.add(app6);
 
 		// Set the panel non-opaque
 		panel.setOpaque(false);
