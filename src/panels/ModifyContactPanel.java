@@ -171,8 +171,6 @@ public class ModifyContactPanel extends JPanel {
 				
 				top.setIndex(rep.getLastIndex());
 				top.removePanel(ModifyContactPanel.this);
-				top.revalidate();
-				top.repaint();
 				top.addStuff();
 			
 				

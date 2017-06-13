@@ -31,14 +31,14 @@ public class AddContactPanel extends JPanel {
 	AddContactPhotoPanel camera = new AddContactPhotoPanel();
 	String pathTronche = "./src/Pictures/camera.png";
 
-	static CardLayout c3 = new CardLayout();
+	CardLayout c3 = new CardLayout();
 
 	RepertoireContact rep = new RepertoireContact();
 
 	private JPanel closePanel = new JPanel();
 	private JPanel textPanel = new JPanel();
 	private JPanel addPanel = new JPanel();
-	static JPanel stuff = new JPanel(new BorderLayout());
+	private JPanel stuff = new JPanel(new BorderLayout());
 
 	ButtonApplication closeBtn = new ButtonApplication(new Photo("./src/Pictures/close.png"));
 	ButtonApplication addBtn = new ButtonApplication(new Photo("./src/Pictures/addUser.png"));
@@ -191,7 +191,6 @@ public class AddContactPanel extends JPanel {
 				}
 			});
 
-			camera.thread.runnable = true;
 			camera.start();
 			
 			
@@ -222,14 +221,10 @@ public class AddContactPanel extends JPanel {
 						phone.getText(), pathTronche);
 				rep.add(c);
 
-				top.remove(top.scroll);
-				top.remove(AddContactPanel.this);
-				
-				
+				top.removePanel(AddContactPanel.this);
+//				top.removeAll();
 				top.addStuff();
-				top.add(stuff);
-				
-				top.validate();
+				top.revalidate();
 				top.repaint();
 			}
 

@@ -204,7 +204,7 @@ public class ContactPanel extends JPanel {
 				rep.remove(index);
 				
 				top.getContainerContact().removeAll();
-				top.remove(ContactPanel.this);
+				top.removePanel(ContactPanel.this);
 				top.addStuff();
 			}
 
@@ -220,8 +220,6 @@ public class ContactPanel extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 
 			top.removePanel(ContactPanel.this);
-			top.revalidate();
-			top.repaint();
 			top.addStuff();
 		
 		}

@@ -29,109 +29,122 @@ import photo.Photo;
 
 import appContact.*;
 
-public class RepertoirePanel extends JPanel  {
-	
-	
+public class RepertoirePanel extends JPanel {
+
 	private CMainPanel containerContact = new CMainPanel();
-	
+
 	private CardLayout c2 = new CardLayout();
 
 	JPanel addPanel = new JPanel();
 	JPanel stuff = new JPanel();
-	
-	
+
 	RepertoireContact rep = new RepertoireContact();
 
-	JScrollPane scroll = new JScrollPane(contactListPane());
-	
 	Color bColor = Color.black;
 
 	ButtonApplication btnAddContact = new ButtonApplication(new Photo("./src/Pictures/addUser.png"));
 
-	
-	AddContactPanel adp ;
-	ContactPanel cp ;
-	
-	
-	private Photo photo;
+	AddContactPanel adp;
+	ContactPanel cp;
 
 	public RepertoirePanel() {
-		
+
 		addStuff();
-		
+
 		setLayout(c2);
 		setBackground(bColor);
-		
-		
+
 		add(stuff);
-		
+
 		c2.show(RepertoirePanel.this, "RepertoireContact");
 
-
 	}
 
-	void setPhoto() {
-		photo = new Photo("./src/Pictures/wallpaperr.jpg");
-	}
-	
-void addStuff(){
-	
+	void addStuff() {
+		System.out.println("jai chargé du stuff");
+		rep.deserialize();
+		JList<?> list = new JList<Object>(rep.listeContact.toArray());
+		JScrollPane scroll = new JScrollPane(list);
+
 		stuff.setLayout(new BorderLayout());
-		stuff.add(scroll, BorderLayout.CENTER);
+
 		stuff.add(addPanel, BorderLayout.NORTH);
+		stuff.add(scroll, BorderLayout.CENTER);
 		addPanel.setLayout(new BorderLayout());
 		addPanel.setBackground(bColor);
 		addPanel.add(btnAddContact, BorderLayout.EAST);
 		btnAddContact.addActionListener(new Add_Button());
-		
-		
+
+		list.setCellRenderer(new ContactCellRenderer());
+		list.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				JList list = (JList) evt.getSource();
+				if (evt.getClickCount() == 2) {
+
+					// Double-click detected
+					int index = list.locationToIndex(evt.getPoint());
+
+					JPanel individualPanel = new ContactPanel(index, RepertoirePanel.this);
+
+					add(individualPanel, "ip");
+					c2.show(RepertoirePanel.this, "ip");
+				} else if (evt.getClickCount() == 3) {
+
+					// Triple-click detected
+					int index = list.locationToIndex(evt.getPoint());
+				}
+			}
+		});
+
 	}
-	
-	private JScrollPane contactListPane(){
-		rep.deserialize();
-	    String[] columnNames = {"Last Name", "First Name", "Image"} ;
-	    DefaultTableModel model = new DefaultTableModel(){
-	        @Override
-	        public Class<?> getColumnClass(int column) {
-	            switch (column) {
-	                case 2: return ImageIcon.class;
-	                default: return String.class ;
-	            }
-	        }
-	    };
 
-	    model.addColumn("First Name") ;
-	    model.addColumn("Last Name") ;
-	    model.addColumn("Image") ;
-	    for (int i = 0; i< rep.listeContact.size();i++){
-	      Object[] currentContactData = {rep.listeContact.get(i).getFirstName(),rep.listeContact.get(i).getLastName(),rep.listeContact.get(i).getPath()} ;
-	      model.addRow(currentContactData) ;
-	    } 
-	    final JTable contactTable = new JTable(model);
-	    contactTable.setShowGrid(false);
-	    JScrollPane scrollPane = new JScrollPane(contactTable);
-	    
-	    contactTable.setEnabled(false);
-
-	    contactTable.addMouseListener(new MouseAdapter() {
-	      
-	        @Override
-	        public void mouseClicked(MouseEvent e) {
-	            int row = contactTable.rowAtPoint(e.getPoint());
-	            if (row >= 0) {
-	            JPanel individualPanel = new ContactPanel(row, RepertoirePanel.this) ;
-	    
-	            add(individualPanel, "ip");
-				c2.show(RepertoirePanel.this, "ip");
-	            
-	        }
-	    }});
-	    
-	    scrollPane.setBackground(bColor);
-	    return scrollPane ;
-	  }
-	
-	
+//	private JScrollPane contactListPane() {
+//		rep.deserialize();
+//		// String[] columnNames = {"Last Name", "First Name", "Image"} ;
+//		// DefaultTableModel model = new DefaultTableModel(){
+//		// @Override
+//		// public Class<?> getColumnClass(int column) {
+//		// switch (column) {
+//		// case 2: return ImageIcon.class;
+//		// default: return String.class ;
+//		// }
+//		// }
+//		// };
+//		//
+//		// model.addColumn("First Name") ;
+//		// model.addColumn("Last Name") ;
+//		// model.addColumn("Image") ;
+//		// for (int i = 0; i< rep.listeContact.size();i++){
+//		// Object[] currentContactData =
+//		// {rep.listeContact.get(i).getFirstName(),rep.listeContact.get(i).getLastName(),rep.listeContact.get(i).getPath()}
+//		// ;
+//		// model.addRow(currentContactData) ;
+//		// }
+//		// final JTable contactTable = new JTable(model);
+//
+////		JScrollPane scrollPane = new JScrollPane(list);
+//		//
+//		// contactTable.setEnabled(false);
+//
+//		// contactTable.addMouseListener(new MouseAdapter() {
+//		//
+//		//
+//		// @Override
+//		// public void mouseClicked(MouseEvent e) {
+//		// int row = contactTable.rowAtPoint(e.getPoint());
+//		// if (row >= 0) {
+//		// JPanel individualPanel = new ContactPanel(row, RepertoirePanel.this)
+//		// ;
+//		//
+//		// add(individualPanel, "ip");
+//		// c2.show(RepertoirePanel.this, "ip");
+//		//
+//		// }
+//		// }});
+//
+//		scrollPane.setBackground(bColor);
+//		return scrollPane;
+//	}
 
 	public CMainPanel getContainerContact() {
 		return containerContact;
@@ -147,6 +160,7 @@ void addStuff(){
 			adp = new AddContactPanel(RepertoirePanel.this);
 			add(adp, "adp");
 			c2.show(RepertoirePanel.this, "adp");
+			adp.pathTronche = "./src/Pictures/camera.png";
 
 		}
 
