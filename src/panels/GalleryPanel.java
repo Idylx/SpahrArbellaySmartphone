@@ -106,12 +106,11 @@ public class GalleryPanel extends JPanel {
 
 		ArrayList<String> temp = new ArrayList<String>();
 		File folder = new File("./src/PhotoGallery");
-		File imgs[] = folder.listFiles();
+		File images[] = folder.listFiles();
 
-		for (int i = 0; i < imgs.length; i++)
-
-			temp.add("./src/PhotoGallery/" + imgs[i].getName());
-
+		for (int i = 0; i < images.length; i++){
+			temp.add("./src/PhotoGallery/" + images[i].getName());
+		}
 		return temp;
 	}
 

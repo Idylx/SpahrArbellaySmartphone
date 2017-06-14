@@ -19,18 +19,11 @@ public class launcher {
 	public static void main(String[] args) {
 
 		// Load the specified library by default (used for the cam app)
-		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		System.load(Core.NATIVE_LIBRARY_NAME);
 
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HomeFrame hf1 = new HomeFrame();
-					hf1.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		HomeFrame hf1 = new HomeFrame();
+		hf1.setVisible(true);
+
 	}
 
 }
